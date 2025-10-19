@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My UX Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
+    /* === RESET & BASE === */
     * {
       margin: 0;
       padding: 0;
@@ -12,12 +15,151 @@
     }
 
     body {
-      font-family: sans-serif;
-      background-color: #fff;
-      color: #000;
+      font-family: 'Nunito', 'Space Grotesk', sans-serif; 
+      color: #1f2933;
+      font-size: 1rem;
+      line-height: 1.4;
       overflow: hidden;
+      margin: 0;
+      position: relative;
     }
 
+  body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500vw; /* enough for 5 scenes */
+  height: 100vh; /* always full viewport height */
+  background: url('https://raw.githubusercontent.com/Galina-GS/portfolio_ux/ce823d4f528a7131f8398a7ecdaf61375e5fd3a2/Background.jpg') no-repeat left center;
+  background-size: cover; /* stretches to fill full width & height */
+  background-repeat: no-repeat;
+  transform: translateX(var(--bg-offset, 0));
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+  z-index: -1;
+}
+    /* === COMPREHENSIVE TEXT STYLES === */
+
+/* Headings with proper hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: #1f2933;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem; /* 48px equivalent */
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: 2.25rem; /* 36px equivalent */
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: 1.875rem; /* 30px equivalent */
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.5rem; /* 24px equivalent */
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.25rem; /* 20px equivalent */
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1.125rem; /* 18px equivalent */
+  font-weight: 600;
+}
+
+/* Body text variations */
+p {
+  color: #1f2933;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  text-align: left;
+}
+
+img, .no-drag {
+  user-drag: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
+img, svg, gif, .no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.swipe-hint {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw; /* spacing between text and animation */
+  z-index: 1000;
+}
+
+.swipe-text {
+  font-size: 0.7rem;
+  font-family: 'Nunito', sans-serif;
+  color: #1f2933;
+}
+
+.perspective {
+  perspective: 130px;
+}
+
+.perspective span {
+  display: inline-block;
+  margin: 0.2em 0;
+  backface-visibility: hidden; /* avoid flicker */
+}
+
+/* === animated forward tilt === */
+.perspective-fwd {
+  transform-origin: right center;
+  /* remove your old `transform: rotateY(30deg);` */
+  animation: tiltFwd 5s ease-out forwards;
+}
+
+/* === animated backward tilt === */
+.perspective-bwd {
+  transform-origin: left center;
+  /* remove your old `transform: rotateY(-30deg);` */
+  animation: tiltBwd 5s ease-out forwards;
+}
+
+/* Keyframes for forward tilt (0 → +30°) */
+@keyframes tiltFwd {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(30deg); }
+}
+
+/* Keyframes for backward tilt (0 → –30°) */
+@keyframes tiltBwd {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-30deg); }
+}
+
+    /* === SCROLL WRAPPER === */
     .scroll-wrapper {
       display: flex;
       overflow-x: scroll;
@@ -25,96 +167,4547 @@
       width: 100vw;
       height: 100vh;
       scroll-snap-type: x mandatory;
+      scroll-snap-stop: always;
+      overscroll-behavior-x: contain;
       scroll-behavior: smooth;
     }
 
+    /* === SCENE BASE === */
     .scene {
       flex: 0 0 100vw;
+      width: 100vw;
       height: 100vh;
       scroll-snap-align: start;
+      overflow: visible;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 5vw;
-      font-weight: bold;
+    }
+
+  /* === TOP NAVIGATION === */
+.top-nav {
+  position: fixed;
+  top: 2vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.2vw;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.8vw 2vw;
+  border-radius: 2vw;
+  backdrop-filter: blur(0.5vw);
+  box-shadow: 0 0.2vw 1vw rgba(0, 0, 0, 0.1);
+}
+
+.nav-dot {
+  width: 2.8vw;
+  height: 2.8vw;
+  border-radius: 50%;
+  background: white;
+  border: 0.2vw solid #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1vw;
+}
+
+.nav-dot img {
+  width: 1.5vw;
+  height: 1.5vw;
+  transition: transform 0.3s ease;
+}
+
+.nav-dot:hover img {
+  transform: scale(1.1);
+}
+
+.nav-dot.active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.nav-dot.active img {
+  filter: brightness(0) invert(1); /* Makes image white-like */
+}
+
+.start-row {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  margin-top: 2vh;
+}
+
+.button {
+  align-self: left;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #1f2933 15px 28px 25px -18px;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1rem;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: #1f2933 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button:focus {
+  box-shadow: #1f2933 2px 8px 4px -6px;
+  transform: translate3d(0, 2px, 0);
+}
+
+    /* === 2-PART LAYOUT SYSTEM === */
+    .text-section {
+      width: 50%;
+      padding: 0 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      z-index: 10;
       position: relative;
     }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3vw;
-      cursor: pointer;
-      opacity: 0.3;
-      transition: opacity 0.2s;
+    .game-section {
+      width: 50%;
+      padding: 0 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    } 
+
+    /* COMMON INSTRUCTION TEXT*/
+.highlight-animate {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  background: #a854f7;
+  color: white;
+  border-radius: 6px;
+}
+
+
+    /* === INTRO SCENE === */
+    .scene.intro {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 25vh;
+    }
+
+    .intro-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .intro-photo img {
+      width: 20vw;
+      height: auto;
+      border-radius: 1vw;
+      max-width: 300px;
+    }
+
+    /* === UNIVERSITY SCENE === */
+.scene.university {
+  align-items: flex-start; /* Changed from flex-end to flex-start */
+  background-color: transparent;
+  overflow: hidden;
+  padding-top: 20vh; /* Add some top padding to position below navigation */
+}
+
+.university-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.university-bg {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 60%;
+  height: 100%;
+  background: url('https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/University.svg') no-repeat left bottom;
+  background-size: contain;
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.text-section-university {
+  width: 50%;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right: auto;
+  z-index: 10;
+  position: relative;
+}
+
+
+/* === PROGRESS BARS === */
+.school-progress {
+  width: 50%;              /* force the bar to span its parent */
+  margin: 1rem 0;
+  align-self: flex-end;
+}
+
+.progress-bar__container {
+  position: relative;
+  width: 100%;
+  height: 3rem;           /* thickness */
+  border: 2px solid #2563eb;/* blue track */
+  border-radius: 0;
+  background: #fff;         /* empty-track color */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0%;                /* JS will grow this */
+  height: 100%;
+  background: #2563eb;      /* fill color */
+  transition: width 0.5s ease;
+  z-index: 1;
+}
+
+.progress-bar__label {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #1f2933;   
+  transition: color 0.5s ease;        /* always readable */
+  z-index: 2;
+}
+
+/* when the bar is “mostly” filled, make label white */
+.progress-bar__label.light {
+  color: #fff !important;
+}
+
+/* ——— completion ANIMATION ——— */
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.7); background-color: #2563eb; }
+  50% { box-shadow: 0 0 20px 5px rgba(37,99,235,0.4); background-color: #2563eb; }
+  100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.7); background-color: #2563eb; }
+}
+
+.school-progress.complete .progress-bar__container {
+  animation: glowPulse 1.2s ease-in-out;
+}
+
+.game-section-university {
+  width: 50%;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  align-items: left;
+  position: relative;
+  z-index: 5;
+} 
+
+.game-area {
+  position: relative; /* Changed from absolute */
+  /* Remove the absolute positioning properties */
+  width: 100%; /* Changed from 60vw */
+  text-align: center;
+  justify-content: flex-start;
+  display: flex;
+  z-index: 4;
+}
+
+.skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1vw;
+      justify-content: left;
+      align-items: flex-start;
+      align-content: flex-start;
+      padding: 0vw;
+      min-height: 40vh;
+      max-width: 30vw;
+    }
+
+    .skill-card {
+      background-color: #fff;
+      background-image: none;
+      background-position: 0 90%;
+      background-repeat: repeat no-repeat;
+      background-size: 4px 3px;
+      border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #1f2933;
+      border-bottom-left-radius: 15px 255px;
+      border-bottom-right-radius: 225px 15px;
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+      box-shadow: #1f2933 15px 28px 25px -18px;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      color: #1f2933;
+      cursor: grab;
+      display: inline-block;
+      font-size: 1rem;
+      line-height: 1rem;
+      outline: none;
+      padding: 0.8vw 1vw;
+      text-decoration: none;
+      transition: all 235ms ease-in-out;
       user-select: none;
-    }
-
-    .arrow:hover {
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      margin: 0.3vw;
       opacity: 1;
+      transform: translateY(0);
+      align-self: left;
+      animation: wiggle 5s ease-in-out infinite;
     }
 
-    .arrow.left {
-      left: 20px;
+    .skill-card:hover {
+      box-shadow: #1f2933 4px 8px 8px -5px;
+      transform: translate3d(0, -2px, 0);
+      opacity: 1;
+      cursor: grab;
     }
 
-    .arrow.right {
-      right: 20px;
+    .skill-card:active,
+    .skill-card.dragging {
+      cursor: grabbing !important;
+      transform: scale(1.05) rotate(2deg);
+      z-index: 1000;
+      opacity: 1;
+      box-shadow: #1f2933 12px 20px 20px -8px;
     }
 
-    .character {
-      font-size: 2vw;
+.character-area {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 3;
+}
+
+.character-img {
+  max-height: 100%;
+  width: 100%;
+}
+
+.education-banner {
+      position: absolute;
+      bottom: clamp(4vh, 6vh, 10vh);
+  left: clamp(60%, 63%, 68%);
+      transform: translateX(-50%);
+      width: 19vw;
+      height: 37vw;
+      background: rgba(255, 255, 255, 0);
+      border: 0px;
+      padding: 2vw;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 10;     
+    }
+
+    .banner-section {
       text-align: center;
-      max-width: 60%;
     }
+
+    .banner-section h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1vw;
+      font-weight: 700;
+      color: #1f2933;
+      margin-bottom: 0.5vw;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .drop-zone {
+      min-height: 8vw; 
+      border: 2px dashed #a855f7;
+      border-radius: 8px;
+      padding: 0vw;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.1rem;
+      justify-content: center;
+      align-items: flex-start;
+      align-content: flex-start;
+      transition: all 0.3s ease;
+      z-index: 5;
+      position: relative; /* required for z-index to take effect */
+    }
+
+   
+
+    .drop-zone .skill-card {
+      font-size: 0.7vw;
+      padding: 0.4vw 0.6vw;
+      margin: 0.1vw;
+      animation: none;
+      box-shadow: #1f2933 4px 8px 8px -5px;
+      cursor: default !important;
+    }
+
+    /* 1) Prevent cards inside drop-zones from ever scaling or showing the grabbing cursor */
+.drop-zone .skill-card:active,
+.drop-zone .skill-card.dragging,
+.drop-zone .skill-card:hover {
+  transform: none !important;
+  cursor: default !important;
+  box-shadow: #1f2933 4px 8px 8px -5px !important;
+}
+
+      @keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+      /* Game completion animation */
+    .skill-card.placed {
+      animation: placeCard 0.5s ease-out;
+      cursor: default !important;
+    }
+
+  
+
+    @keyframes placeCard {
+      0% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+
+  /* === MARKETING SCENE LAYOUT === */
+.scene.marketing {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 20vh;             /* same vertical start as your other screens */
+}
+
+/* left third: text */
+.text-section-marketing {
+  width: 20%;
+  padding: 0 4vw;                /* same horizontal gutters you’ve been using */
+}
+.text-section-marketing h2 {
+  margin-bottom: 1rem;
+}
+.text-section-marketing p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* right two thirds: desk/table + screens */
+.game-section-marketing {
+  width: 75%;
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.marketing-detail-box {
+  position: absolute;
+  top: 8vw; /* positions it above the character */
+  left: 25vw; /* pushes it to the right of the character */
+  width: 18vw;
+  border: 2px solid #2563eb;
+  background: #fff;
+  font-weight: 600;
+  color: #1f2933;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  z-index: 10;
+}
+
+.marketing-detail-box p {
+  white-space: pre-line;
+  min-height: 6em; /* enough space for the tallest text */
+  line-height: 1.4;
+  font-family: 'Nunito', sans-serif;
+}
+
+.screen-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5vw;
+  width: 100%;
+  height: 80vh; /* ✅ This is what makes the screens visible again */
+  z-index: 1;
+}
+
+/* each monitor */
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15vw;
+  position: absolute;
+  top: 0%;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.screen[data-index="0"] { left: 15%; }
+.screen[data-index="1"] { left: 40%; }
+.screen[data-index="2"] { left: 65%; }
+
+/* when active, show full opacity */
+.screen.active {
+  opacity: 1;
+}
+
+/* the live image inside the “screen” */
+.screen-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* caption below each screen */
+.screen-text {
+  margin-top: 0.5rem;   /* padding from the monitor */
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+}
+.screen.active .screen-text {
+  opacity: 1;
+  cursor: pointer; /* make it clickable */}
+
+/* the character at the bottom */
+#character {
+  position: absolute;
+  bottom: 5%;
+  width: 30vw;
+  transition: left 0.3s ease;
+  z-index: 5;
+}
+
+#character img {
+  width: 100%;
+  height: auto;
+}
+
+
+.screen:hover { transform: scale(1.08); cursor: pointer; }
+
+
+  
+
+    /* === UX SCENE === */
+
+   .scene.ux {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-top: 20vh; /* keep your existing top padding */
+}
+
+/* Left third: title & text */
+.text-section-ux {
+  width: 33.333%;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.text-section-ux h2 {
+  margin-bottom: 1rem;
+}
+.text-section-ux p {
+  margin: 0;
+  line-height: 1.4;
+}
+    
+
+/* Middle third: illustration stays centered */
+.character-area-ux {
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+}
+
+.character-area-ux .character-img {
+  max-width: 65%;
+  height: auto;
+}
+
+/* Right third: the “sticky wall” */
+.game-section-ux {
+  width: 60%;
+  padding: 0 4vw;
+  margin-left: auto;     /* push column to the right edge */
+  align-self: flex-end;
+  position: relative;    /* for z-index if you need it */
+  z-index: 2;
+}
+
+.sticky-wall {
+  position: relative;    /* for absolute children if you ever need them */
+  /* turn this into a 3-column grid, each column exactly 12vw wide */
+  display: grid;
+  grid-template-columns: repeat(3, 12vw);
+  
+  /* one row for the big stickers, then six rows for your little notes */
+  grid-template-rows: auto repeat(6, min-content);
+  
+  gap: 2vw;              /* space between rows & columns */
+  
+  /* shove the whole grid flush to the right, and pack rows at the top */
+  justify-content: end;
+  align-content: start;
+  
+  /* center each item inside its cell, then your transforms will offset it */
+  justify-items: center;
+  align-items: start;
+  
+  /* size & pointer resets */
+  width: 100%;
+  height: 80vh;
+  pointer-events: auto;
+}
+
+/* === PROJECT STICKERS (big, clickable) === */
+.project-sticker {
+  width: 12vw;
+  height: 6vw;
+  margin: 1vw;
+  background-color: #fff;
+  border: 2px solid #1f2933;
+  border-radius: 255px 15px 15px 225px / 15px 225px 255px 15px;
+  box-shadow: #1f2933 15px 28px 25px -18px;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-sticker:hover,
+.project-sticker:focus {
+  box-shadow: #1f2933 2px 8px 8px -5px;
+  transform: translateY(2px);
+}
+
+/* Grid placement if using CSS grid layout */
+.project-sticker:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+.project-sticker:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.project-sticker:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+
+/* Title inside sticker */
+.project-title {
+  margin-bottom: 0.3rem;
+}
+
+/* Label inside sticker */
+.project-label {
+  display: inline-block;
+  background-color: #a855f7;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.6rem;
+  font-family: 'Nunito', sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* === PROJECT PAGES === */
+.ux-project-page {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fffaf0;
+  z-index: 9999;              /* ← VERY IMPORTANT: must be above all other elements */
+  overflow-y: auto;
+  display: none;              /* default: hidden */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4rem;
+  box-sizing: border-box;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.3); /* ← dark transparent background */
+  backdrop-filter: blur(8px);   
+}
+
+.ux-project-page.visible {
+  display: flex;        /* shows the modal */
+}
+
+
+.project-inner {
+  margin: 0 auto;
+  overflow-x: hidden;
+   background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25); /* ← sticky-note-like shadow */
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.project-inner img {
+  width: 50%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.close-btn {
+  background: #a854f7;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+
+.styled-list {
+  list-style: none;
+  padding-left: 1.2rem;
+  margin: 1.5rem 0;
+}
+.styled-list li {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  line-height: 1.2;
+}
+.styled-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #2563eb; 
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Disclaimer styling */
+.disclaimer {
+  background: #fff;
+  border: 2px solid #2563eb;
+  color: #1f2933;
+  padding: 1.2rem 1.5rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+.disclaimer-text {
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #2563eb;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+.info-box {
+  background: #2563eb;          
+  border: 2px solid #2563eb;    
+  color: #fff;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  max-width: 100%;                /* full width on very small screens */
+  width: fit-content; 
+}
+
+
+.highlight-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem; /* spacing between cards */
+  justify-content: flex-start;
+}
+
+.highlight-box {
+  background-color: #fff;
+  border: 2px solid #1f2933;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  box-sizing: border-box;
+  width: fit-content;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+  display: inline-block;
+  margin: 0.5rem;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.8s ease-out;
+}
+
+/* When in view, trigger animation */
+.highlight-box.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.quote {
+  font-size: 1.4rem; /* like h4 */
+  color: #a854f7;
+  font-weight: 700;
+  text-align: left;
+  margin: 2rem 0;
+  line-height: 1.5;
+  max-width: 50%;
+  font-family: 'Space Grotesk', sans-serif;
+  justify-content: flex-start;
+}
+
+/* Row layout: text left, image right */
+.row-text-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Left column: text */
+.row-text-image .text {
+  flex: 1 1 50%;
+  min-width: 280px;
+  vertical-align: top;
+}
+
+/* Right column: image */
+.row-text-image .image {
+  flex: 1 1 40%;
+  min-width: 250px;
+  vertical-align: top;
+}
+.row-text-image .image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  align: top; /* ✅ align with top of text */
+}
+
+
+
+
+/* === STATIC NOTES (small, non-interactive) === */
+.sticky-note.static {
+  align-self: left;
+  width: 4vw;
+  height: 4vw;
+  margin: 0.5vw;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  pointer-events: none;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;   /* smaller than default */
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  position: relative;  /* required to scope their z-index */
+  z-index: 3;  
+}
+
+/* ——————————————————————————
+   2nd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 2 */
+.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-1vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(2vw, -0.3vw) rotate( 1deg); }
+
+/* column 2, row 2 */
+.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-3vw,  0.6vw) rotate( 1deg); }
+.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 2vw, -0.6vw) rotate(-2deg); }
+
+/* column 3, row 2 */
+.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate( 0vw,  -0.5vw) rotate( 2deg); }
+.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(4vw,  0.7vw) rotate( 3deg); }
+
+/* ——————————————————————————
+   3rd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 3 */
+.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-2.8vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 2vw,  0.4vw) rotate(-2deg); }
+
+/* column 2, row 3 */
+.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-2.5vw, -0.5vw) rotate(-2deg); }
+.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(2.5vw,  0.8vw) rotate( 1deg); }
+
+/* column 3, row 3 */
+.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-1.6vw,  0.7vw) rotate(-3deg); }
+.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 2.8vw, -0.3vw) rotate(-2deg); }
+
+/* ——————————————————————————
+   4th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 4 */
+.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-2.8vw, -0.6vw) rotate(-1deg); }
+.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(1.6vw,  0.6vw) rotate( 3deg); }
+
+/* column 2, row 4 */
+.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-1.7vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(3.6vw, -0.5vw) rotate(-3deg); }
+
+/* column 3, row 4 */
+.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-1.8vw, -0.3vw) rotate( 1deg); }
+.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(2.6vw,  0.5vw) rotate( 1deg); }
+
+/* ——————————————————————————
+   5th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 5 */
+.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-1.5vw, -0.8vw) rotate( 2deg); }
+.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate( 2.4vw, -0.7vw) rotate(-1deg); }
+
+/* column 2, row 5 */
+.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-2.6vw, -0.7vw) rotate(-1deg); }
+.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(1.4vw,  0.7vw) rotate( 2deg); }
+
+/* column 3, row 5 */
+.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-1.5vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate( 2.3vw, -0.8vw) rotate(-3deg); }
+
+
+
+/* === FLOATING NOTES (small, non-interactive) === */
+  .floating-note {
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    background: #fff;
+    border: 2px solid #1f2933;
+    box-shadow: #1f2933 4px 8px 8px -5px;
+     border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+    pointer-events: none;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: #1f2933;
+    opacity: 1;
+  transform: translate(-50%, -50%) rotate(var(--angle));
+}
+
+/* keyframes: from its initial stuck spot → down + rotate more + fade */
+@keyframes fall {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 120vh) rotate(calc(var(--angle) + 20deg));
+  }
+}
+
+/* when we add “fall”, wait 1s, then run the 0.8s fall */
+.floating-note.fall {
+  transform-origin: center center;
+  animation: fall 2.8s ease-in 1s forwards;
+}
+
+
+
+
+/* === CONTACT SCENE === */
+.scene.contact {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20vh 4vw 0 4vw; /* top right bottom left padding */
+}
+
+/* Left 40%: Text area */
+.text-section-contact {
+  width: 40%;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.text-section-contact h2 {
+  margin-bottom: 1rem;
+}
+.text-section-contact p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Right 60%: Image/interaction area */
+.game-section-contact {
+  width: 60%;                  /* ← FIXED: you missed % sign */
+  position: relative;
+  min-height: 80vh;
+  display: flex;               /* optional: centers gif inside */
+  align-items: flex-end;       /* optional: aligns gif to bottom */
+  justify-content: center;     /* optional: centers horizontally */
+}
+
+/* Character gif */
+.contact-gif {
+  max-width: 75%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* === CONTACT CLICK ZONES === */
+.click-zone {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.phone-click {
+  top: clamp(10%, 12vh, 20%);
+  left: clamp(22%, 25vw, 28%);
+  width: clamp(10vh, 13vh, 15vh);
+  height: clamp(10vh, 13vh, 15vh);
+}
+
+.plane-click {
+  top: clamp(3%, 5vh, 7%);
+  left: clamp(55%, 60vw, 63%);
+  width: clamp(10vh, 13vh, 15vh);
+  height: clamp(10vh, 13vh, 15vh);
+}
+
+.cv-click {
+  top: clamp(28%, 33vh, 38%);
+  left: clamp(35%, 40vw, 43%);
+  width: clamp(10vh, 13vh, 15vh);
+  height: clamp(10vh, 13vh, 15vh);
+}
+
+
+
+
+.scene.contact .site-footer {
+  position: absolute;
+  bottom: 1vh;      /* adjust as needed (e.g., 0 for flush bottom) */
+}
+
+
+  /* === MOBILE RESPONSIVE - SHORT SCREENS === */
+  @media (max-width: 450px){
+  body {
+    font-size: 0.9rem; /* slightly smaller base text */
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+  }
+
+  h5, h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    line-height: 1.1;
+  }
+
+  .styled-list {
+    font-size: 0.8rem;
+    line-height: 1.1;
+  }
+
+  body::before {
+    height: 100vh;
+    width: 500vw;
+    background-size: cover;  /* already optimal for mobile scaling */
+  }
+
+.swipe-hint {
+    bottom: 1vh;
+    right: 1vw;
+    gap: 0.4rem;
+  }
+
+  .swipe-text {
+    font-size: 0.6rem;
+  }
+
+.top-nav {
+  top: 2vw;
+  gap: 5vw;
+  border-radius: 15vw;
+  max-width: 80vw;
+  width: 80%;
+  box-sizing: border-box;
+  justify-content: center;
+  margin: 0 auto; /* ← centers horizontally */
+  padding: 2vw;
+}
+
+  .nav-dot {
+    width: 6vw;
+    height: 6vw;
+    font-size: 2vw;
+    border: 0.5vw solid #2563eb;
+  }
+
+  .nav-dot img {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .scene.intro {
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 16vh 0 4vh 0;
+    text-align: center;
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    padding: 0;
+  }
+
+  .text-section h1,
+.text-section h2,
+.text-section p {
+  text-align: center;
+}
+
+  
+
+  .game-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  /* Hide the decorative lines on mobile */
+  .perspective {
+    display: none;
+  }
+
+  /* Adjust image sizing */
+  .intro-photo img {
+    width: 50vw;
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  /* Adjust button and Lottie row */
+  .start-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Resize Lottie player */
+  .start-row lottie-player {
+    width: 15vw !important;
+    max-width: 80px;
+    height: auto;
+  }
+
+  /* Make button smaller if needed */
+  .start-row .button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+
+
+
+/* University */
+
+  .scene.university {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10vh;
+    height: 100vh;
+  overflow: hidden;
+  }
+
+  .text-section-university {
+    width: 96%;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .game-section-university {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    justify-content: flex-start;
+    height: 22vh; /* increased to fit larger character */
+  }
+
+
+  .skills-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 96vw;
+    gap: 0.2vw;
+  }
+
+  .skill-card {
+    font-size: 0.6rem;
+    padding: 0.2rem;
+    margin: 0.2rem;
+  }
+
+
+   .university-bg {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 70%;
+  height: 100%;
+}
+  .character-area {
+    width: 100vw;
+    height: 100%;
+    position: static;
+    transform: none;
+    justify-content: center;
+  }
+
+  .character-area .character-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+.education-banner {
+  width: 40vw;
+  height: 40%;
+  bottom: 18%;
+  left: 67%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.1rem;
+  border-radius: 8px;
+  }
+
+
+  .banner-section h4 {
+    font-size: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .drop-zone {
+  min-height: 3.2rem;
+  padding: 0.1rem;
+  gap: 0.1rem;
+}
+
+  .drop-zone .skill-card {
+  font-size: 0.4rem;
+  padding: 1%;
+  margin: 1%;
+  border-width: 1px;
+}
+
+  .school-progress {
+  width: 50%;
+  margin-top: -4%;
+  margin-bottom: 5%;
+  margin-right: 50%;
+}
+ 
+.progress-bar__container {
+  height: 1.2rem;
+}
+
+.progress-bar__label {
+  font-size: 0.6rem; 
+}
+
+
+/* Marketing */
+
+.scene.marketing {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .text-section-marketing {
+    width: 96%;
+    padding: 0;
+    margin: 0 auto 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-section-marketing h2,
+  .text-section-marketing p {
+    text-align: center;
+    width: 100%;
+  }
+
+  .game-section-marketing {
+    width: 100%;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  /* Screens container row for mobile */
+.screen-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0rem 0rem;
+  width: 100%;
+  height: 20vh; /* enough height for images and text */
+  margin: 0rem;
+  scroll-snap-type: x mandatory;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Each screen takes fixed size */
+.screen {
+  width: 22vw; /* adjust as needed to fit 3 */
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: center;
+}
+
+  .screen-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .screen-text {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+    text-align: center;
+     position: relative;
+  z-index: 1;
+  }
+
+  /* Character */
+  #character {
+    position: relative;
+    bottom: 0;
+    width: 50vw;
+    padding: 0;
+    margin: -4rem auto 1rem -2rem;
+    z-index: 2;
+  }
+
+  #character img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Detail box */
+  .marketing-detail-box {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 54vw;
+    margin: 1rem auto 0 2rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.3rem;
+    text-align: left;
+}
+  
+
+
+
+/* UX */
+  .scene.ux {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+  height: auto;
+  overflow: hidden;
+}
+
+  /* Title & text on top */
+  .text-section-ux {
+    width: 96%;
+    padding: 0;
+    margin: 0 auto 1.5rem; /* space below */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .text-section-ux h2,
+  .text-section-ux p {
+    text-align: center;
+    width: 100%;
+  }
+
+
+.character-area-ux {
+  order: 2; /* Comes after sticky wall */
+  position: relative;
+  width: 80vw;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.character-area-ux .character-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.game-section-ux {
+  order: 1; /* Comes before character */
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+  /* Sticky wall grid */
+  .sticky-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 0.5rem;
+    justify-content: center;
+    align-content: start;
+    width: 100%;
+    height: 10vh;
+  }
+
+  .project-sticker {
+    width: 23vw;
+    font-size: 0.6rem;
+    padding: 0.3rem;
+    height: auto;
+  }
+
+  .project-label {
+  font-size: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  text-transform: capitalize;
+}
+
+
+.floating-note {
+    width: 5vw;
+    height: 5vw;
+    border: 1px solid #1f2933;
+    font-size: 0.6rem;
+}
+
+.sticky-note.static {
+  width: 7vw;
+  height: 7vw;
+  margin: 1vw;
+  border-width: 1px;
+  font-size: 0.3rem;   /* smaller than default */
+  padding: 0.3rem; 
+  line-height: 0.3rem;
+}
+
+/* ——————————————————————————
+   2nd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 2 */
+.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-3vw,  1.5vw) rotate(-2deg); }
+.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(3vw, -1.3vw) rotate( 1deg); }
+
+/* column 2, row 2 */
+.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-4vw,  1.6vw) rotate( 1deg); }
+.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 3vw, -1.6vw) rotate(-2deg); }
+
+/* column 3, row 2 */
+.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate( -1.3vw,  -2.5vw) rotate( 2deg); }
+.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(4vw,  0.7vw) rotate( 3deg); }
+
+/* ——————————————————————————
+   3rd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 3 */
+.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-4.8vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 3vw,  0.4vw) rotate(-2deg); }
+
+/* column 2, row 3 */
+.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-4.5vw, -0.5vw) rotate(-2deg); }
+.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(2.5vw,  0.8vw) rotate( 1deg); }
+
+/* column 3, row 3 */
+.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-3.6vw,  0.7vw) rotate(-3deg); }
+.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 2.8vw, -0.3vw) rotate(-2deg); }
+
+/* ——————————————————————————
+   4th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 4 */
+.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-2.8vw, -0.6vw) rotate(-1deg); }
+.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(2.6vw,  -1.6vw) rotate( 3deg); }
+
+/* column 2, row 4 */
+.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-2.7vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(4.6vw, -0.5vw) rotate(-3deg); }
+
+/* column 3, row 4 */
+.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-2.8vw, -0.7vw) rotate( 1deg); }
+.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(3.6vw,  -1.5vw) rotate( 1deg); }
+
+/* ——————————————————————————
+   5th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 5 */
+.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-3.5vw, -0.8vw) rotate( 2deg); }
+.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate( 2.4vw, -1.7vw) rotate(-1deg); }
+
+/* column 2, row 5 */
+.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-3.6vw, -0.7vw) rotate(-1deg); }
+.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(1.4vw,  -0.7vw) rotate( 2deg); }
+
+/* column 3, row 5 */
+.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-3.5vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate( 2.3vw, -1.8vw) rotate(-3deg); }
+
+
+.ux-project-page {
+    padding: 2rem 1rem; /* Less padding on small screens */
+    align-items: center; /* Center the content */
+  }
+
+  .project-inner {
+    padding: 1.5rem;
+    max-height: 90vh;
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  .project-inner img {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .quote {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  .row-text-image {
+    flex-direction: column;
+  }
+
+  .row-text-image .text,
+  .row-text-image .image {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .info-box {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .disclaimer {
+    padding: 1rem;
+  }
+
+  .disclaimer-text {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .highlight-box {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+  }
+
+  .close-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+  }
+
+
+/* Contact */
+.scene.contact {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10vh 1rem 2rem;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .text-section-contact {
+    width: 96%;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-section-contact h2,
+  .text-section-contact p {
+    text-align: center;
+    width: 100%;
+  }
+
+  .game-section-contact {
+    width: 120vw;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 50vh;
+  }
+
+  .contact-gif {
+    width: 100%;
+    height: auto;
+  }
+
+  .click-zone {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .phone-click {
+    top: 18%;
+    left: 26%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .plane-click {
+    top: 5%;
+    left: 61%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .cv-click {
+    top: 32%;
+    left: 38%;
+    width: 12vw;
+    height: 12vw;
+  }
+}
+
+
+/* === MOBILE RESPONSIVE - LONG SCREENS === */
+  @media (max-width: 450px) and (min-height: 681px) and (max-height: 940px){
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h5, h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+
+  .styled-list {
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+
+.swipe-hint {
+    bottom: 1vh;
+    right: 1vw;
+  }
+
+  .swipe-text {
+    font-size: 0.8rem;
+  }
+
+  .nav-dot {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .nav-dot img {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  /* Adjust image sizing */
+  .intro-photo img {
+    width: 60vw;
+  }
+
+/* University */
+
+  .game-section-university {
+    height: 15vh; /* increased to fit larger character */
+  }
+
+  .skill-card {
+    font-size: 0.8rem;
+  }
+
+   .university-bg {
+  width: 80%;
+}
+
+.character-area {
+  width: 120vw;
+}
+  
+.education-banner {
+  height: 60%;
+  width: 45%;
+  bottom: 5%;
+  left: 70%;
+  gap: 0.6rem;
+  }
+
+  .drop-zone {
+  min-height: 6rem;
+}
+
+
+  .banner-section h4 {
+    font-size: 0.6rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .drop-zone .skill-card {
+  font-size: 0.6rem;
+}
+
+  .school-progress {
+  width: 60%;
+  margin-right: 40%;
+}
+ 
+.progress-bar__container {
+  height: 1.4rem;
+}
+
+.progress-bar__label {
+  font-size: 0.8rem; 
+}
+
+
+/* Marketing */
+
+  /* Screens container row for mobile */
+.screen-row {
+  height: 15vh; /* enough height for images and text */
+}
+
+/* UX */
+.character-area-ux {
+  width: 100vw;
+}
+
+  /* Sticky wall grid */
+  .sticky-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 0.5rem;
+    justify-content: center;
+    align-content: start;
+    width: 100%;
+    height: 15vh;
+  }
+
+  .project-sticker {
+    width: 25vw;
+    font-size: 0.8rem;
+  }
+
+  .project-label {
+  font-size: 0.8rem;
+}
+
+
+.floating-note {
+    width: 9vw;
+    height: 9vw;
+    border: 1px solid #1f2933;
+    font-size: 0.6rem;
+}
+
+.sticky-note.static {
+  width: 9vw;
+  height: 9vw;
+  margin: 1vw;
+  border-width: 1px;
+  font-size: 0.4rem;   /* smaller than default */
+  padding: 0.3rem; 
+  line-height: 0.5rem;
+}
+
+/* ——————————————————————————
+   2nd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 2 */
+.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-4vw,  2.5vw) rotate(-2deg); }
+.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(4vw, -2.3vw) rotate( 1deg); }
+
+/* column 2, row 2 */
+.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-5vw,  2.6vw) rotate( 1deg); }
+.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 4vw, -2.6vw) rotate(-2deg); }
+
+/* column 3, row 2 */
+.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate(-4.3vw,  -3.5vw) rotate( 2deg); }
+.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(3vw,  -0.7vw) rotate( 3deg); }
+
+/* ——————————————————————————
+   3rd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 3 */
+.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-5.8vw,  1.3vw) rotate( 3deg); }
+.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 4vw,  -0.4vw) rotate(-2deg); }
+
+/* column 2, row 3 */
+.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-5.5vw, 0.5vw) rotate(-2deg); }
+.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(3.5vw,  -0.8vw) rotate( 1deg); }
+
+/* column 3, row 3 */
+.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-4.6vw,  1.7vw) rotate(-3deg); }
+.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 3.8vw, -1.3vw) rotate(-2deg); }
+
+/* ——————————————————————————
+   4th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 4 */
+.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-3.8vw, 0.6vw) rotate(-1deg); }
+.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(3.6vw,  -2.6vw) rotate( 3deg); }
+
+/* column 2, row 4 */
+.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-3.7vw,  1.3vw) rotate( 3deg); }
+.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(5.6vw, -1.5vw) rotate(-3deg); }
+
+/* column 3, row 4 */
+.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-3.2vw, 0.7vw) rotate( 1deg); }
+.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(4.6vw,  -2.5vw) rotate( 2deg); }
+
+/* ——————————————————————————
+   5th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 5 */
+.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-4.5vw, 0.8vw) rotate( 2deg); }
+.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate(3.4vw, -2.7vw) rotate(-1deg); }
+
+/* column 2, row 5 */
+.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-4.6vw, 0.7vw) rotate(-1deg); }
+.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(2.4vw,  -1.7vw) rotate( 2deg); }
+
+/* column 3, row 5 */
+.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-4.5vw,  1.5vw) rotate(-2deg); }
+.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate(3.3vw, -2.8vw) rotate(-3deg); }
+
+
+
+
+  .quote {
+    font-size: 1.2rem;
+  }
+
+
+  .info-box {
+    font-size: 1.2rem;
+  }
+
+  .disclaimer-text {
+    font-size: 0.8rem;
+  }
+
+  .highlight-box {
+    font-size: 1.2rem;
+  }
+
+/* Contact */
+
+.game-section-contact {
+    width: 120vw;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 40vh;
+  }
+
+  .phone-click {
+    top: 18%;
+    left: 26%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .plane-click {
+    top: 5%;
+    left: 61%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .cv-click {
+    top: 32%;
+    left: 38%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+
+}
+
+
+/* smartphones landscape */
+
+@media (min-width: 451px) and (max-width: 950px) and (max-height: 450px) and (orientation: landscape) {
+ body {
+    font-size: 0.8rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+
+
+h1 {
+  font-size: 1.5rem; /* 48px equivalent */
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem; /* 36px equivalent */
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.1rem; /* 30px equivalent */
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.1rem; /* 24px equivalent */
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.1rem; /* 20px equivalent */
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1.1rem; /* 18px equivalent */
+  font-weight: 600;
+}
+
+
+
+  .styled-list {
+    font-size: 0.8rem;
+    line-height: 1;
+  }  
+
+  .button {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+   /* Adjust image sizing */
+  .intro-photo img {
+    width: 30vw;
+  }
+
+
+  .text-section-university {
+    width: 30vw;
+    padding: 0 4vw;
+  
+  }
+
+  .game-section-university {
+    width: 70%;
+    padding: 0 4vw;
+  }
+
+  .character-area {
+  left: 55%;
+  width: 66vw;
+}
+  .skills-container {
+    max-width: 40vw; /* allow more room for cards */
+    gap: 0.8vw;
+  }
+
+  .skill-card {
+    font-size: 0.7rem;
+    padding: 0.3vw 1vw;
+    margin: 0.1vw;
+  }
+
+  .education-banner {
+  height: 50%;
+  bottom: 40%;
+  left: 62%;
+  gap: 0.2rem;
+  width: 23vw;
+  }
+
+  .banner-section h4 {
+    font-size: 0.6rem;
+    margin-bottom: 0.1rem;
+  }
+
+.drop-zone {
+      min-height: 8vw; 
+      border-width: 1px;
+    }
+
+  .drop-zone .skill-card {
+  font-size: 0.6rem;
+  line-height: 0.5rem;
+  padding: 0.2vw 0.1vw;
+  margin: 0.1vw;
+  border-width: 1px;
+}
+
+
+.school-progress {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 1rem;
+}
+
+  .progress-bar__label {
+  font-size: 0.6rem; 
+}
+
+.text-section-marketing {
+  width: 40%;
+}
+
+.screen-text {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+/* the character at the bottom */
+#character {
+  margin-left: -4rem;
+}
+
+.marketing-detail-box {
+  width: 22vw;
+  font-weight: 400;
+  padding: 0.2rem;
+  margin-top: 0.4rem;
+}
+
+.marketing-detail-box p {
+  line-height: 1;
+  font-size: 0.7rem;
+}
+
+.sticky-note.static {
+  font-size: 0.3rem;   /* smaller than default */
+  padding: 0.1rem; 
+  line-height: 0.5rem;
+  border-width: 1px;
+}
+
+  .project-sticker {
+    width: 12vw;
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+    padding: 0.3rem;
+    height: auto;
+    border-width: 1px;
+  }
+
+  .project-label {
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  text-transform: capitalize;
+}
+
+
+.floating-note {
+    border-width: 1px;
+}
+
+.button {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+}
+
+.info-box {
+  padding: 0.5rem;
+  border-radius: 0rem;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.highlight-box {
+  border: 1px solid;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.5rem;
+}
+
+.quote {
+  font-size: 1rem; /* like h4 */
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+
+.text-section-contact {
+  width: 50%;
+}  
+
+
+.game-section-contact {
+  width: 50%;                  /* ← FIXED: you missed % sign */     /* optional: aligns gif to bottom */
+}
+
+/* Character gif */
+.contact-gif {
+  max-width: 100%;
+}
+
+
+/* Phone (in left hand near ear) */
+.phone-click {
+  top: 15%;
+  left: 35%;
+}
+
+/* Paper Plane (top right, mid-air) */
+.plane-click {
+  top: 5%;
+  left: 80%;
+}
+
+/* Paper Roll in Bag (just above tote bag opening) */
+.cv-click {
+  top: 35%;
+  left: 53%;
+}
+
+}
+
+
+
+/* === TABLET PORTRAIT (iPad Mini → iPad Pro 12.9) === */
+@media (min-width: 530px) and (max-width: 1024px) and (orientation: portrait) {
+  
+  body {
+    font-size: 1.1rem; /* slightly smaller base text */
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+  }
+
+  h5, h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .styled-list {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+ 
+
+.swipe-hint {
+    bottom: 2vh;
+    right: 2vw;
+    gap: 0.4rem;
+  }
+
+  .swipe-text {
+    font-size: 0.8rem;
+  }
+
+.top-nav {
+  top: 2vw;
+  gap: 3vw;
+  border-radius: 15vw;
+  max-width: 80vw;
+  width: 60%;
+  box-sizing: border-box;
+  justify-content: center;
+  margin: 0 auto; /* ← centers horizontally */
+  padding: 1vw;
+}
+
+  .nav-dot {
+    width: 7vw;
+    height: 7vw;
+    font-size: 2vw;
+    border: 0.5vw solid #2563eb;
+  }
+
+  .nav-dot img {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .scene.intro {
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 16vh 0 4vh 0;
+    text-align: center;
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    padding: 0;
+  }
+
+  .text-section h1,
+.text-section h2,
+.text-section p {
+  text-align: center;
+}
+
+  
+
+  .game-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  
+
+  /* Adjust image sizing */
+  .intro-photo img {
+    width: 50vw;
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  /* Adjust button and Lottie row */
+  .start-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Resize Lottie player */
+  .start-row lottie-player {
+    width: 15vw !important;
+    max-width: 80px;
+    height: auto;
+  }
+
+  /* Make button smaller if needed */
+  .start-row .button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+
+
+
+/* University */
+
+  .scene.university {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12vh;
+    height: 100%;
+  overflow: hidden;
+  }
+
+  .text-section-university {
+    width: 96%;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .game-section-university {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    justify-content: flex-start;
+    height: 12vh; /* increased to fit larger character */
+  }
+
+
+  .skills-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 96vw;
+    gap: 0.2vw;
+  }
+
+  .skill-card {
+    font-size: 0.9rem;
+    padding: 0.2rem;
+    margin: 0.2rem;
+  }
+
+
+   .university-bg {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 70%;
+  height: 100%;
+}
+  .character-area {
+    width: 85vw;
+    height: auto;
+    position: static;
+    transform: none;
+    justify-content: center;
+  }
+
+  .character-area .character-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+.education-banner {
+  width: 32vw;
+  height: 90vw;
+  bottom: 7%;
+  left: 64%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 8px;
+  }
+
+
+  .banner-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .drop-zone {
+  min-height: 8rem;
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+
+  .drop-zone .skill-card {
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  border-width: 2px;
+}
+
+  .school-progress {
+  width: 50%;
+  margin-top: -4%;
+  margin-bottom: 5%;
+  margin-right: 50%;
+}
+ 
+.progress-bar__container {
+  height: 2rem;
+}
+
+.progress-bar__label {
+  font-size: 0.9rem; 
+}
+
+
+/* Marketing */
+
+.scene.marketing {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 12vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .text-section-marketing {
+    width: 96%;
+    padding: 0;
+    margin: 0 auto 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-section-marketing h2,
+  .text-section-marketing p {
+    text-align: center;
+    width: 100%;
+  }
+
+  .game-section-marketing {
+    width: 100%;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  /* Screens container row for mobile */
+.screen-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0rem 0rem;
+  width: 100%;
+  height: 20vh; /* enough height for images and text */
+  margin: 0rem;
+  scroll-snap-type: x mandatory;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Each screen takes fixed size */
+.screen {
+  width: 22vw; /* adjust as needed to fit 3 */
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: center;
+}
+
+  .screen-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .screen-text {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    text-align: center;
+     position: relative;
+  z-index: 1;
+  }
+
+  /* Character */
+  #character {
+    position: relative;
+    bottom: 0;
+    width: 50vw;
+    padding: 0;
+    margin: -4rem auto 1rem -2rem;
+    z-index: 2;
+  }
+
+  #character img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Detail box */
+  .marketing-detail-box {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 54vw;
+    margin: 1rem auto 0 2rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.3rem;
+    text-align: left;
+}
+  
+
+
+
+/* UX */
+  .scene.ux {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12vh;
+  height: auto;
+  overflow: hidden;
+}
+
+  /* Title & text on top */
+  .text-section-ux {
+    width: 96%;
+    padding: 0;
+    margin: 0 auto 1.5rem; /* space below */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .text-section-ux h2,
+  .text-section-ux p {
+    text-align: center;
+    width: 100%;
+  }
+
+
+.character-area-ux {
+  order: 2; /* Comes after sticky wall */
+  position: relative;
+  width: 60vw;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.character-area-ux .character-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.game-section-ux {
+  order: 1; /* Comes before character */
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+  /* Sticky wall grid */
+  .sticky-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 0.5rem;
+    justify-content: center;
+    align-content: start;
+    width: 100%;
+    height: 10vh;
+  }
+
+  .project-sticker {
+    width: 23vw;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .project-label {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  text-transform: capitalize;
+}
+
+
+.floating-note {
+    width: 5vw;
+    height: 5vw;
+    border: 1px solid #1f2933;
+    font-size: 0.8rem;
+}
+
+.sticky-note.static {
+  width: 7vw;
+  height: 7vw;
+  margin: 1vw;
+  border-width: 1px;
+  font-size: 0.6rem;   /* smaller than default */
+  padding: 0.3rem; 
+  line-height: 0.5rem;
+}
+
+/* ——————————————————————————
+   2nd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 2 */
+.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-3vw,  1.5vw) rotate(-2deg); }
+.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(3vw, -1.3vw) rotate( 1deg); }
+
+/* column 2, row 2 */
+.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-4vw,  1.6vw) rotate( 1deg); }
+.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 3vw, -1.6vw) rotate(-2deg); }
+
+/* column 3, row 2 */
+.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate( -1.3vw,  -2.5vw) rotate( 2deg); }
+.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(4vw,  0.7vw) rotate( 3deg); }
+
+/* ——————————————————————————
+   3rd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 3 */
+.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-4.8vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 3vw,  0.4vw) rotate(-2deg); }
+
+/* column 2, row 3 */
+.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-4.5vw, -0.5vw) rotate(-2deg); }
+.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(2.5vw,  0.8vw) rotate( 1deg); }
+
+/* column 3, row 3 */
+.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-3.6vw,  0.7vw) rotate(-3deg); }
+.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 2.8vw, -0.3vw) rotate(-2deg); }
+
+/* ——————————————————————————
+   4th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 4 */
+.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-2.8vw, -0.6vw) rotate(-1deg); }
+.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(2.6vw,  -1.6vw) rotate( 3deg); }
+
+/* column 2, row 4 */
+.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-2.7vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(4.6vw, -0.5vw) rotate(-3deg); }
+
+/* column 3, row 4 */
+.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-2.8vw, -0.7vw) rotate( 1deg); }
+.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(3.6vw,  -1.5vw) rotate( 1deg); }
+
+/* ——————————————————————————
+   5th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 5 */
+.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-3.5vw, -0.8vw) rotate( 2deg); }
+.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate( 2.4vw, -1.7vw) rotate(-1deg); }
+
+/* column 2, row 5 */
+.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-3.6vw, -0.7vw) rotate(-1deg); }
+.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(1.4vw,  -0.7vw) rotate( 2deg); }
+
+/* column 3, row 5 */
+.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-3.5vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate( 2.3vw, -1.8vw) rotate(-3deg); }
+
+
+.ux-project-page {
+    padding: 2rem 1rem; /* Less padding on small screens */
+    align-items: center; /* Center the content */
+  }
+
+  .project-inner {
+    padding: 1.5rem;
+    max-height: 90vh;
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  .project-inner img {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .quote {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  .row-text-image {
+    flex-direction: column;
+  }
+
+  .row-text-image .text,
+  .row-text-image .image {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .info-box {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .disclaimer {
+    padding: 1rem;
+  }
+
+  .disclaimer-text {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .highlight-box {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  .close-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 0.4rem;
+  }
+
+
+/* Contact */
+.scene.contact {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12vh 1rem 2rem;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .text-section-contact {
+    width: 96%;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-section-contact h2,
+  .text-section-contact p {
+    text-align: center;
+    width: 100%;
+  }
+
+  .game-section-contact {
+    width: 80vw;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 50vh;
+  }
+
+  .contact-gif {
+    width: 100%;
+    height: auto;
+  }
+
+  .click-zone {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .phone-click {
+    top: 25%;
+    left: 25%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .plane-click {
+    top: 12%;
+    left: 59%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .cv-click {
+    top: 38%;
+    left: 38%;
+    width: 12vw;
+    height: 12vw;
+  }
+  
+}
+
+
+/* === SHORT TABLETS / FOLDABLES (Surface Duo, small Android tablets) === */
+@media (min-width: 530px) and (max-width: 900px) and (min-height: 600px) and (max-height: 820px) and (orientation: portrait) {
+
+  body {
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+
+   .styled-list {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }  
+
+  .intro-photo img {
+    width: 40vw;
+  }
+
+  .scene.university {
+    padding-top: 10vh;
+    height: auto;
+  }
+
+    .game-section-university {
+    height: 20vh;
+  }
+
+  .character-area {
+    width: 80vw;
+  }
+
+  .education-banner {
+    width: clamp(28vw, 32vw, 36vw);
+    height: auto;
+    bottom: 14%;
+    left: 64%;
+  }
+
+  .skill-card {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .banner-section h4 {
+    font-size: 1.4vw;
+  }
+
+  .drop-zone {
+    min-height: 14vw;
+    width: 30vw;
+    border-width: 1px;
+
+  }
+
+
+  .drop-zone .skill-card {
+    font-size: 0.6rem;
+    padding: 0.2vw 0.4vw;
+    border-width: 1px;
+    margin: 0.1vw;
+  }
+
+
+  /* Progress bar smaller */
+  .progress-bar__container {
+    height: clamp(1.4rem, 2vh, 2rem);
+  }
+
+
+
+   .scene.marketing {
+    padding-top: 10vh;
+    height: auto;
+  }
+
+
+  /* Screens container row for mobile */
+.screen-row {
+  height: 22vh; /* enough height for images and text */
+}
+
+
+
+/* Each screen takes fixed size */
+.screen {
+  width: 22vw; /* adjust as needed to fit 3 */
+}
+
+
+  .screen-text {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    text-align: center;
+     position: relative;
+  z-index: 1;
+  }
+
+  /* Marketing */
+  .marketing-detail-box {
+    width: 45vw;
+    top: 1vw;
+    left: 5vw;
+  }
+
+  .marketing-detail-box p {
+  line-height: 1.2rem;
+  font-size: 0.9rem;
+}
+
+  #character {
+    width: 40vw;
+    margin: -4rem auto 1rem -1rem;
+  }
+
+  /* UX */
+  .scene.ux {
+  padding-top: 10vh;
+}
+
+.character-area-ux {
+  width: 50vw;
+}
+
+ .project-sticker {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .project-label {
+  font-size: 0.8rem;
+  padding: 0.3rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+
+.floating-note {
+    width: 5vw;
+    height: 5vw;
+    border: 1px solid #1f2933;
+    font-size: 0.4rem;
+}
+
+.sticky-note.static {
+  width: 7vw;
+  height: 7vw;
+  margin: 1vw;
+  border-width: 1px;
+  font-size: 0.4rem;   /* smaller than default */
+  padding: 0.2rem; 
+  line-height: 0.6rem;
+}
+
+  /* Contact adjustments */
+  .game-section-contact {
+    width: 85vw;
+    min-height: 55vh;
+  }
+
+  .phone-click,
+  .plane-click,
+  .cv-click {
+    width: clamp(10vh, 12vh, 14vh);
+    height: clamp(10vh, 12vh, 14vh);
+  }
+}
+
+
+
+/* === TABLET LANDSCAPE (iPad Mini → iPad Pro 12.9) === */
+@media (min-width: 1024px) and (max-width: 1370px) and (orientation: landscape) {
+
+
+body {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .styled-list {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .swipe-hint {
+    position: absolute;
+    bottom: 2vh;
+    right: 2vw;
+  }
+
+  .swipe-text {
+    font-size: 0.9rem;
+  }
+
+
+
+  .text-section-university {
+    width: 30vw;
+    padding: 0 4vw;
+  }
+
+  .game-section-university {
+    width: 70%;
+    padding: 0 4vw;
+  }
+
+  .skills-container {
+    max-width: 30vw; /* allow more room for cards */
+    gap: 0.8vw;
+  }
+
+  .skill-card {
+    font-size: 1.4rem;
+    padding: 0.8vw 1vw;
+    margin: 0.1vw;
+  }
+
+  .character-area {
+    width: 55vw;     /* reduce image size slightly */
+    bottom: 2vh;     /* lift it a bit */
+  }
+
+  .education-banner {
+    width: 22vw;
+    height: 40vw;
+    left: 66%;
+    bottom: 11vh;
+  }
+
+  .banner-section h4 {
+    font-size: 1.4vw;
+  }
+
+  .drop-zone {
+    min-height: 9vw; /* a bit larger drop targets */
+  }
+
+  .drop-zone .skill-card {
+    font-size: 0.9vw;
+    padding: 0.5vw 0.7vw;
+  }
+
+  .university-bg {
+    left: 12%;
+    width: 55%;
+    opacity: 0.4; /* slightly softer background */
+  }
+
+  .school-progress {
+    width: 100%;
+  }
+
+  .progress-bar__container {
+    height: 3rem; /* smaller bar for smaller vertical space */
+  }
+  
+.progress-bar__label {
+  font-size: 1.1rem; 
+}
+
+
+/* Marketing */
+
+.scene.marketing {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;   /* ⬅️ go back to top alignment */
+  justify-content: flex-start;
+  min-height: 100vh;         /* full height for proper bottom reference */
+}
+
+  .text-section-marketing {
+    width: 30%;
+    padding: 0 4vw;
+  }
+
+  .game-section-marketing {
+    min-height: 80vh;
+    width: 70%;
+    padding: 0 4vw;
+    flex: 1;              /* fill remaining height */
+  position: relative;
+  justify-content: flex-start;
+  }
+
+
+  /* each monitor */
+.screen[data-index="0"] { left: 10%; }
+.screen[data-index="1"] { left: 37.5%; }
+.screen[data-index="2"] { left: 65%; }
+
+.screen-row {
+  height: 40vh;
+  justify-content: flex-start;
+}
+
+.marketing-detail-box {
+  left: 22.5vw; /* pushes it to the right of the character */
+  background: #fff;
+  font-weight: 400;
+}
+
+.marketing-detail-box p {
+  line-height: 1.1;
+  font-size: 1.4rem;
+}
+
+#character {
+  width: 25vw;
+  position: absolute;
+  bottom: 22vh;
+}
+
+
+.character-area-ux .character-img {
+  max-width: 75%;
+  height: auto;
+}
+
+/* === CONTACT SCENE === */
+
+.text-section-contact {
+  width: 50%;
+}  
+
+
+.game-section-contact {
+  width: 50%;                  /* ← FIXED: you missed % sign */
+  min-height: 90vh;             /* optional: centers gif inside */
+  align-items: flex-start;       /* optional: aligns gif to bottom */
+}
+
+/* Character gif */
+.contact-gif {
+  max-width: 80%;
+}
+
+
+/* Phone (in left hand near ear) */
+.phone-click {
+  top: 8%;
+}
+
+/* Paper Plane (top right, mid-air) */
+.plane-click {
+  top: 0%;
+}
+
+/* Paper Roll in Bag (just above tote bag opening) */
+.cv-click {
+  top: 18%;
+}
+}
+@media (min-width: 900px) and (max-width: 1300px) and (max-height: 860px) and (orientation: landscape) {
+  
+  body {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .styled-list {
+    font-size: 1.1rem;
+    line-height: 1;
+  }  
+
+   /* Adjust image sizing */
+  .intro-photo img {
+    width: 80vw;
+  }
+
+
+  .skill-card {
+    font-size: 1.1rem;
+    padding: 0.8vw 1vw;
+    margin: 0.1vw;
+  }
+
+
+  .progress-bar__label {
+  font-size: 0.9rem; 
+}
+
+.marketing-detail-box {
+  width: 20vw;
+}
+
+.marketing-detail-box p {
+  line-height: 1;
+  font-size: 1.1rem;
+}
+
+.sticky-note.static {
+  font-size: 0.5rem;   /* smaller than default */
+  padding: 0.3rem; 
+  line-height: 0.5rem;
+}
+
+}
+
+
+
+
+
+
   </style>
 </head>
+
+
+
+
+<!--- BODY --
+  -- BODY ---
+  -- BODY ---
+  -- BODY ---
+  -- BODY ---
+  -- BODY ---
+  -- BODY --->
+
+
+
+
 <body>
   <div class="scroll-wrapper" id="scrollWrapper">
-    <div class="scene">
-      <div class="character">
-        👋 Hi, I’m Galina<br/>
-        Welcome to my UX journey!
-        <br/><br/>
-        <small>(Scroll or use the arrows →)</small>
+
+    <!-- Top Navigation -->
+<div class="top-nav">
+  <div class="nav-dot active" onclick="scrollToScene(0)" data-scene="0">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/6.svg" alt="Home" />
+  </div>
+  <div class="nav-dot" onclick="scrollToScene(1)" data-scene="1">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/7.svg" alt="University" />
+  </div>
+  <div class="nav-dot" onclick="scrollToScene(2)" data-scene="2">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/8.svg" alt="Marketing" />
+  </div>
+  <div class="nav-dot" onclick="scrollToScene(3)" data-scene="3">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/9.svg" alt="UX" />
+  </div>
+  <div class="nav-dot" onclick="scrollToScene(4)" data-scene="4">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/10.svg" alt="Contact" />
+  </div>
+</div>
+
+
+    <!-- Scene 1: Intro -->
+    <div class="scene intro">
+      <div class="text-section">
+        <h1>UX Journey of Galina Shokhova</h1>
+        <p>Join me through each step of my UX journey.</p>
+        <br>
+       <p class="perspective">
+  <span class="perspective-bwd">How did it begin?</span><br>
+  <span class="perspective-fwd">Where might it lead?</span>
+</p>
+        <div class="start-row">
+        <button class="button" onclick="scrollToScene(1)">Click or swipe to start</button>
+        <lottie-player
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
+        background="transparent"
+        speed="1"
+        style="width: 6vw; max-width: 500px; height: auto;"
+        loop
+        autoplay>
+      </lottie-player>
+        </div>
       </div>
-      <div class="arrow right" onclick="scrollToScene(1)">→</div>
+
+      <div class="game-section">
+        <div class="intro-photo">
+          <img src="https://github.com/Galina-GS/portfolio_ux/raw/main/Galina%20Shokhova.png" alt="Galina Shokhova" />
+        </div>
+      </div>
     </div>
 
-    <div class="scene">
-      Linguistics
-      <div class="arrow left" onclick="scrollToScene(0)">←</div>
-      <div class="arrow right" onclick="scrollToScene(2)">→</div>
-    </div>
+    <!-- Scene 2: University -->
+<div class="scene university">
+  <div class="university-wrap">
+    <div class="university-bg" id="universityBg"></div>
+  </div>
 
-    <div class="scene">
-      Marketing
-      <div class="arrow left" onclick="scrollToScene(1)">←</div>
-      <div class="arrow right" onclick="scrollToScene(3)">→</div>
-    </div>
-
-    <div class="scene">
-      UX
-      <div class="arrow left" onclick="scrollToScene(2)">←</div>
-      <div class="arrow right" onclick="scrollToScene(4)">→</div>
-    </div>
-
-    <div class="scene">
-      Contact
-      <div class="arrow left" onclick="scrollToScene(3)">←</div>
+  <!-- 1) LEFT column: heading, copy & skill cards -->
+  <div class="game-section-university">
+    <h2>Learn with me</h2>
+    <p><span class="highlight-animate animate">Tap each skill</span> to help me earn my credentials!</p>
+    <div class="game-area">
+      <div class="skills-container">
+        <!-- Skill cards that can be dragged -->
+        <div class="skill-card" data-category="linguistics" draggable="true">Semantics</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Communication</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Critics &amp; Interpretation</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Hollywood Plot Architecture</div>
+        <div class="skill-card" data-category="marketing" draggable="true">Campaigns and Content</div>
+        <div class="skill-card" data-category="marketing" draggable="true">Analytics</div>
+        <div class="skill-card" data-category="marketing" draggable="true">Tech &amp; Automation</div>
+        <div class="skill-card" data-category="marketing" draggable="true">Memes</div>
+        <div class="skill-card" data-category="ux" draggable="true">User Research</div>
+        <div class="skill-card" data-category="ux" draggable="true">Journey Mapping</div>
+        <div class="skill-card" data-category="ux" draggable="true">Design Thinking</div>
+        <div class="skill-card" data-category="ux" draggable="true">Stakeholder Diplomacy</div>
+      </div>
     </div>
   </div>
 
-  <script>
-    function scrollToScene(index) {
-      const wrapper = document.getElementById('scrollWrapper');
-      const sceneWidth = window.innerWidth;
-      wrapper.scrollTo({
-        left: index * sceneWidth,
-        behavior: 'smooth'
+  <!-- 2) CENTER column: character + banner -->
+  <div class="character-area">
+    <div class="education-banner">
+      <div class="banner-section" data-category="linguistics">
+        <h4>LINGUISTICS &amp; LITERATURE</h4>
+        <div class="drop-zone linguistics-zone"></div>
+      </div>
+      <div class="banner-section" data-category="marketing">
+        <h4>MARKETING</h4>
+        <div class="drop-zone marketing-zone"></div>
+      </div>
+      <div class="banner-section" data-category="ux">
+        <h4>USER EXPERIENCE</h4>
+        <div class="drop-zone ux-zone"></div>
+      </div>
+    </div>
+    <img
+      src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina%20University.svg"
+      alt="Education"
+      class="character-img"
+    />
+  </div>
+
+  <!-- 3) RIGHT column: progress bars -->
+  <div class="text-section-university">
+    <div class="school-progress" data-category="linguistics">
+      <div class="progress-bar__container">
+        <div class="progress-fill"></div>
+        <span class="progress-bar__label">BA Linguistics &amp; Literature</span>
+      </div>
+    </div>
+
+    <div class="school-progress" data-category="marketing">
+      <div class="progress-bar__container">
+        <div class="progress-fill"></div>
+        <span class="progress-bar__label">NDS Digital Marketing Manager</span>
+      </div>
+    </div>
+
+    <div class="school-progress" data-category="ux">
+      <div class="progress-bar__container">
+        <div class="progress-fill"></div>
+        <span class="progress-bar__label">CAS UX &amp; Usability</span>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  
+    
+  <div class="swipe-hint">
+     <span class="swipe-text">Next step</span>
+      <lottie-player
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
+        background="transparent"
+        speed="1"
+        style="width: 6vw; max-width: 500px; height: auto;"
+        loop
+        autoplay>
+      </lottie-player>
+      </div>
+
+</div>
+
+
+    <!-- Scene 3: Marketing -->
+<div class="scene marketing">
+  
+  <!-- left third: title + subtitle -->
+  <div class="text-section-marketing">
+    <h2>Marketing</h2>
+    <p>
+      <span class="highlight-animate animate">Switch the screens</span>
+      to help me gain valuable experience!
+    </p>
+  </div>
+
+  <!-- right two thirds: desk, screens, character, detail box -->
+  <div class="game-section-marketing">
+
+    <!-- three “monitor” screens -->
+    <div class="screen-row">
+    <div class="screen"
+      data-index="0"
+      data-gif="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/analytics.gif"
+      data-placeholder="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/white-screen.gif">
+      <img class="screen-img"
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/analytics.gif"
+        alt="Analytics" />
+      <div class="screen-text">Analytics</div>
+    </div>
+
+    <div class="screen"
+      data-index="1"
+      data-gif="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/content.gif"
+      data-placeholder="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/white-screen.gif">
+      <img class="screen-img"
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/white-screen.gif"
+        alt="Content Creation" />
+      <div class="screen-text">Content Creation</div>
+    </div>
+
+    <div class="screen"
+      data-index="2"
+      data-gif="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/website.gif"
+      data-placeholder="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/white-screen.gif">
+      <img class="screen-img"
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/white-screen.gif"
+        alt="Website Building" />
+      <div class="screen-text">Website Building</div>
+    </div>
+    </div>
+
+    <!-- movable character -->
+    <div id="character">
+      <img
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina%20Marketing.svg"
+        alt="Marketing" />
+          <!-- NEW: detail box moved here under the screens -->
+    <div class="marketing-detail-box">
+      <p id="marketingDetail"></p>
+    </div>
+    </div>
+
+  
+
+    <!-- Next Step hint -->
+    <div class="swipe-hint">
+      <span class="swipe-text">Next step</span>
+      <lottie-player
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
+        background="transparent"
+        speed="1"
+        style="width: 6vw; max-width: 500px; height: auto;"
+        loop
+        autoplay>
+      </lottie-player>
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- Scene 4: UX -->
+<div class="scene ux">
+
+  <!-- Left: Title & Description -->
+  <div class="text-section-ux">
+    <h2>UX Design</h2>
+    <p><span class="highlight-animate animate">Open my first projects</span> in UX Research & Design!</p>
+  </div>
+
+  <!-- Middle: Illustration -->
+  <div class="character-area-ux">
+    <img
+      src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina%20UX.svg"
+      alt="UX Design"
+      class="character-img"
+    />
+  </div>
+
+  <!-- Right: Big & Small “Sticky” Tiles -->
+  <div class="game-section-ux">
+    <div class="sticky-wall">
+
+    <!-- Big, clickable project tiles -->
+<div class="skill-card project-sticker" onclick="openUxProject('projectShowroom')">
+  <div class="project-title">Showroom</div>
+  <span class="project-label">Open</span>
+</div>
+
+<div class="skill-card project-sticker" onclick="openUxProject('projectXelebration')">
+  <div class="project-title">Xelebrate</div>
+  <span class="project-label">Open</span>
+</div>
+
+<div class="skill-card project-sticker" onclick="openUxProject('projectKloop')">
+  <div class="project-title">Kloop</div>
+  <span class="project-label">Open</span>
+</div>
+
+
+      <!-- Small, non-interactive workshop notes -->
+      <div class="sticky-note static note1">1</div>
+      <div class="sticky-note static note2">2</div>
+      <div class="sticky-note static note3">3</div>
+      <div class="sticky-note static note4">4</div>
+      <div class="sticky-note static note6">HCD</div>
+      <div class="sticky-note static note7">Interviews</div>
+      <div class="sticky-note static note8">User journey</div>
+      <div class="sticky-note static note9">User flow</div>
+      <div class="sticky-note static note11">Empathize</div>
+      <div class="sticky-note static note12">Ideate</div>
+      <div class="sticky-note static note13">Prototype</div>
+      <div class="sticky-note static note14">Iterate</div>
+      <div class="sticky-note static note16">16</div>
+      <div class="sticky-note static note17">17</div>
+      <div class="sticky-note static note18">18</div>
+      <div class="sticky-note static note19">19</div>
+      <div class="sticky-note static note21">User Story</div>
+      <div class="sticky-note static note22">Pains & gains</div>
+      <div class="sticky-note static note23">MVP</div>
+      <div class="sticky-note static note24">Testing</div>
+      <div class="sticky-note static note26">Define</div>
+      <div class="sticky-note static note27">Design</div>
+      <div class="sticky-note static note28">Test</div>
+      <div class="sticky-note static note29">Implement</div>
+
+    </div>
+  </div>
+
+   <div class="swipe-hint">
+     <span class="swipe-text">Next step</span>
+      <lottie-player
+        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
+        background="transparent"
+        speed="1"
+        style="width: 6vw; max-width: 500px; height: auto;"
+        loop
+        autoplay>
+      </lottie-player>
+      </div>
+
+</div>
+
+
+
+<!-- Scene 5: Contact -->
+<div class="scene contact">
+  <div class=".text-section-contact">
+    <h2>Let's connect!</h2>
+    <p><span class="highlight-animate animate">Tap my phone</span> to get my contacts.</p>
+    <p><span class="highlight-animate animate">Send a paper plane</span> to share my portfolio.</p>
+    <p><span class="highlight-animate animate">Grab the paper from my bag</span> to download my CV.</p>
+  </div>
+
+  <div class="game-section-contact">
+    <div class="contact-figure">
+      <!-- Your animated GIF goes here -->
+      <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina Contact.gif" alt="Contact me" class="contact-gif" />
+      
+      <!-- Transparent clickable areas over phone and paper plane -->
+      <button class="click-zone phone-click" onclick="openBusinessCard()" aria-label="Open business card"></button>
+      <button class="click-zone plane-click" onclick="sharePortfolio()" aria-label="Share this portfolio"></button>
+      <button class="click-zone cv-click" onclick="downloadCV()" aria-label="Download the CV"></button>
+    </div>
+  </div>
+
+
+  <footer class="site-footer">
+  <p>
+    &copy; <span id="year"></span> - Galina Shokhova - 
+    <a href="https://blinq.me/cmelqiv0l0ei8s60mhr5iuylw?bs=db" target="_blank" rel="noopener noreferrer">
+      Contact
+    </a>
+  </p>
+</footer>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- === Project Detail Pages (UX Scene) === -->
+
+
+
+
+<!-- === Project SHOWROOM === -->
+
+
+<div class="ux-project-page" id="projectShowroom" onclick="handleBackdropClick(event)">
+  <div class="project-inner">
+    <button class="close-btn" onclick="closeUxProject()">Back</button>
+    <h2>Showroom</h2>
+     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/coming-soon.gif"/>
+    
+</div>
+</div>
+
+
+
+
+<!-- === Project XELEBRATE === -->
+
+<div class="ux-project-page" id="projectXelebration" onclick="handleBackdropClick(event)">
+  <div class="project-inner">
+    <button class="close-btn" onclick="closeUxProject()">Back</button>
+    <h2>Xelebrate</h2>
+    <p class="subtitle">Designing collaborative wedding planning</p>
+<br>
+    <br>
+    <!-- CHAPTER 1: Context & Challenge -->
+    <h3>The Challenge</h3>
+
+<div class="row-text-image">
+  <div class="text">
+    <p>
+      Planning a wedding can feel like a full-time job. Our user research revealed just how overwhelming it becomes — especially when couples are navigating dozens of decisions, undefined roles, budget uncertainties, and a lack of support.
+    </p>
+
+    <div class="disclaimer">
+      <p class="disclaimer-text">
+       <strong>Disclaimer:</strong>
+       <br>
+       We developed and tested an interactive MVP with real users. Due to confidentiality, detailed designs and test results cannot be shared at this stage. Insights presented here are anonymized and generalized.
+      </p>
+    </div>
+  </div>
+
+  <div class="image">
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Bride%20in%20stress.svg" alt="Overwhelmed bride sitting on the floor surrounded by planning tools">
+  </div>
+</div>
+
+
+
+   <h3>Overview</h3>
+      <ul class="styled-list">
+        <li><strong>Project Type:</strong> Group project at FHNW</li>
+        <li><strong>Focus:</strong> UX Research, Requirements Engineering, Concept Development</li>
+        <li><strong>Duration:</strong> 6 months</li>
+        <li><strong>Target Users:</strong> Engaged couples, planning their wedding without a dedicated planner</li>
+        <li><strong>Methods:</strong> Interviews, Journey Mapping, User Stories, Value Proposition Canvas</li>
+        <li><strong>My Role:</strong> As part of a 4-person UX team, I actively contributed to user research, synthesis, and the definition of product requirements.</li>
+      </ul>
+
+    <br>
+    <br>
+    <h3>Our Story</h3>
+    <p>
+      We started this project with a hypothesis: that couples struggle most with finding and managing wedding vendors. Our concept focused on offering a reliable marketplace with booking features and curated service lists.
+      </p>
+      <p>
+      But as we began talking to potential users, our direction radically shifted. What couples actually needed was not a better vendor list but emotional clarity, a sense of control, and support in making hundreds of personal decisions together.
+    </p>
+
+    <br>
+    <br>
+
+
+
+    <!-- CHAPTER 2: Research Approach -->
+    <h3>The Approach</h3>
+    <p>We followed a classic UX process, but let research guide every pivot and priority.</p>
+
+    <div class="info-box">Market Analysis</div>
+    <p>We examined the existing wedding tech landscape, identifying gaps in existing tools:</p>
+      <div class="highlight-wrapper">
+     <div class="highlight-box">Focus on inspiration and booking.</div>
+      <div class="highlight-box">To-do lists are rigid and generic.</div>
+      <div class="highlight-box">Multiple disconnected tools.</div>
+      <div class="highlight-box">Lack of collaboration.</div>
+      </div>
+    
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Wedding-tools.svg" alt="Wedding planning tools">
+
+   <div class="info-box">Interviews for User Research</div>
+    <p>
+      Through in-depth interviews with recently married and engaged individuals, we explored their planning journeys.
+      
+       <div class="highlight-wrapper">
+      <div class="highlight-box">How did they start?</div>
+      <div class="highlight-box">What decisions caused friction?</div>
+      <div class="highlight-box">How did they feel during the planning process?</div>
+      <div class="highlight-box">What made them feel confident or overwhelmed?</div>
+      </div>
+    </p>
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Interview.svg" alt="User interviews">
+
+    <div class="info-box">Synthesis & Affinity Mapping</div>
+      <p>To manage large volumes of qualitative data, I created a custom GPT that allowed our team to query interview transcripts and reference synthesis notes in seconds, saving time and improving consistency during concept development.</p>
+      <p>We clustered insights to find repeating pain points.</p>
+      <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Interview-insights.svg" alt="Interview insights visualization">
+
+      <p>Surprisingly, the vendor search was rarely the bottleneck:</p>
+        <div class="highlight-wrapper">
+      <div class="highlight-box">Mental overload</div>
+      <div class="highlight-box">Unclear starting points</div>
+      <div class="highlight-box">Missed deadlines</div>
+      <div class="highlight-box">Decision fatigue</div>
+  <div class="highlight-box">Lack of shared overview</div>
+  <div class="highlight-box">Emotional pressure</div>
+  <p class="quote">
+      “I never really had a clear picture of what was happening when or everything that had to happen.” – F.
+    </p>
+    </div>
+      
+    <div class="info-box">The Pivot</div>
+    <p>
+      At this point, we decided to shift our concept from a vendor directory to a smart, collaborative planning companion. Instead of helping couples find services, we would help them plan together, with less stress, more structure, and a clear overview.
+    </p>
+      <p class="quote">
+      “It felt like project management. But when it worked, it gave us peace.” – O.
+    </p>
+
+    <div class="info-box">Journey Mapping</div>
+    <p>
+      We mapped emotional highs and lows from engagement to wedding day. This helped us pinpoint key stress phases and uncover opportunity areas where a digital tool could reduce anxiety.
+    </p>
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/User-journey-mapping.svg" alt="User journey map">
+
+
+    <div class="info-box">User Stories</div>
+    <p>
+      We wrote prioritized user stories to frame key features. These stories later shaped our usability test scenarios and informed our design priorities.
+
+      <p class="quote">“As a bride, I want a shared checklist with my partner, so I can feel supported and stay in sync.”</p>
+    </p>
+
+    <div class="info-box">Value Proposition Canvas</div>
+    <p>
+      We analyzed user pains and gains to define the most relevant product values — from clarity and overview to task sharing and emotional reassurance. This became the foundation for our MVP requirements.
+    </p>
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Value-proposition-canva.svg" alt="Value proposition canvas">
+
+
+    <!-- CHAPTER 3: UX Concept -->
+
+    <div class="info-box">Building and Testing a Prototype</div>
+  <p>
+  After translating research insights into product requirements, we built a clickable MVP and conducted usability testing with our target group. While detailed outcomes are confidential, the tests confirmed core assumptions and guided the next iteration.
+</p>
+  </div>
+</div>
+
+
+
+<!-- === Project Kloop === -->
+
+<div class="ux-project-page" id="projectKloop" onclick="handleBackdropClick(event)">
+  <div class="project-inner">
+    <button class="close-btn" onclick="closeUxProject()">Back</button>
+    <h2>Kloop</h2>
+    <p class="subtitle">Designing an effortless way to pass on kids’ things</p>
+
+    <br><br>
+
+    <!-- INTRO -->
+    <h3>The Challenge</h3>
+    <div class="text">
+  <p>
+  Most parents know the pile of outgrown kids’ clothes, toys, and other stuff in the basement. In Switzerland, where many families can afford to buy new, these piles often end up in the trash. Selling or donating takes too long, yet throwing things away feels wrong: parents feel guilty knowing that perfectly usable items add to waste and overconsumption.
+</p>
+
+<p>
+  Kloop is a student project created as part of the Google UX Design Professional Certificate. The given task was to design an app for buying and selling secondhand children’s clothes. 
+  I named the concept <strong>Kloop</strong> (short for “kids loop”) but instead of designing screens and features straight away, I focused on research. 
+  As a mother myself, I already knew that Switzerland offers many ways to recycle or donate kids’ items, so I wanted to find out whether a new app was really needed, and what the true problem behind all the clutter in the basement might be.
+</p>
+
+
+    </div>
+
+    <br><br>
+
+
+    <!-- OVERVIEW -->
+    <h3>Overview</h3>
+    <ul class="styled-list">
+      <li><strong>Project Type:</strong> Student project within the Google UX Design Professional Certificate</li>
+      <li><strong>Focus:</strong>The first phases of the design thinking framework: Empathize, Define, Ideate</li>
+      <li><strong>Duration:</strong> 3 months</li>
+      <li><strong>Location:</strong> Switzerland</li>
+      <li><strong>Target Users:</strong> Eco-conscious and busy parents</li>
+      <li><strong>Methods:</strong> Competitive Audit, Interviews, Observation, Journey Mapping, Affinity Mapping, “How Might We”, Concept Sketches</li>
+      <li><strong>My Role:</strong> UX Researcher</li>
+    </ul>
+
+    <br><br>
+
+    <!-- CHAPTER 1: Context & Challenge -->
+    <h3>Competitive Audit</h3>
+<p>
+  Before diving into design, I explored how parents in Switzerland already buy, sell, or recycle kids’ items.
+  I compared popular resale platforms, donation options, and recycling programs.
+</p>
+
+<p>Summary of key tools and their main limitations:</p>
+
+<div class="highlight-wrapper">
+  <div class="highlight-box">Tutti / Ricardo - established secondhand platforms: slow and effort-heavy.</div>
+  <div class="highlight-box">Facebook Market / local WhatsApp chats - easy to start, but unreliable and time-consuming.</div>
+  <div class="highlight-box">Kinderbörsen / garage sales - good for bulk selling, but require time, transport, and planning.</div>
+  <div class="highlight-box">Thrift stores (Brocki) - sustainable, but limited in what they accept.</div>
+  <div class="highlight-box">Texaid / store take-back (H&M) - easiest option, but no visibility of what happens next.</div>
+</div>
+
+<h3>Existing Tools Mapping</h3>
+
+<img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Recycle%20options.svg" alt="Value proposition canvas">
+
+
+
+<p>
+  The audit showed that the problem isn’t lack of options but the time and effort every option demands.
+  None of these services feel effortless and emotionally rewarding for busy parents.
+</p>
+
+    <br><br>
+
+    <!-- CHAPTER 2: Research Approach -->
+<h3>The Research</h3>
+<p>
+  I led a research-first process to understand why “keeping things in the loop” (meaning actually reusing items rather than storing them in the basement or throwing them away) so often fails in practice. Why do parents who care deeply about sustainability still end up throwing usable kids’ things away?
+</p>
+
+<div class="info-box">The Questions</div>
+<div class="highlight-wrapper">
+  <div class="highlight-box">How do parents currently buy, sell, and pass on kids’ items?</div>
+  <div class="highlight-box">How do social norms or neighborhood culture affect parents’ motivation to reuse?</div>
+  <div class="highlight-box">Where exactly do time, effort, and motivation get lost?</div>
+  <div class="highlight-box">What emotional factors influence these choices?</div>
+  <div class="highlight-box">When is sustainability worth the effort, and when does convenience win?</div>
+</div>
+
+<div class="info-box">Interviews</div>
+<p>
+  I conducted three in-depth interviews with parents living in Switzerland, each representing a different lifestyle and relationship to sustainability:
+</p>
+
+<ol>
+  <li>
+    <strong>Parent 1:</strong> Mother of a 12-year-old and a 3-month-old, not currently working, recently moved from Germany. 
+    She deeply values sustainability and tries to reuse or repair everything. Without a car, even giving things away can be challenging, and she often stores unused clothes in the basement for lack of better options.
+  </li>
+  <li>
+    <strong>Parents 2:</strong> A couple from France with two boys, aged 7 and 11, both working full-time. 
+    They buy and receive many secondhand items from friends because of shared values of sustainability and thrift. 
+    Yet their home and basement are cluttered — they rarely sell or donate because they lack time, even though they dislike waste.
+  </li>
+  <li>
+    <strong>Parent 3:</strong> Swiss mother of an 11-year-old girl, working part-time. 
+    She cares about sustainability but prioritizes quality: she buys and sells only high-quality secondhand items, saying cheaper ones aren’t worth the effort or the child’s demand.
+    Items of lower value are typically discarded or stored rather than reused.
+  </li>
+</ol>
+
+<p>
+  I also asked parents not only how they <em>think</em> they handle used items, but how they <em>actually did</em> with the last clothes or toys they sold, gave away, or bought secondhand. 
+  This turned out to be one of the most revealing parts of the research: many parents believed they were acting sustainably, but their recent actions told a different story. 
+  When the potential financial reward was too small or the process too time-consuming, they chose the most convenient solution — often storing or discarding items — even if it conflicted with their environmental values.
+</p>
+
+<p>
+  The interviews revealed that parents rarely make decisions based on money alone. Their real motivations are <strong>space, conscience, and effort</strong>: 
+  they want to declutter without guilt, feel that things go to good use, and avoid wasting precious time. 
+  However, the current systems — from online platforms to thrift stores — make sustainable behavior harder, not easier.
+</p>
+
+<div class="info-box">Synthesis & Shift</div>
+<p>
+  My initial assumption was simple: <em>parents need better resale tools.</em><br>
+  After synthesis, that assumption collapsed. The real need is <strong>low-effort circularity</strong> — a simple, trustworthy way to pass on items without emotional or logistical friction.
+  Selling is only one small part of the loop. Fast, reassuring “off-ramps” — donating, recycling, or giving away — matter far more than small payouts.
+</p>
+
+<div class="info-box">Insights Summary</div>
+<p>
+  The interviews revealed that parents’ decisions about kids’ things are rarely rational or linear — they’re emotional, situational, and shaped by context. 
+  Across all three families, sustainability mattered deeply, yet everyday realities such as time pressure, space, and convenience dictated behavior.
+</p>
+
+<ul class="styled-list">
+  <li><strong>Sustainability vs. convenience:</strong> Parents want to act responsibly, but when time or energy runs out, convenience wins. Selling and donating take too long for too little reward.</li>
+  <li><strong>Storage as avoidance:</strong> Keeping items in basements or boxes feels like a compromise: not throwing away, but not reusing either. It creates hidden waste and emotional guilt.</li>
+  <li><strong>Effort-to-value imbalance:</strong> Taking photos, writing descriptions, answering messages, and arranging pickups takes more time than the few francs gained from a sale.</li>
+  <li><strong>Trust and uncertainty:</strong> Parents often doubt the quality of secondhand items and the reliability of buyers or donation programs. This lack of confidence discourages participation.</li>
+  <li><strong>Different definitions of “worth it”:</strong> Some parents seek high-quality resale; others simply want items gone. The shared frustration is the lack of a quick, trustworthy, guilt-free option.</li>
+  <li><strong>Cultural contrast:</strong> Parents from abroad noticed that the circular economy functions more naturally elsewhere. The mother from Germany missed the <em>Umsonstladen</em> — volunteer-run “free shops” where good items are exchanged without money. The French parents described a stronger community spirit and social acceptance of secondhand culture back home. In Switzerland, they felt reuse is practical but not social — more effort, less connection.</li>
+</ul>
+
+<p>
+  These patterns revealed that “keeping things in the loop” isn’t just about available tools — it’s about social norms and visible impact. 
+  Parents need to feel that the process is worth their time and that items truly find a second life.
+</p>
+
+<p>
+  To better understand these frictions firsthand, I turned the lens on myself. As a mother using the same platforms, I started documenting my own experiences in a diary — every time I bought or sold a secondhand children’s item.
+</p>
+
+
+    <!-- USER GROUPS -->
+    <h3>User Groups</h3>
+    <ul class="styled-list">
+      <li><strong>Eco-conscious, low-access parents:</strong> motivated to reduce waste; limited time, no car, logistics are hard.</li>
+      <li><strong>Pragmatic, time-limited families:</strong> want the house decluttered fast and a small return if possible.</li>
+    </ul>
+
+    <br>
+
+    <!-- PAIN POINTS -->
+    <h3>User Pain Points</h3>
+    <div class="highlight-wrapper">
+      <div class="highlight-box"><strong>No good option:</strong> clutter vs. waste vs. weeks of effort.</div>
+      <div class="highlight-box"><strong>Time sink:</strong> photos, descriptions, replies, pickups.</div>
+      <div class="highlight-box"><strong>Low payoff:</strong> “a few francs” rarely justify the work.</div>
+      <div class="highlight-box"><strong>Access barriers:</strong> no car, far locations, limited hours.</div>
+      <div class="highlight-box"><strong>Emotional weight:</strong> guilt for throwing away, stress from clutter.</div>
+    </div>
+
+    <br><br>
+
+    <!-- JOURNEYS -->
+    <h3>User Journeys</h3>
+
+    <div class="info-box">Journey A — “Sell, Give Away, Thrift Store, or… Keep?”</div>
+    <p><em>Scenario:</em> A mother tries to get rid of a light jacket.</p>
+    <ul class="styled-list">
+      <li><strong>Post to Facebook Market:</strong> wait → Q&A → no serious offers.</li>
+      <li><strong>Offer for free:</strong> still little interest; coordination takes time.</li>
+      <li><strong>Try thrift store (Brocki):</strong> needs a car/time → delays the trip.</li>
+      <li><strong>Result:</strong> jacket returns to the closet; space and guilt remain.</li>
+    </ul>
+
+    <div class="info-box">Journey B — “Find a Used LEGO Set”</div>
+    <ul class="styled-list">
+      <li><strong>Check online shops:</strong> expensive but easy.</li>
+      <li><strong>Search Tutti/Facebook Market:</strong> options appear; messaging takes days.</li>
+      <li><strong>Arrange pickup:</strong> far away; schedule falls apart.</li>
+      <li><strong>Result:</strong> buying new would have been faster — sustainability loses to convenience.</li>
+    </ul>
+
+    <p class="quote">
+      Insight: sustainability fails when convenience is missing. Kloop aims to remove effort, not add features.
+    </p>
+
+    <br><br>
+
+    <!-- OPPORTUNITIES -->
+    <h3>Opportunities (“How Might We”)</h3>
+    <div class="highlight-wrapper">
+      <div class="highlight-box">How might we make offloading items take under 60 seconds?</div>
+      <div class="highlight-box">How might we remove pickup/drop-off from the user’s to-do list?</div>
+      <div class="highlight-box">How might we guarantee items get reused or recycled?</div>
+      <div class="highlight-box">How might we provide a small, instant reward without back-and-forth?</div>
+    </div>
+
+    <br><br>
+
+    <!-- EARLY CONCEPTS -->
+    <h3>Early Concepts & Wireframes</h3>
+    <p>I sketched flows to test low-effort circularity: one-tap pass-on, scheduled pickup, and trusted destinations (friends, local thrift, textile recycling).</p>
+
+    <div class="row-text-image">
+      <div class="text">
+        <ul class="styled-list">
+          <li><strong>One-tap “Pass On”:</strong> choose “sell / give / recycle” without writing listings.</li>
+          <li><strong>Smart routing:</strong> Kloop suggests the fastest responsible option nearby.</li>
+          <li><strong>Proof of reuse:</strong> quick confirmation that the item stays in the loop.</li>
+          <li><strong>Optional micro-reward:</strong> small instant credit to offset effort.</li>
+        </ul>
+      </div>
+      <div class="image">
+        <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/kloop-wireframes.svg" alt="Early Kloop wireframe sketches">
+      </div>
+    </div>
+
+    <br><br>
+
+    <!-- COMPETITIVE AUDIT -->
+    <h3>Competitive Audit (Switzerland)</h3>
+    <div class="highlight-wrapper">
+      <div class="highlight-box">Tutti / Ricardo: reach but high effort to list & coordinate.</div>
+      <div class="highlight-box">Facebook Market / local chats: informal, unreliable, slow.</div>
+      <div class="highlight-box">Thrift stores (Brocki): responsible, but logistics heavy.</div>
+      <div class="highlight-box">Textaid / store take-back: easy drop, unknown end result.</div>
+    </div>
+
+    <br><br>
+
+    <!-- ROLE & RESPONSIBILITIES -->
+    <h3>My Role</h3>
+    <ul class="styled-list">
+      <li>Defined problem & research questions</li>
+      <li>Conducted interviews and secondary research</li>
+      <li>Synthesized insights (affinity mapping)</li>
+      <li>Mapped journeys & reframed assumptions</li>
+      <li>Sketched flows and early wireframes</li>
+    </ul>
+
+    <br><br>
+
+    <!-- NEXT STEPS -->
+    <h3>Next Steps</h3>
+    <ul class="styled-list">
+      <li>Validate concepts with a quick low-fi prototype (task time, perceived effort).</li>
+      <li>Partner scan: local Brocki/Textaid for pickup & verified reuse.</li>
+      <li>Experiment: instant credit vs. pure altruism — impact on adoption.</li>
+      <li>Measure: “time to offload” and “items kept in loop” as success metrics.</li>
+    </ul>
+
+  </div>
+</div>
+
+
+
+<script>
+
+  let currentTypingInterval = null;
+
+
+  // Global modal open/close functions
+  function openUxProject(projectId) {
+    document.querySelectorAll('.ux-project-page').forEach(el => {
+      el.classList.remove('visible');
+    });
+    document.getElementById(projectId)?.classList.add('visible');
+  }
+
+  function closeUxProject() {
+    document.querySelectorAll('.ux-project-page.visible').forEach(el => {
+      el.classList.remove('visible');
+    });
+  }
+
+  window.openUxProject = openUxProject;
+  window.closeUxProject = closeUxProject;
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeUxProject();
+  });
+
+  function handleBackdropClick(event) {
+  // Only close if the user clicked directly on the backdrop, not on the content
+  if (event.target.classList.contains('ux-project-page')) {
+    closeUxProject();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.highlight-box');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    boxes.forEach(box => observer.observe(box));
+  });
+
+  // Everything else inside DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const sceneColors = [
+      ['#d4f1ef','#e0f2ff','#fff6f6'],
+      ['#e7f6ec','#d9f2ff','#f7efff'],
+      ['#fef8e5','#e0f8f5','#e0f0ff'],
+      ['#fff2e9','#ffeef3','#eaf4ff'],
+      ['#f9f9f9','#e9f4f3','#f0f8ff'],
+    ];
+
+    let currentScene  = 0;
+    let hasAutoPlaced = false;
+    const AUTO_DELAY  = 500;
+    const wrap = document.getElementById('scrollWrapper');
+    const root = document.documentElement;
+    const initialCounts = {};
+
+    function updateActiveNav(idx) {
+      document.querySelectorAll('.nav-dot').forEach((dot,i) => {
+        dot.classList.toggle('active', i === idx);
       });
     }
-  </script>
+
+    function scrollToScene(idx) {
+      wrap.scrollTo({ left: idx * window.innerWidth, behavior: 'smooth' });
+      updateActiveNav(idx);
+      currentScene = idx;
+    }
+    window.scrollToScene = scrollToScene;
+
+    
+
+    function updateProgress(cat) {
+      const total = initialCounts[cat] || 1;
+      const placed = document.querySelectorAll(`.${cat}-zone .skill-card.placed`).length;
+      const pct = Math.round((placed / total) * 100);
+      const wrapper = document.querySelector(`.school-progress[data-category="${cat}"]`);
+      const fillEl = wrapper.querySelector('.progress-fill');
+      const label = wrapper.querySelector('.progress-bar__label');
+      fillEl.style.width = pct + '%';
+      wrapper.classList.toggle('complete', pct >= 100);
+      if (label) label.classList.toggle('light', pct > 75);
+    }
+
+    function placeCard(card) {
+      const cat = card.dataset.category;
+      const zone = document.querySelector(`.${cat}-zone`);
+      if (!zone) return;
+      const clone = card.cloneNode(true);
+      clone.classList.add('skill-card', 'placed');
+      clone.draggable = false;
+      clone.style.cursor = 'default';
+      clone.style.transition = `transform ${AUTO_DELAY}ms ease-out, opacity ${AUTO_DELAY}ms ease-out`;
+      zone.appendChild(clone);
+      card.remove();
+      updateProgress(cat);
+    }
+
+    function autoPlaceCards() {
+      if (hasAutoPlaced) return;
+      hasAutoPlaced = true;
+      document.querySelectorAll('.skills-container .skill-card').forEach(card => placeCard(card));
+    }
+
+    function initCardClicks() {
+      document.querySelectorAll('.skills-container .skill-card').forEach(card => {
+        card.removeAttribute('draggable');
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => placeCard(card));
+      });
+    }
+
+    // === INIT ===
+    document.querySelectorAll('.skills-container .skill-card').forEach(card => {
+      const cat = card.dataset.category;
+      initialCounts[cat] = (initialCounts[cat] || 0) + 1;
+    });
+    Object.keys(initialCounts).forEach(cat => updateProgress(cat));
+    updateMarketingView(0);
+    initCardClicks();
+
+    // === MARKETING screen click setup ===
+
+
+
+document.querySelectorAll('.scene.marketing .screen').forEach(s => {
+  s.addEventListener('click', () => updateMarketingView(+s.dataset.index));
+    s.addEventListener('touchstart', () => updateMarketingView(+s.dataset.index));
+});
+
+function updateMarketingView(idx = 0) {
+  const scene = document.querySelector('.scene.marketing');
+  const screens = Array.from(scene.querySelectorAll('.screen'));
+  const character = scene.querySelector('#character');
+  const detailEl = scene.querySelector('#marketingDetail');
+
+  const detailCopy = [
+    "Turned questions into metrics. Set up analytics tools and custom dashboards to track user behavior. Conducted qualitative and quantitative research to explore user needs and market trends. Used funnel analysis and campaign tracking to support product and marketing decisions.",
+    "Created strategy-aligned content for web and social media. Mapped messages to user needs and brand voice across channels and touchpoints, informed by audience research and user journey insights.",
+    "Built landing pages and sites using WordPress and other CMS. Designed user flows, wireframes, and conducted A/B testing."
+  ];
+
+  // Typing function (moved to top for clarity)
+function typeText(el, text, speed = 15) {
+  if (!el) return;
+
+  // Stop any existing typing
+  if (currentTypingInterval) clearInterval(currentTypingInterval);
+
+  el.textContent = '';
+  let i = 0;
+
+  currentTypingInterval = setInterval(() => {
+    el.textContent += text[i];
+    i++;
+    if (i >= text.length) {
+      clearInterval(currentTypingInterval);
+      currentTypingInterval = null;
+    }
+  }, speed);
+}
+
+
+
+
+  // Validate index
+  idx = Math.max(0, Math.min(idx, screens.length - 1));
+
+  // Update screens
+  screens.forEach((s, i) => {
+    const img = s.querySelector('.screen-img');
+    if (i === idx) {
+      s.classList.add('active');
+      img.src = s.dataset.gif;
+    } else {
+      s.classList.remove('active');
+      img.src = s.dataset.placeholder;
+    }
+  });
+
+  // Update detail box with animation
+  if (detailEl) {
+    const box = detailEl.closest('.marketing-detail-box');
+    if (box) {
+      box.style.animation = 'none';
+      box.offsetHeight; // force reflow
+      box.style.animation = null;
+    }
+    typeText(detailEl, detailCopy[idx], 15);
+  }
+
+  // Move character to match screen
+  const active = screens[idx];
+  const parentRect = active.parentElement.getBoundingClientRect();
+  const screenRect = active.getBoundingClientRect();
+  const charW = character.offsetWidth || character.getBoundingClientRect().width;
+  const centerX = screenRect.left - parentRect.left + screenRect.width / 2;
+  const targetLeft = centerX - (charW * 0.75);
+  const maxLeft = active.parentElement.clientWidth - charW;
+  character.style.left = `${Math.max(0, Math.min(maxLeft, targetLeft))}px`;
+}
+
+    // === UX Scene floating notes ===
+    const uxScene = document.querySelector('.scene.ux');
+    uxScene.addEventListener('click', function(e) {
+      if (e.target.closest('.project-sticker')) return;
+      const note = document.createElement('div');
+      note.className = 'floating-note';
+      const angle = (Math.random() * 12) - 6;
+      note.style.setProperty('--angle', `${angle}deg`);
+      const rect = uxScene.getBoundingClientRect();
+      note.style.left = `${e.clientX - rect.left}px`;
+      note.style.top  = `${e.clientY - rect.top}px`;
+      uxScene.appendChild(note);
+      setTimeout(() => note.classList.add('fall'), 1000);
+      setTimeout(() => note.remove(), 4800);
+    });
+
+
+
+// Open business card in a new tab
+  function openBusinessCard() {
+    window.open('https://blinq.me/cmelqiv0l0ei8s60mhr5iuylw?bs=db', '_blank');
+  }
+
+  // Share portfolio
+  function sharePortfolio() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Galina Shokhova – UX Portfolio',
+      text: 'Check out this UX portfolio!',
+      url: 'https://galina-gs.github.io/portfolio_ux/',
+    })
+    .then(() => console.log('Thanks for sharing!'))
+    .catch(err => console.error('Share failed:', err));
+  } else {
+    // Fallback for browsers that don't support Web Share API
+    const dummy = document.createElement('input');
+    document.body.appendChild(dummy);
+    dummy.value = 'https://galina-gs.github.io/portfolio_ux/';
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    alert('Link copied! Share it with others');
+  }
+}
+
+  // Download the CV (PDF file or other)
+function downloadCV() {
+  window.open(
+    'https://galina-gs.github.io/portfolio_ux/CV_UX_Galina_Shokhova_2025_eng_de.pdf',
+    '_blank'
+  );
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+
+  // Make functions globally accessible for inline onclick handlers
+  window.openBusinessCard = openBusinessCard;
+  window.sharePortfolio = sharePortfolio;
+  window.downloadCV = downloadCV;
+
+
+    // === Navigation Dot Logic ===
+    document.querySelectorAll('.nav-dot').forEach(dot => {
+      const target = +dot.dataset.scene;
+      dot.addEventListener('click', e => {
+        e.preventDefault();
+        if (!hasAutoPlaced && currentScene === 1 && target === 2) {
+          wrap.style.pointerEvents = 'none';
+          autoPlaceCards();
+          setTimeout(() => {
+            wrap.style.pointerEvents = 'auto';
+            scrollToScene(target);
+            const x = target * window.innerWidth;
+            wrap.scrollLeft = x;
+            wrap.dispatchEvent(new Event('scroll'));
+          }, AUTO_DELAY);
+        } else {
+          scrollToScene(target);
+          if (target === 1) updateMarketingView(0);
+        }
+      });
+    });
+
+    // === Background gradient interpolation ===
+
+    
+    wrap.addEventListener('scroll', () => {
+      const x = wrap.scrollLeft, w = window.innerWidth;
+      if (!hasAutoPlaced && currentScene === 1 && x > w + 10) {
+        wrap.style.overflowX = 'hidden';
+        autoPlaceCards();
+        setTimeout(() => {
+          wrap.style.overflowX = 'auto';
+          scrollToScene(2);
+        }, AUTO_DELAY);
+        return;
+      }
+
+      const idx = Math.round(x / w);
+      updateActiveNav(idx);
+      currentScene = idx;
+
+      const uniBg = document.getElementById('universityBg');
+      if (uniBg) uniBg.style.transform = `translateX(${-0.1 * x}px)`;
+
+   
+wrap.addEventListener('scroll', () => {
+  const x = wrap.scrollLeft;
+  document.body.style.setProperty('--bg-offset', `-${x}px`);
+});
+
+
+    });
+  });
+</script>
+
+
+
+
 </body>
 </html>
