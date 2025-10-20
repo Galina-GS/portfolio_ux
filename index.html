@@ -4120,18 +4120,29 @@ body {
 
     <!-- INTRO -->
     <h3>The Challenge</h3>
-    <div class="text">
-  <p>
-  Most parents know the pile of outgrown kids’ clothes, toys, and other stuff in the basement. In Switzerland, where many families can afford to buy new, these piles often end up in the trash. Selling or donating takes too long, yet throwing things away feels wrong: parents feel guilty knowing that perfectly usable items add to waste and overconsumption.
-</p>
 
-<p>
-  Kloop is a student project created as part of the Google UX Design Professional Certificate. The given task was to design an app for buying and selling secondhand children’s clothes. 
-  I named the concept <strong>Kloop</strong> (short for “kids loop”) but instead of designing screens and features straight away, I focused on research. 
-  As a mother myself, I already knew that Switzerland offers many ways to recycle or donate kids’ items, so I wanted to find out whether a new app was really needed, and what the true problem behind all the clutter in the basement might be.
-</p>
+    <div class="row-text-image">
+      <div class="text">
+        <p>
+          Most parents know the pile of outgrown kids’ clothes, toys, and other stuff in the basement. 
+          In Switzerland, where many families can afford to buy new, these piles often end up in the trash. 
+          Selling or donating takes too long, yet throwing things away feels wrong: parents feel guilty knowing that perfectly usable items add to waste and overconsumption.
+        </p>
 
+        <div class="disclaimer">
+          <p class="disclaimer-text">
+            <strong>Disclaimer:</strong><br>
+            Kloop is a student project created as part of the Google UX Design Professional Certificate. 
+            The given task was to design an app for buying and selling secondhand children’s clothes. 
+            I named the concept <strong>Kloop</strong> (short for “kids loop”). As a mother myself, I already knew that Switzerland offers many ways to recycle or donate kids’ items, 
+            so I wanted to find out whether a new app was really needed, and what the true problem behind all the clutter in the basement might be.
+          </p>
+        </div>
+      </div>
 
+      <div class="image">
+        <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Bride%20in%20stress.svg" alt="Overwhelmed bride sitting on the floor surrounded by planning tools">
+      </div>
     </div>
 
     <br><br>
@@ -4141,11 +4152,11 @@ body {
     <h3>Overview</h3>
     <ul class="styled-list">
       <li><strong>Project Type:</strong> Student project within the Google UX Design Professional Certificate</li>
-      <li><strong>Focus:</strong>The first phases of the design thinking framework: Empathize, Define, Ideate</li>
+      <li><strong>Focus:</strong> The first phases of the design thinking framework: Empathize, Define, Ideate</li>
       <li><strong>Duration:</strong> 3 months</li>
       <li><strong>Location:</strong> Switzerland</li>
       <li><strong>Target Users:</strong> Eco-conscious and busy parents</li>
-      <li><strong>Methods:</strong> Competitive Audit, Interviews, Observation, Journey Mapping, Affinity Mapping, “How Might We”, Concept Sketches</li>
+      <li><strong>Methods:</strong> Competitive Audit, Interviews, Self-Observation, Journey Mapping, Affinity Mapping, “How Might We”, Concept Sketches</li>
       <li><strong>My Role:</strong> UX Researcher</li>
     </ul>
 
@@ -4162,12 +4173,13 @@ body {
 
 <div class="highlight-wrapper">
   <div class="highlight-box">Tutti / Ricardo - established secondhand platforms: slow and effort-heavy.</div>
-  <div class="highlight-box">Facebook Market / local WhatsApp chats - easy to start, but unreliable and time-consuming.</div>
+  <div class="highlight-box">Facebook Market / local WhatsApp chats and groups - easy to start, but unreliable and time-consuming.</div>
   <div class="highlight-box">Kinderbörsen / garage sales - good for bulk selling, but require time, transport, and planning.</div>
   <div class="highlight-box">Thrift stores (Brocki) - sustainable, but limited in what they accept.</div>
   <div class="highlight-box">Texaid / store take-back (H&M) - easiest option, but no visibility of what happens next.</div>
 </div>
-
+<br>
+<br>
 <h3>Existing Tools Mapping</h3>
 
 <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Recycle%20options.svg" alt="Value proposition canvas">
@@ -4175,113 +4187,146 @@ body {
 
 
 <p>
-  The audit showed that the problem isn’t lack of options but the time and effort every option demands.
-  None of these services feel effortless and emotionally rewarding for busy parents.
+  Is it possible to design a recycling system that feels effortless and rewarding for busy parents?
 </p>
+
 
     <br><br>
 
     <!-- CHAPTER 2: Research Approach -->
 <h3>The Research</h3>
 <p>
-  I led a research-first process to understand why “keeping things in the loop” (meaning actually reusing items rather than storing them in the basement or throwing them away) so often fails in practice. Why do parents who care deeply about sustainability still end up throwing usable kids’ things away?
+  I led the research process to understand why “keeping things in the loop” so often fails in practice. Why do parents who care deeply about sustainability still end up throwing usable kids’ things away or storing them in the basement?
 </p>
 
 <div class="info-box">The Questions</div>
 <div class="highlight-wrapper">
-  <div class="highlight-box">How do parents currently buy, sell, and pass on kids’ items?</div>
+  <div class="highlight-box">How do parents usually buy, sell, and pass on kids’ items?</div>
+  <div class="highlight-box">How did parents manage kids’ items the last three times?</div>
   <div class="highlight-box">How do social norms or neighborhood culture affect parents’ motivation to reuse?</div>
   <div class="highlight-box">Where exactly do time, effort, and motivation get lost?</div>
   <div class="highlight-box">What emotional factors influence these choices?</div>
-  <div class="highlight-box">When is sustainability worth the effort, and when does convenience win?</div>
+  <div class="highlight-box">What matters most to parents when dealing with secondhand kids’ things?</div>
 </div>
 
 <div class="info-box">Interviews</div>
 <p>
-  I conducted three in-depth interviews with parents living in Switzerland, each representing a different lifestyle and relationship to sustainability:
+  I conducted three interviews with parents living in Switzerland, each representing a different lifestyle and different goals in dealing with secondhand items for children:
 </p>
 
-<ol>
-  <li>
-    <strong>Parent 1:</strong> Mother of a 12-year-old and a 3-month-old, not currently working, recently moved from Germany. 
-    She deeply values sustainability and tries to reuse or repair everything. Without a car, even giving things away can be challenging, and she often stores unused clothes in the basement for lack of better options.
-  </li>
-  <li>
-    <strong>Parents 2:</strong> A couple from France with two boys, aged 7 and 11, both working full-time. 
-    They buy and receive many secondhand items from friends because of shared values of sustainability and thrift. 
-    Yet their home and basement are cluttered — they rarely sell or donate because they lack time, even though they dislike waste.
-  </li>
-  <li>
-    <strong>Parent 3:</strong> Swiss mother of an 11-year-old girl, working part-time. 
-    She cares about sustainability but prioritizes quality: she buys and sells only high-quality secondhand items, saying cheaper ones aren’t worth the effort or the child’s demand.
-    Items of lower value are typically discarded or stored rather than reused.
-  </li>
-</ol>
+<p><strong>Parent 1: J.</strong></p>
+<ul class="styled-list">
+  <li>Mother of a 12-year-old and a 3-month-old </li>
+    <li>Currently not working</li>
+    <li>Recently moved from Germany</li>
+  </ul>
+  <p>She deeply values sustainability and tries to reuse or repair everything. Without a car, even giving things away can be challenging, and she often stores unused clothes in the basement for lack of better options.</p>
+  
+  <p class="quote">
+      “I try to avoid throwing things away unless they’re really broken. A lot of things stay in the basement because I don’t know what else to do with them.” – J.
+    </p>
 
-<p>
-  I also asked parents not only how they <em>think</em> they handle used items, but how they <em>actually did</em> with the last clothes or toys they sold, gave away, or bought secondhand. 
-  This turned out to be one of the most revealing parts of the research: many parents believed they were acting sustainably, but their recent actions told a different story. 
-  When the potential financial reward was too small or the process too time-consuming, they chose the most convenient solution — often storing or discarding items — even if it conflicted with their environmental values.
-</p>
+  <p><strong>Parents 2: M. & G.</strong></p>
+  <ul class="styled-list">
+    <li>A couple with two boys, aged 7 and 11</li>
+    <li>Both working full-time</li>
+    <li>Moved to Switzerland from France 12 years ago</li></ul>
+    <p>They buy and receive from friends many secondhand items because of shared values of sustainability and thrift. Yet their home and basement are cluttered: they rarely sell or donate because they lack time, even though they dislike waste.</p>
+  
+   <p class="quote">
+      “If I find something good secondhand, I take it right away. You never know if you’ll see it again. Especially kids’ and sports gear, because the boys keep growing.” – M.
+    </p>
 
-<p>
-  The interviews revealed that parents rarely make decisions based on money alone. Their real motivations are <strong>space, conscience, and effort</strong>: 
-  they want to declutter without guilt, feel that things go to good use, and avoid wasting precious time. 
-  However, the current systems — from online platforms to thrift stores — make sustainable behavior harder, not easier.
-</p>
+  <p><strong>Parent 3:</strong>
+    <ul class="styled-list">
+      <li>Mother of an 11-year-old girl</li>
+      <li>Working part-time</li>
+      <li>Swiss native</li>
+    </ul>
+    <p>She cares about sustainability but prioritizes quality: she buys and sells only high-quality secondhand items, saying cheaper ones aren’t worth the effort or the child’s demand.
+    Items of lower value are typically discarded rather than reused.</p>
 
-<div class="info-box">Synthesis & Shift</div>
+   <p class="quote">
+      “I only sell things I’d still buy myself. My daughter sometimes sells her toys at school markets for pocket money. The rest I just give away or throw away if nobody wants it” – S.
+    </p>
+
+
+<div class="info-box">Interview Synthesis</div>
 <p>
   My initial assumption was simple: <em>parents need better resale tools.</em><br>
-  After synthesis, that assumption collapsed. The real need is <strong>low-effort circularity</strong> — a simple, trustworthy way to pass on items without emotional or logistical friction.
-  Selling is only one small part of the loop. Fast, reassuring “off-ramps” — donating, recycling, or giving away — matter far more than small payouts.
+  The interviews revealed that parents rarely make decisions based on money alone. Their real motivations are <strong>waste reduction, decluttering, and ease</strong>: 
+  they want to declutter without guilt, feel that things go to good use, and avoid wasting time.
 </p>
 
-<div class="info-box">Insights Summary</div>
+ <p class="quote">
+      “I’ve seen in Africa how the market is flooded with donated clothes.” – M.
+    </p>
+
 <p>
-  The interviews revealed that parents’ decisions about kids’ things are rarely rational or linear — they’re emotional, situational, and shaped by context. 
-  Across all three families, sustainability mattered deeply, yet everyday realities such as time pressure, space, and convenience dictated behavior.
+  Many parents believed they were acting sustainably, but their recent actions told a different story. 
+  When the potential financial reward was too small or the process too time-consuming, they chose the most convenient solution even if it conflicted with their environmental values.
 </p>
 
+ <p class="quote">
+      “Sometimes the effort just isn’t worth it.” – J.
+    </p>
+
+<p>
+  To better understand these frictions firsthand, I turned the lens on myself. As a mother using the same platforms, I started documenting my own experiences in a diary for one month every time I bought or sold a secondhand children’s item.
+</p>
+
+<div class="info-box">Self-Observation</div>
+
+<img src="./images/Self-observation.png" alt="Self observation">
+
+<p>Patterns from the Diary</p>
 <ul class="styled-list">
-  <li><strong>Sustainability vs. convenience:</strong> Parents want to act responsibly, but when time or energy runs out, convenience wins. Selling and donating take too long for too little reward.</li>
-  <li><strong>Storage as avoidance:</strong> Keeping items in basements or boxes feels like a compromise: not throwing away, but not reusing either. It creates hidden waste and emotional guilt.</li>
-  <li><strong>Effort-to-value imbalance:</strong> Taking photos, writing descriptions, answering messages, and arranging pickups takes more time than the few francs gained from a sale.</li>
-  <li><strong>Trust and uncertainty:</strong> Parents often doubt the quality of secondhand items and the reliability of buyers or donation programs. This lack of confidence discourages participation.</li>
-  <li><strong>Different definitions of “worth it”:</strong> Some parents seek high-quality resale; others simply want items gone. The shared frustration is the lack of a quick, trustworthy, guilt-free option.</li>
-  <li><strong>Cultural contrast:</strong> Parents from abroad noticed that the circular economy functions more naturally elsewhere. The mother from Germany missed the <em>Umsonstladen</em> — volunteer-run “free shops” where good items are exchanged without money. The French parents described a stronger community spirit and social acceptance of secondhand culture back home. In Switzerland, they felt reuse is practical but not social — more effort, less connection.</li>
+  <li><strong>Effort and duration:</strong> Even small actions required coordination. 
+    Quick, “easy” listings still demanded messaging, photo uploads, and constant follow-up.</li>
+
+  <li><strong>Safety and protection:</strong> After one sale, a buyer continued messaging inappropriately. 
+    I realized that selling from home means giving strangers my address. In addition, it is common to pay online before receiving the item: the transaction is unprotected.</li>
+
+  <li><strong>Micro-transactions and noise:</strong> Low-priced items generated the most attention and the most friction — too many chats, price discussions, and logistical details for just a few francs of value.</li>
+
+  <li><strong>Basement as a buffer:</strong> Some items stayed in storage for months after failed sales attempts. 
+    The basement became a compromise: things weren’t thrown away, but they weren’t reused either.</li>
+
+  <li><strong>Buying experience:</strong> As a buyer, I faced uncertainty and awkward negotiation. 
+    The seller of a secondhand bag refused to name a price, asking me to guess the “correct” one.</li>
 </ul>
 
 <p>
-  These patterns revealed that “keeping things in the loop” isn’t just about available tools — it’s about social norms and visible impact. 
-  Parents need to feel that the process is worth their time and that items truly find a second life.
+  This self-observation reinforced the interviews: circular behavior is impractical in daily life.
 </p>
+<br><br>
+
+    <!-- CHAPTER 3: Findings -->
+    <h3>Findings</h3>
+
+<div class="info-box">Research Insights Summary</div>
+
+
+<ul class="styled-list">
+  <li><strong>Sustainability vs. convenience:</strong> Parents want to act responsibly, but when time or energy runs out, convenience wins. Selling and donating take too long for too little reward.</li>
+  <li><strong>Storage as avoidance:</strong> Keeping items in basements or boxes feels like a compromise: not throwing away, but not reusing either. It creates hidden waste.</li>
+  <li><strong>Effort-to-value imbalance:</strong> Taking photos, writing descriptions, answering messages, and arranging pickups takes more time than the few francs gained from a sale.</li>
+  <li><strong>Trust and uncertainty:</strong> Parents often doubt the quality of secondhand items and the reliability of buyers or donation programs. This lack of confidence discourages participation.</li>
+  <li><strong>Different definitions of “worth it”:</strong> Some parents seek high-quality resale; others simply want items gone. The shared frustration is the lack of a quick, trustworthy, guilt-free option.</li>
+  <li><strong>Cultural contrast:</strong> Parents from abroad noticed that the circular economy functions more naturally elsewhere. The mother from Germany missed the <em>Umsonstladen</em>, volunteer-run “free shops” where good items are exchanged without money. The French parents described a stronger community spirit and social acceptance of secondhand culture back home. In Switzerland, they felt reuse means more effort and less connection.</li>
+</ul>
+
+<p class="quote">
+      “In Switzerland, reuse is impractical and not social.” – J.
+    </p>
 
 <p>
-  To better understand these frictions firsthand, I turned the lens on myself. As a mother using the same platforms, I started documenting my own experiences in a diary — every time I bought or sold a secondhand children’s item.
+  These patterns revealed that “keeping things in the loop” depends less on available tools and more on culture, motivation, and convenience. However, the current systems make sustainable behavior harder, not easier.
 </p>
 
 
-    <!-- USER GROUPS -->
-    <h3>User Groups</h3>
-    <ul class="styled-list">
-      <li><strong>Eco-conscious, low-access parents:</strong> motivated to reduce waste; limited time, no car, logistics are hard.</li>
-      <li><strong>Pragmatic, time-limited families:</strong> want the house decluttered fast and a small return if possible.</li>
-    </ul>
 
-    <br>
-
-    <!-- PAIN POINTS -->
-    <h3>User Pain Points</h3>
-    <div class="highlight-wrapper">
-      <div class="highlight-box"><strong>No good option:</strong> clutter vs. waste vs. weeks of effort.</div>
-      <div class="highlight-box"><strong>Time sink:</strong> photos, descriptions, replies, pickups.</div>
-      <div class="highlight-box"><strong>Low payoff:</strong> “a few francs” rarely justify the work.</div>
-      <div class="highlight-box"><strong>Access barriers:</strong> no car, far locations, limited hours.</div>
-      <div class="highlight-box"><strong>Emotional weight:</strong> guilt for throwing away, stress from clutter.</div>
-    </div>
-
-    <br><br>
+    
 
     <!-- JOURNEYS -->
     <h3>User Journeys</h3>
@@ -4371,6 +4416,9 @@ body {
       <li>Experiment: instant credit vs. pure altruism — impact on adoption.</li>
       <li>Measure: “time to offload” and “items kept in loop” as success metrics.</li>
     </ul>
+
+
+    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/coming-soon.gif"/>
 
   </div>
 </div>
