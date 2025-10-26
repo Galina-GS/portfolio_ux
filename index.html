@@ -127,12 +127,39 @@ img, svg, gif, .no-select {
   align-items: center;
   gap: 0.5vw; /* spacing between text and animation */
   z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.swipe-hint:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .swipe-text {
   font-size: 0.7rem;
   font-family: 'Nunito', sans-serif;
   color: #1f2933;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.swipe-hint:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.swipe-text {
+  font-size: 0.7rem;
+  font-family: 'Nunito', sans-serif;
+  color: #1f2933;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.swipe-text:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .perspective {
