@@ -3757,9 +3757,9 @@ body {
   
   <!-- left third: title + subtitle -->
   <div class="text-section-marketing">
-    <h2>Marketing</h2>
+    <h2>Marketing Experience</h2>
     <p>
-      <span class="highlight-animate animate">Switch the screens</span>
+      <span class="highlight-animate animate">Tap the screens</span>
       to help me gain valuable experience!
     </p>
   </div>
@@ -3835,7 +3835,7 @@ body {
 
   <!-- Left: Title & Description -->
   <div class="text-section-ux">
-    <h2>UX Design</h2>
+    <h2>UX Experience</h2>
     <p><span class="highlight-animate animate">Open my first projects</span> in UX Research & Design!</p>
   </div>
 
@@ -3843,7 +3843,7 @@ body {
   <div class="character-area-ux">
     <img
       src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina%20UX.svg"
-      alt="UX Design"
+      alt="UX Experience"
       class="character-img"
     />
   </div>
@@ -4641,6 +4641,23 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.keys(initialCounts).forEach(cat => updateProgress(cat));
     updateMarketingView(0);
     initCardClicks();
+
+
+
+    // === SWIPE-HINT NAVIGATION ===
+    document.querySelectorAll('.swipe-hint').forEach((hint) => {
+      hint.addEventListener('click', () => {
+        const wrapper = document.getElementById('scrollWrapper');
+        if (!wrapper) return;
+
+        const current = wrapper.scrollLeft;
+        const next = current + window.innerWidth; // move exactly one scene
+        wrapper.scrollTo({
+          left: next,
+          behavior: 'smooth'
+        });
+      });
+    });
 
     // === MARKETING screen click setup ===
 
