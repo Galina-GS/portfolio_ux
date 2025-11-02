@@ -79,6 +79,8 @@ h2 {
 h3 {
   font-size: 1.875rem; /* 30px equivalent */
   font-weight: 600;
+  width: 50%;              /* force the bar to span its parent */
+  align-self: flex-end;
 }
 
 h4 {
@@ -281,47 +283,41 @@ img, svg, gif, .no-select {
 }
 
 .button {
-  align-self: left;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: #1f2933 15px 28px 25px -18px;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 600;
+  background-color: #BEF753;
   color: #1f2933;
-  cursor: pointer;
-  display: inline-block;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  border-radius: 9999px; /* fully rounded */
+  padding: 0.8rem 1.8rem;
   font-size: 1rem;
-  line-height: 1rem;
-  outline: none;
-  padding: .75rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 0 0 transparent; /* reset */
 }
 
+/* Hover: lift slightly, color shift, soft glow */
 .button:hover {
-  box-shadow: #1f2933 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
+  background-color: #D4FF6A; /* lighter tint */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+              0 0 0 4px rgba(190, 247, 83, 0.3); /* subtle glow ring */
 }
 
-.button:focus {
-  box-shadow: #1f2933 2px 8px 4px -6px;
-  transform: translate3d(0, 2px, 0);
+/* Active (click): press down */
+.button:active {
+  transform: translateY(0);
+  background-color: #A8E640; /* slightly darker */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* Focus for accessibility */
+.button:focus-visible {
+  outline: 3px solid #2664EB;
+  outline-offset: 3px;
+}
+
+
 
     /* === 2-PART LAYOUT SYSTEM === */
     .text-section {
@@ -919,8 +915,8 @@ img, svg, gif, .no-select {
 /* Label inside sticker */
 .project-label {
   display: inline-block;
-  background-color: #a855f7;
-  color: white;
+  background-color: #BEF753;
+  color: black;
   font-size: 0.7rem;
   font-weight: 600;
   padding: 0.25rem 0.6rem;
@@ -976,8 +972,8 @@ img, svg, gif, .no-select {
 }
 
 .close-btn {
-  background: #a854f7;
-  color: white;
+  background: #BEF753;
+  color: black;
   border: none;
   padding: 0.5rem 1rem;
   font-weight: bold;
@@ -1374,6 +1370,9 @@ img, svg, gif, .no-select {
 
   h3 {
     font-size: 1.25rem;
+  margin-top: -4%;
+  margin-bottom: 5%;
+  margin-right: 50%;
   }
 
   h4 {
@@ -2031,6 +2030,8 @@ img, svg, gif, .no-select {
 
   h3 {
     font-size: 1.3rem;
+    width: 60%;
+  margin-right: 40%;
   }
 
   h4 {
@@ -2325,6 +2326,7 @@ h2 {
 h3 {
   font-size: 1.1rem; /* 30px equivalent */
   font-weight: 600;
+  width: 100%;
 }
 
 h4 {
@@ -2389,9 +2391,9 @@ h6 {
   .education-banner {
   height: 50%;
   bottom: 40%;
-  left: 62%;
+  left: 60%;
   gap: 0.2rem;
-  width: 23vw;
+  width: 19vw;
   }
 
   .banner-section h4 {
@@ -2437,10 +2439,10 @@ h6 {
 }
 
 .marketing-detail-box {
-  width: 22vw;
+  width: 18vw;
   font-weight: 400;
   padding: 0.2rem;
-  margin-top: 0.4rem;
+  margin-top: 3.6rem;
 }
 
 .marketing-detail-box p {
@@ -2509,7 +2511,7 @@ h6 {
 
 
 .game-section-contact {
-  width: 50%;                  /* ← FIXED: you missed % sign */     /* optional: aligns gif to bottom */
+  width: 40%;                  
 }
 
 /* Character gif */
@@ -2558,6 +2560,10 @@ h6 {
 
   h3 {
     font-size: 1.25rem;
+    width: 50%;
+    margin-right: 50%;
+    margin-bottom: 2.5rem;
+    margin-top: -3.5rem;
   }
 
   h4 {
@@ -2882,7 +2888,7 @@ h6 {
     bottom: 0;
     width: 50vw;
     padding: 0;
-    margin: -4rem auto 1rem -2rem;
+    margin: -7rem auto 1rem -2rem;
     z-index: 2;
   }
 
@@ -3569,6 +3575,10 @@ body {
     line-height: 1;
   }
 
+  h3 {
+    width: 100%;
+  }
+
   .styled-list {
     font-size: 1.1rem;
     line-height: 1;
@@ -3737,9 +3747,9 @@ body {
 
   <!-- 3) RIGHT column: progress bars -->
   <div class="text-section-university">
+    <h3>My Qualifications</h3> 
     <div class="school-progress" data-category="linguistics">
       <div class="progress-bar__container">
-         <h4>My Qualifications</h4>
         <div class="progress-fill"></div>
         <span class="progress-bar__label">BA Linguistics &amp; Literature</span>
       </div>
@@ -3948,7 +3958,7 @@ body {
   <div class="game-section-contact">
     <div class="contact-figure">
       <!-- Your animated GIF goes here -->
-      <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina Contact.gif" alt="Contact me" class="contact-gif" />
+      <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Galina Contact Me.gif" alt="Contact me" class="contact-gif" />
       
       <!-- Transparent clickable areas over phone and paper plane -->
       <button class="click-zone phone-click" onclick="openBusinessCard()" aria-label="Open business card"></button>
