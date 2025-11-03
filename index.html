@@ -278,9 +278,16 @@ img, svg, gif, .no-select {
 .start-row {
   display: flex;
   align-items: center;
-  gap: 1vw;
+  gap: 2vw;
   margin-top: 2vh;
 }
+
+.arrows {
+      width: 8%;
+      height: auto;
+      border-radius: 0vw;
+      max-width: 20vw;
+    }
 
 .button {
   background-color: #BEF753;
@@ -350,6 +357,8 @@ img, svg, gif, .no-select {
   color: white;
   border-radius: 6px;
 }
+
+
 
 
     /* === INTRO SCENE === */
@@ -3674,17 +3683,21 @@ body {
   <span class="perspective-fwd">Where might it lead?</span>
 </p>
         <div class="start-row">
-        <button class="button" onclick="scrollToScene(1)">Click or swipe to start</button>
-        <lottie-player
-        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
-        background="transparent"
-        speed="1"
-        style="width: 6vw; max-width: 500px; height: auto;"
-        loop
-        autoplay>
-      </lottie-player>
-        </div>
-      </div>
+  <div class="arrows">
+    <img src="https://github.com/Galina-GS/portfolio_ux/raw/main/Buttons.png" alt="Left or right">
+  </div>
+
+  <button class="button" onclick="scrollToScene(1)">Next</button>
+
+  <lottie-player
+    src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
+    background="transparent"
+    speed="1"
+    class="swipe-icon"
+    loop
+    autoplay>
+  </lottie-player>
+</div>
 
       <div class="game-section">
         <div class="intro-photo">
