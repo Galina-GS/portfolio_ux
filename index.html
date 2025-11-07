@@ -121,6 +121,50 @@ img, svg, gif, .no-select {
   -ms-user-select: none;
 }
 
+
+/* === SMALL NEXT BUTTON === */
+
+.next-step-button-wrapper {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 10;
+}
+
+
+
+
+/* Button style: smaller version of the intro one */
+.next-step-button {
+  background-color: #bef753;
+  color: #1f2933;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.45rem 1.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  animation: slide-horizontal 3s ease-in-out infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+
+/* Smooth left-right motion */
+@keyframes slide-horizontal {
+  0% {
+    transform: translateX(-15px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
+/* Hint - delete */
 .swipe-hint {
   position: absolute;
   bottom: 2vh;
@@ -275,13 +319,6 @@ img, svg, gif, .no-select {
   filter: brightness(0) invert(1); /* Makes image white-like */
 }
 
-.start-row {
-  display: flex;
-  align-items: center;
-  gap: 1vw;
-  margin-top: 2vh;
-}
-
 .button {
   background-color: #BEF753;
   color: #1f2933;
@@ -351,14 +388,6 @@ img, svg, gif, .no-select {
   border-radius: 6px;
 }
 
-.arrows {
-      width: 8%;
-      height: auto;
-      border-radius: 0vw;
-      max-width: 20vw;
-    }
-
-
     /* === INTRO SCENE === */
     .scene.intro {
       flex-direction: row;
@@ -367,17 +396,80 @@ img, svg, gif, .no-select {
       padding: 25vh;
     }
 
+    /* Right side (character + next button) */
+.game-section {
+  position: relative;
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Wrap both button and click zone */
+.intro-next-wrapper {
+  position: absolute;
+  right: 5%;
+  top: 0%;
+  display: inline-block;
+}
+
+/* Green Next button behind character */
+.intro-next {
+  background-color: #bef753;
+  color: #1f2933;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.2;
+  font-size: 2.25rem; /* 36px equivalent */
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  padding: 0.9rem 2.4rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 0; /* ensures it's behind the character */
+  animation: slide-horizontal 3s ease-in-out infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Subtle horizontal movement on hover */
+.intro-next:hover {
+  transform: translateX(6px);
+}
+
+/* Smooth left-right motion */
+@keyframes slide-horizontal {
+  0% {
+    transform: translateX(-15px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
+/* Transparent clickable area linked to button */
+.intro-click-zone {
+  position: absolute;
+  inset: 0; /* ← this makes it always match the button's size */
+  cursor: pointer;
+  z-index: 3; /* above everything else */
+  background: transparent;
+}
+
     .intro-photo {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .intro-photo img {
       width: 100%;
       height: auto;
-      border-radius: 1vw;
       max-width: 60vw;
     }
 
@@ -671,6 +763,9 @@ img, svg, gif, .no-select {
     }
 
 
+
+
+
   /* === MARKETING SCENE LAYOUT === */
 .scene.marketing {
   display: flex;
@@ -933,6 +1028,151 @@ img, svg, gif, .no-select {
   letter-spacing: 0.5px;
 }
 
+/* === STATIC NOTES (small, non-interactive) === */
+.sticky-note.static {
+  align-self: left;
+  width: 4vw;
+  height: 4vw;
+  margin: 0.5vw;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  pointer-events: none;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;   /* smaller than default */
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  position: relative;  /* required to scope their z-index */
+  z-index: 3;  
+}
+
+/* ——————————————————————————
+   2nd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 2 */
+.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-1vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(2vw, -0.3vw) rotate( 1deg); }
+
+/* column 2, row 2 */
+.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-3vw,  0.6vw) rotate( 1deg); }
+.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 2vw, -0.6vw) rotate(-2deg); }
+
+/* column 3, row 2 */
+.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate( 0vw,  -0.5vw) rotate( 2deg); }
+.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(4vw,  0.7vw) rotate( 3deg); }
+
+/* ——————————————————————————
+   3rd row of small notes
+   —————————————————————————— */
+
+/* column 1, row 3 */
+.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-2.8vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 2vw,  0.4vw) rotate(-2deg); }
+
+/* column 2, row 3 */
+.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-2.5vw, -0.5vw) rotate(-2deg); }
+.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(2.5vw,  0.8vw) rotate( 1deg); }
+
+/* column 3, row 3 */
+.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-1.6vw,  0.7vw) rotate(-3deg); }
+.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 2.8vw, -0.3vw) rotate(-2deg); }
+
+/* ——————————————————————————
+   4th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 4 */
+.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-2.8vw, -0.6vw) rotate(-1deg); }
+.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(1.6vw,  0.6vw) rotate( 3deg); }
+
+/* column 2, row 4 */
+.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-1.7vw,  0.3vw) rotate( 3deg); }
+.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(3.6vw, -0.5vw) rotate(-3deg); }
+
+/* column 3, row 4 */
+.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-1.8vw, -0.3vw) rotate( 1deg); }
+.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(2.6vw,  0.5vw) rotate( 1deg); }
+
+/* ——————————————————————————
+   5th row of small notes
+   —————————————————————————— */
+
+/* column 1, row 5 */
+.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-1.5vw, -0.8vw) rotate( 2deg); }
+.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate( 2.4vw, -0.7vw) rotate(-1deg); }
+
+/* column 2, row 5 */
+.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-2.6vw, -0.7vw) rotate(-1deg); }
+.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(1.4vw,  0.7vw) rotate( 2deg); }
+
+/* column 3, row 5 */
+.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-1.5vw,  0.5vw) rotate(-2deg); }
+.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate( 2.3vw, -0.8vw) rotate(-3deg); }
+
+
+
+/* === FLOATING NOTES (small, non-interactive) === */
+  .floating-note {
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    background: #fff;
+    border: 2px solid #1f2933;
+    box-shadow: #1f2933 4px 8px 8px -5px;
+     border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+    pointer-events: none;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: #1f2933;
+    opacity: 1;
+  transform: translate(-50%, -50%) rotate(var(--angle));
+}
+
+/* keyframes: from its initial stuck spot → down + rotate more + fade */
+@keyframes fall {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 120vh) rotate(calc(var(--angle) + 20deg));
+  }
+}
+
+/* when we add “fall”, wait 1s, then run the 0.8s fall */
+.floating-note.fall {
+  transform-origin: center center;
+  animation: fall 2.8s ease-in 1s forwards;
+}
+
 /* === PROJECT PAGES === */
 .ux-project-page {
   position: fixed;
@@ -1129,154 +1369,71 @@ img, svg, gif, .no-select {
 }
 
 
-
-
-/* === STATIC NOTES (small, non-interactive) === */
-.sticky-note.static {
-  align-self: left;
-  width: 4vw;
-  height: 4vw;
-  margin: 0.5vw;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 600;
-  color: #1f2933;
-  pointer-events: none;
-  cursor: default;
-  display: flex;
+  /* === EDUCATION MESSAGE OVERLAY === */
+.education-message-overlay {
+  position: fixed;
+  inset: 0;
+  display: none; /* hidden by default */
   align-items: center;
   justify-content: center;
-  font-size: 0.6rem;   /* smaller than default */
-  padding: 0.3rem 0.5rem;
-  line-height: 1rem;
-  outline: none;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+
+.education-message-overlay.visible {
+  display: flex;
+  animation: fadeIn 0.4s ease both;
+}
+
+/* Message box */
+.education-message-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
   text-align: center;
-  text-decoration: none;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  position: relative;  /* required to scope their z-index */
-  z-index: 3;  
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  font-family: 'Inter', sans-serif;
+  animation: slideUp 0.5s ease both;
+}
+/* 
+.education-message-box p {
+  font-size: 1rem;
+  color: #1f2933;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
-/* ——————————————————————————
-   2nd row of small notes
-   —————————————————————————— */
-
-/* column 1, row 2 */
-.sticky-note.static.note1  { grid-column: 1; grid-row: 2; transform: translate(-1vw,  0.5vw) rotate(-2deg); }
-.sticky-note.static.note16 { grid-column: 1; grid-row: 2; transform: translate(2vw, -0.3vw) rotate( 1deg); }
-
-/* column 2, row 2 */
-.sticky-note.static.note6  { grid-column: 2; grid-row: 2; transform: translate(-3vw,  0.6vw) rotate( 1deg); }
-.sticky-note.static.note21 { grid-column: 2; grid-row: 2; transform: translate( 2vw, -0.6vw) rotate(-2deg); }
-
-/* column 3, row 2 */
-.sticky-note.static.note11 { grid-column: 3; grid-row: 2; transform: translate( 0vw,  -0.5vw) rotate( 2deg); }
-.sticky-note.static.note26 { grid-column: 3; grid-row: 2; transform: translate(4vw,  0.7vw) rotate( 3deg); }
-
-/* ——————————————————————————
-   3rd row of small notes
-   —————————————————————————— */
-
-/* column 1, row 3 */
-.sticky-note.static.note2  { grid-column: 1; grid-row: 3; transform: translate(-2.8vw,  0.3vw) rotate( 3deg); }
-.sticky-note.static.note17 { grid-column: 1; grid-row: 3; transform: translate( 2vw,  0.4vw) rotate(-2deg); }
-
-/* column 2, row 3 */
-.sticky-note.static.note7  { grid-column: 2; grid-row: 3; transform: translate(-2.5vw, -0.5vw) rotate(-2deg); }
-.sticky-note.static.note22 { grid-column: 2; grid-row: 3; transform: translate(2.5vw,  0.8vw) rotate( 1deg); }
-
-/* column 3, row 3 */
-.sticky-note.static.note12 { grid-column: 3; grid-row: 3; transform: translate(-1.6vw,  0.7vw) rotate(-3deg); }
-.sticky-note.static.note27 { grid-column: 3; grid-row: 3; transform: translate( 2.8vw, -0.3vw) rotate(-2deg); }
-
-/* ——————————————————————————
-   4th row of small notes
-   —————————————————————————— */
-
-/* column 1, row 4 */
-.sticky-note.static.note3  { grid-column: 1; grid-row: 4; transform: translate(-2.8vw, -0.6vw) rotate(-1deg); }
-.sticky-note.static.note18 { grid-column: 1; grid-row: 4; transform: translate(1.6vw,  0.6vw) rotate( 3deg); }
-
-/* column 2, row 4 */
-.sticky-note.static.note8  { grid-column: 2; grid-row: 4; transform: translate(-1.7vw,  0.3vw) rotate( 3deg); }
-.sticky-note.static.note23 { grid-column: 2; grid-row: 4; transform: translate(3.6vw, -0.5vw) rotate(-3deg); }
-
-/* column 3, row 4 */
-.sticky-note.static.note13 { grid-column: 3; grid-row: 4; transform: translate(-1.8vw, -0.3vw) rotate( 1deg); }
-.sticky-note.static.note28 { grid-column: 3; grid-row: 4; transform: translate(2.6vw,  0.5vw) rotate( 1deg); }
-
-/* ——————————————————————————
-   5th row of small notes
-   —————————————————————————— */
-
-/* column 1, row 5 */
-.sticky-note.static.note4  { grid-column: 1; grid-row: 5; transform: translate(-1.5vw, -0.8vw) rotate( 2deg); }
-.sticky-note.static.note19 { grid-column: 1; grid-row: 5; transform: translate( 2.4vw, -0.7vw) rotate(-1deg); }
-
-/* column 2, row 5 */
-.sticky-note.static.note9  { grid-column: 2; grid-row: 5; transform: translate(-2.6vw, -0.7vw) rotate(-1deg); }
-.sticky-note.static.note24 { grid-column: 2; grid-row: 5; transform: translate(1.4vw,  0.7vw) rotate( 2deg); }
-
-/* column 3, row 5 */
-.sticky-note.static.note14 { grid-column: 3; grid-row: 5; transform: translate(-1.5vw,  0.5vw) rotate(-2deg); }
-.sticky-note.static.note29 { grid-column: 3; grid-row: 5; transform: translate( 2.3vw, -0.8vw) rotate(-3deg); }
-
-
-
-/* === FLOATING NOTES (small, non-interactive) === */
-  .floating-note {
-    position: absolute;
-    width: 4vw;
-    height: 4vw;
-    background: #fff;
-    border: 2px solid #1f2933;
-    box-shadow: #1f2933 4px 8px 8px -5px;
-     border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-    pointer-events: none;
-    opacity: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    color: #1f2933;
-    opacity: 1;
-  transform: translate(-50%, -50%) rotate(var(--angle));
+/* Reuse your green button style education-message-box .next-step-button {
+  background-color: #bef753;
+  color: #1f2933;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.6rem 1.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* keyframes: from its initial stuck spot → down + rotate more + fade */
-@keyframes fall {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--angle));
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 120vh) rotate(calc(var(--angle) + 20deg));
-  }
+.education-message-box .next-step-button:hover {
+  background-color: #d6ff74;
+  transform: translateX(6px);
 }
 
-/* when we add “fall”, wait 1s, then run the 0.8s fall */
-.floating-note.fall {
-  transform-origin: center center;
-  animation: fall 2.8s ease-in 1s forwards;
+/* Animations 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+*/ 
 
 
 /* === CONTACT SCENE === */
@@ -3670,38 +3827,33 @@ body {
 </div>
 
 
-    <!-- Scene 1: Intro -->
-    <div class="scene intro">
-      <div class="text-section">
-        <h1>UX Journey of Galina Shokhova</h1>
-        <p>Join me through each step of my UX journey.</p>
-        <br>
-       <p class="perspective">
-  <span class="perspective-bwd">How did it begin?</span><br>
-  <span class="perspective-fwd">Where might it lead?</span>
-</p>
-        <div class="start-row">
-        <div class="arrows">
-          <img src="https://github.com/Galina-GS/portfolio_ux/raw/main/Buttons.png" alt="Left or right" />
-        </div>
-          <button class="button" onclick="scrollToScene(1)">Click or swipe to start</button>
-        <lottie-player
-        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
-        background="transparent"
-        speed="1"
-        style="width: 6vw; max-width: 500px; height: auto;"
-        loop
-        autoplay>
-      </lottie-player>
-        </div>
-      </div>
+   <!-- Scene 1: Intro -->
+<div class="scene intro">
+  <div class="text-section">
+    <h1>UX Journey of Galina Shokhova</h1>
+    <p>
+      <span class="highlight-animate animate">Use the arrow keys, the button, or swipe left</span>
+      to move to the next step.
+    </p>
+    <br>
+  </div>
 
-      <div class="game-section">
-        <div class="intro-photo">
-          <img src="https://github.com/Galina-GS/portfolio_ux/raw/main/Galina Start.png" alt="Galina Shokhova" />
-        </div>
-      </div>
+  <div class="game-section">
+    <!-- Button wrapper (behind character) -->
+    <div class="intro-next-wrapper">
+      <button class="intro-next">Next step</button>
+      <div class="intro-click-zone" onclick="scrollToScene(1)"></div>
     </div>
+
+    <!-- Character (in front) -->
+    <div class="intro-photo">
+      <img
+        src="https://github.com/Galina-GS/portfolio_ux/raw/main/Galina%20Start.png"
+        alt="Galina Shokhova"
+      />
+    </div>
+  </div>
+</div>
 
     <!-- Scene 2: University -->
 <div class="scene university">
@@ -3716,18 +3868,19 @@ body {
     <div class="game-area">
       <div class="skills-container">
         <!-- Skill cards that can be dragged -->
-        <div class="skill-card" data-category="linguistics" draggable="true">Semantics</div>
-        <div class="skill-card" data-category="linguistics" draggable="true">Communication</div>
-        <div class="skill-card" data-category="linguistics" draggable="true">Critics &amp; Interpretation</div>
+    
+        <div class="skill-card" data-category="ux" draggable="true">User Research</div>
         <div class="skill-card" data-category="linguistics" draggable="true">Hollywood Plot Architecture</div>
-        <div class="skill-card" data-category="marketing" draggable="true">Campaigns and Content</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Critics &amp; Interpretation</div>
         <div class="skill-card" data-category="marketing" draggable="true">Analytics</div>
+        <div class="skill-card" data-category="marketing" draggable="true">Campaigns and Content</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Communication</div>
+        <div class="skill-card" data-category="ux" draggable="true">Stakeholder Diplomacy</div>
         <div class="skill-card" data-category="marketing" draggable="true">Tech &amp; Automation</div>
         <div class="skill-card" data-category="marketing" draggable="true">Memes</div>
-        <div class="skill-card" data-category="ux" draggable="true">User Research</div>
         <div class="skill-card" data-category="ux" draggable="true">Journey Mapping</div>
         <div class="skill-card" data-category="ux" draggable="true">Design Thinking</div>
-        <div class="skill-card" data-category="ux" draggable="true">Stakeholder Diplomacy</div>
+        <div class="skill-card" data-category="linguistics" draggable="true">Semantics</div>
       </div>
     </div>
   </div>
@@ -3784,18 +3937,20 @@ body {
   </div>
 
   
-    
-  <div class="swipe-hint">
-     <span class="swipe-text">Next step</span>
-      <lottie-player
-        src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Swipe.json"
-        background="transparent"
-        speed="1"
-        style="width: 6vw; max-width: 500px; height: auto;"
-        loop
-        autoplay>
-      </lottie-player>
-      </div>
+  <div class="next-step-button-wrapper">
+  <button class="next-step-button">
+    Next step
+  </button>
+</div>
+
+<!-- Reflection message modal -->
+<div class="education-message-overlay" id="educationMessage">
+  <div class="education-message-box">
+    <h3>From Theory to Practice</h3>
+    <p>My studies built the foundation for seeing UX as the craft of understanding, translating, and shaping human and business stories.</p>
+    <button class="next-step-button">Next step</button>
+  </div>
+</div>
 
 </div>
 
@@ -4560,350 +4715,330 @@ body {
 
 
 <script>
+let currentTypingInterval = null;
 
-  let currentTypingInterval = null;
+// === GLOBAL MODAL FUNCTIONS ===
+function openUxProject(projectId) {
+  document.querySelectorAll('.ux-project-page').forEach(el => el.classList.remove('visible'));
+  document.getElementById(projectId)?.classList.add('visible');
+}
 
+function closeUxProject() {
+  document.querySelectorAll('.ux-project-page.visible').forEach(el => el.classList.remove('visible'));
+}
 
-  // Global modal open/close functions
-  function openUxProject(projectId) {
-    document.querySelectorAll('.ux-project-page').forEach(el => {
-      el.classList.remove('visible');
-    });
-    document.getElementById(projectId)?.classList.add('visible');
-  }
+window.openUxProject = openUxProject;
+window.closeUxProject = closeUxProject;
 
-  function closeUxProject() {
-    document.querySelectorAll('.ux-project-page.visible').forEach(el => {
-      el.classList.remove('visible');
-    });
-  }
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeUxProject();
+});
 
-  window.openUxProject = openUxProject;
-  window.closeUxProject = closeUxProject;
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeUxProject();
-  });
-
-  function handleBackdropClick(event) {
-  // Only close if the user clicked directly on the backdrop, not on the content
+function handleBackdropClick(event) {
   if (event.target.classList.contains('ux-project-page')) {
     closeUxProject();
   }
 }
 
+// === HIGHLIGHT BOX ANIMATION ===
 document.addEventListener('DOMContentLoaded', () => {
-    const boxes = document.querySelectorAll('.highlight-box');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // animate only once
-        }
-      });
-    }, {
-      threshold: 0.2
+  const boxes = document.querySelectorAll('.highlight-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
-
-    boxes.forEach(box => observer.observe(box));
-  });
-
-  // Everything else inside DOMContentLoaded
-  document.addEventListener('DOMContentLoaded', () => {
-    const sceneColors = [
-      ['#d4f1ef','#e0f2ff','#fff6f6'],
-      ['#e7f6ec','#d9f2ff','#f7efff'],
-      ['#fef8e5','#e0f8f5','#e0f0ff'],
-      ['#fff2e9','#ffeef3','#eaf4ff'],
-      ['#f9f9f9','#e9f4f3','#f0f8ff'],
-    ];
-
-    let currentScene  = 0;
-    let hasAutoPlaced = false;
-    const AUTO_DELAY  = 500;
-    const wrap = document.getElementById('scrollWrapper');
-    const root = document.documentElement;
-    const initialCounts = {};
-
-    function updateActiveNav(idx) {
-      document.querySelectorAll('.nav-dot').forEach((dot,i) => {
-        dot.classList.toggle('active', i === idx);
-      });
-    }
-
-    function scrollToScene(idx) {
-      wrap.scrollTo({ left: idx * window.innerWidth, behavior: 'smooth' });
-      updateActiveNav(idx);
-      currentScene = idx;
-    }
-    window.scrollToScene = scrollToScene;
-
-    
-
-    function updateProgress(cat) {
-      const total = initialCounts[cat] || 1;
-      const placed = document.querySelectorAll(`.${cat}-zone .skill-card.placed`).length;
-      const pct = Math.round((placed / total) * 100);
-      const wrapper = document.querySelector(`.school-progress[data-category="${cat}"]`);
-      const fillEl = wrapper.querySelector('.progress-fill');
-      const label = wrapper.querySelector('.progress-bar__label');
-      fillEl.style.width = pct + '%';
-      wrapper.classList.toggle('complete', pct >= 100);
-      if (label) label.classList.toggle('light', pct > 75);
-    }
-
-    function placeCard(card) {
-      const cat = card.dataset.category;
-      const zone = document.querySelector(`.${cat}-zone`);
-      if (!zone) return;
-      const clone = card.cloneNode(true);
-      clone.classList.add('skill-card', 'placed');
-      clone.draggable = false;
-      clone.style.cursor = 'default';
-      clone.style.transition = `transform ${AUTO_DELAY}ms ease-out, opacity ${AUTO_DELAY}ms ease-out`;
-      zone.appendChild(clone);
-      card.remove();
-      updateProgress(cat);
-    }
-
-    function autoPlaceCards() {
-      if (hasAutoPlaced) return;
-      hasAutoPlaced = true;
-      document.querySelectorAll('.skills-container .skill-card').forEach(card => placeCard(card));
-    }
-
-    function initCardClicks() {
-      document.querySelectorAll('.skills-container .skill-card').forEach(card => {
-        card.removeAttribute('draggable');
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => placeCard(card));
-      });
-    }
-
-    // === INIT ===
-    document.querySelectorAll('.skills-container .skill-card').forEach(card => {
-      const cat = card.dataset.category;
-      initialCounts[cat] = (initialCounts[cat] || 0) + 1;
-    });
-    Object.keys(initialCounts).forEach(cat => updateProgress(cat));
-    updateMarketingView(0);
-    initCardClicks();
-
-
-
-    // === SWIPE-HINT NAVIGATION ===
-    document.querySelectorAll('.swipe-hint').forEach((hint) => {
-      hint.addEventListener('click', () => {
-        const wrapper = document.getElementById('scrollWrapper');
-        if (!wrapper) return;
-
-        const current = wrapper.scrollLeft;
-        const next = current + window.innerWidth; // move exactly one scene
-        wrapper.scrollTo({
-          left: next,
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // === MARKETING screen click setup ===
-
-
-
-document.querySelectorAll('.scene.marketing .screen').forEach(s => {
-  s.addEventListener('click', () => updateMarketingView(+s.dataset.index));
-    s.addEventListener('touchstart', () => updateMarketingView(+s.dataset.index));
+  }, { threshold: 0.2 });
+  boxes.forEach(box => observer.observe(box));
 });
 
-function updateMarketingView(idx = 0) {
-  const scene = document.querySelector('.scene.marketing');
-  const screens = Array.from(scene.querySelectorAll('.screen'));
-  const character = scene.querySelector('#character');
-  const detailEl = scene.querySelector('#marketingDetail');
-
-  const detailCopy = [
-    "Turned questions into metrics. Set up analytics tools and custom dashboards to track user behavior. Conducted qualitative and quantitative research to explore user needs and market trends. Used funnel analysis and campaign tracking to support product and marketing decisions.",
-    "Created strategy-aligned content for web and social media. Mapped messages to user needs and brand voice across channels and touchpoints, informed by audience research and user journey insights.",
-    "Built landing pages and sites using WordPress and other CMS. Designed user flows, wireframes, and conducted A/B testing."
+// === MAIN DOMCONTENTLOADED ===
+document.addEventListener('DOMContentLoaded', () => {
+  const sceneColors = [
+    ['#d4f1ef','#e0f2ff','#fff6f6'],
+    ['#e7f6ec','#d9f2ff','#f7efff'],
+    ['#fef8e5','#e0f8f5','#e0f0ff'],
+    ['#fff2e9','#ffeef3','#eaf4ff'],
+    ['#f9f9f9','#e9f4f3','#f0f8ff'],
   ];
 
-  // Typing function (moved to top for clarity)
-function typeText(el, text, speed = 15) {
-  if (!el) return;
+  let currentScene = 0;
+  let hasAutoPlaced = false;
+  const AUTO_DELAY = 500;
+  const wrap = document.getElementById('scrollWrapper');
+  const root = document.documentElement;
+  const initialCounts = {};
 
-  // Stop any existing typing
-  if (currentTypingInterval) clearInterval(currentTypingInterval);
-
-  el.textContent = '';
-  let i = 0;
-
-  currentTypingInterval = setInterval(() => {
-    el.textContent += text[i];
-    i++;
-    if (i >= text.length) {
-      clearInterval(currentTypingInterval);
-      currentTypingInterval = null;
-    }
-  }, speed);
-}
-
-
-
-
-  // Validate index
-  idx = Math.max(0, Math.min(idx, screens.length - 1));
-
-  // Update screens
-  screens.forEach((s, i) => {
-    const img = s.querySelector('.screen-img');
-    if (i === idx) {
-      s.classList.add('active');
-      img.src = s.dataset.gif;
-    } else {
-      s.classList.remove('active');
-      img.src = s.dataset.placeholder;
-    }
-  });
-
-  // Update detail box with animation
-  if (detailEl) {
-    const box = detailEl.closest('.marketing-detail-box');
-    if (box) {
-      box.style.animation = 'none';
-      box.offsetHeight; // force reflow
-      box.style.animation = null;
-    }
-    typeText(detailEl, detailCopy[idx], 15);
+  // === NAVIGATION ===
+  function updateActiveNav(idx) {
+    document.querySelectorAll('.nav-dot').forEach((dot,i) => {
+      dot.classList.toggle('active', i === idx);
+    });
   }
 
-  // Move character to match screen
-  const active = screens[idx];
-  const parentRect = active.parentElement.getBoundingClientRect();
-  const screenRect = active.getBoundingClientRect();
-  const charW = character.offsetWidth || character.getBoundingClientRect().width;
-  const centerX = screenRect.left - parentRect.left + screenRect.width / 2;
-  const targetLeft = centerX - (charW * 0.75);
-  const maxLeft = active.parentElement.clientWidth - charW;
-  character.style.left = `${Math.max(0, Math.min(maxLeft, targetLeft))}px`;
+  function scrollToScene(idx) {
+    wrap.scrollTo({ left: idx * window.innerWidth, behavior: 'smooth' });
+    updateActiveNav(idx);
+    currentScene = idx;
+  }
+  window.scrollToScene = scrollToScene;
+
+  // === EDUCATION PROGRESS ===
+  function updateProgress(cat) {
+    const total = initialCounts[cat] || 1;
+    const placed = document.querySelectorAll(`.${cat}-zone .skill-card.placed`).length;
+    const pct = Math.round((placed / total) * 100);
+    const wrapper = document.querySelector(`.school-progress[data-category="${cat}"]`);
+    const fillEl = wrapper.querySelector('.progress-fill');
+    const label = wrapper.querySelector('.progress-bar__label');
+    fillEl.style.width = pct + '%';
+    wrapper.classList.toggle('complete', pct >= 100);
+    if (label) label.classList.toggle('light', pct > 75);
+
+    // === NEW: show reflection modal if all are complete ===
+    const allDone = [...document.querySelectorAll('.school-progress')].every(
+      el => el.classList.contains('complete')
+    );
+    if (allDone) {
+  setTimeout(() => {
+    showEducationMessage();
+  }, 500); // 0.5 second delay
+}
 }
 
-    // === UX Scene floating notes ===
-    const uxScene = document.querySelector('.scene.ux');
-    uxScene.addEventListener('click', function(e) {
-      if (e.target.closest('.project-sticker')) return;
-      const note = document.createElement('div');
-      note.className = 'floating-note';
-      const angle = (Math.random() * 12) - 6;
-      note.style.setProperty('--angle', `${angle}deg`);
-      const rect = uxScene.getBoundingClientRect();
-      note.style.left = `${e.clientX - rect.left}px`;
-      note.style.top  = `${e.clientY - rect.top}px`;
-      uxScene.appendChild(note);
-      setTimeout(() => note.classList.add('fall'), 1000);
-      setTimeout(() => note.remove(), 4800);
+  function placeCard(card) {
+    const cat = card.dataset.category;
+    const zone = document.querySelector(`.${cat}-zone`);
+    if (!zone) return;
+    const clone = card.cloneNode(true);
+    clone.classList.add('skill-card', 'placed');
+    clone.draggable = false;
+    clone.style.cursor = 'default';
+    clone.style.transition = `transform ${AUTO_DELAY}ms ease-out, opacity ${AUTO_DELAY}ms ease-out`;
+    zone.appendChild(clone);
+    card.remove();
+    updateProgress(cat);
+  }
+
+  function autoPlaceCards() {
+    if (hasAutoPlaced) return;
+    hasAutoPlaced = true;
+    document.querySelectorAll('.skills-container .skill-card').forEach(card => placeCard(card));
+  }
+
+  function initCardClicks() {
+    document.querySelectorAll('.skills-container .skill-card').forEach(card => {
+      card.removeAttribute('draggable');
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => placeCard(card));
+    });
+  }
+
+  // === INIT EDUCATION SCENE ===
+  document.querySelectorAll('.skills-container .skill-card').forEach(card => {
+    const cat = card.dataset.category;
+    initialCounts[cat] = (initialCounts[cat] || 0) + 1;
+  });
+  Object.keys(initialCounts).forEach(cat => updateProgress(cat));
+  updateMarketingView(0);
+  initCardClicks();
+
+  // === NEXT STEP BUTTON ===
+  document.querySelectorAll('.next-step-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const wrapper = document.getElementById('scrollWrapper');
+      if (!wrapper) return;
+      const current = wrapper.scrollLeft;
+      const next = current + window.innerWidth;
+      wrapper.scrollTo({ left: next, behavior: 'smooth' });
+    });
+  });
+
+  // === MARKETING SCENE ===
+  document.querySelectorAll('.scene.marketing .screen').forEach(s => {
+    s.addEventListener('click', () => updateMarketingView(+s.dataset.index));
+    s.addEventListener('touchstart', () => updateMarketingView(+s.dataset.index));
+  });
+
+  function updateMarketingView(idx = 0) {
+    const scene = document.querySelector('.scene.marketing');
+    const screens = Array.from(scene.querySelectorAll('.screen'));
+    const character = scene.querySelector('#character');
+    const detailEl = scene.querySelector('#marketingDetail');
+    const detailCopy = [
+      "Turned questions into metrics. Set up analytics tools and custom dashboards to track user behavior. Conducted qualitative and quantitative research to explore user needs and market trends. Used funnel analysis and campaign tracking to support product and marketing decisions.",
+      "Created strategy-aligned content for web and social media. Mapped messages to user needs and brand voice across channels and touchpoints, informed by audience research and user journey insights.",
+      "Built landing pages and sites using WordPress and other CMS. Designed user flows, wireframes, and conducted A/B testing."
+    ];
+
+    function typeText(el, text, speed = 15) {
+      if (!el) return;
+      if (currentTypingInterval) clearInterval(currentTypingInterval);
+      el.textContent = '';
+      let i = 0;
+      currentTypingInterval = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+          clearInterval(currentTypingInterval);
+          currentTypingInterval = null;
+        }
+      }, speed);
+    }
+
+    idx = Math.max(0, Math.min(idx, screens.length - 1));
+    screens.forEach((s, i) => {
+      const img = s.querySelector('.screen-img');
+      if (i === idx) {
+        s.classList.add('active');
+        img.src = s.dataset.gif;
+      } else {
+        s.classList.remove('active');
+        img.src = s.dataset.placeholder;
+      }
     });
 
+    if (detailEl) {
+      const box = detailEl.closest('.marketing-detail-box');
+      if (box) {
+        box.style.animation = 'none';
+        box.offsetHeight;
+        box.style.animation = null;
+      }
+      typeText(detailEl, detailCopy[idx], 15);
+    }
 
+    const active = screens[idx];
+    const parentRect = active.parentElement.getBoundingClientRect();
+    const screenRect = active.getBoundingClientRect();
+    const charW = character.offsetWidth || character.getBoundingClientRect().width;
+    const centerX = screenRect.left - parentRect.left + screenRect.width / 2;
+    const targetLeft = centerX - (charW * 0.75);
+    const maxLeft = active.parentElement.clientWidth - charW;
+    character.style.left = `${Math.max(0, Math.min(maxLeft, targetLeft))}px`;
+  }
 
-// Open business card in a new tab
+  // === UX FLOATING NOTES ===
+  const uxScene = document.querySelector('.scene.ux');
+  uxScene.addEventListener('click', e => {
+    if (e.target.closest('.project-sticker')) return;
+    const note = document.createElement('div');
+    note.className = 'floating-note';
+    const angle = (Math.random() * 12) - 6;
+    note.style.setProperty('--angle', `${angle}deg`);
+    const rect = uxScene.getBoundingClientRect();
+    note.style.left = `${e.clientX - rect.left}px`;
+    note.style.top = `${e.clientY - rect.top}px`;
+    uxScene.appendChild(note);
+    setTimeout(() => note.classList.add('fall'), 1000);
+    setTimeout(() => note.remove(), 4800);
+  });
+
+  // === CONTACT ACTIONS ===
   function openBusinessCard() {
     window.open('https://blinq.me/cmelqiv0l0ei8s60mhr5iuylw?bs=db', '_blank');
   }
 
-  // Share portfolio
   function sharePortfolio() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Galina Shokhova – UX Portfolio',
-      text: 'Check out this UX portfolio!',
-      url: 'https://galina-gs.github.io/portfolio_ux/',
-    })
-    .then(() => console.log('Thanks for sharing!'))
-    .catch(err => console.error('Share failed:', err));
-  } else {
-    // Fallback for browsers that don't support Web Share API
-    const dummy = document.createElement('input');
-    document.body.appendChild(dummy);
-    dummy.value = 'https://galina-gs.github.io/portfolio_ux/';
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-    alert('Link copied! Share it with others');
+    if (navigator.share) {
+      navigator.share({
+        title: 'Galina Shokhova – UX Portfolio',
+        text: 'Check out this UX portfolio!',
+        url: 'https://galina-gs.github.io/portfolio_ux/',
+      })
+      .then(() => console.log('Thanks for sharing!'))
+      .catch(err => console.error('Share failed:', err));
+    } else {
+      const dummy = document.createElement('input');
+      document.body.appendChild(dummy);
+      dummy.value = 'https://galina-gs.github.io/portfolio_ux/';
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      alert('Link copied! Share it with others');
+    }
   }
-}
 
-  // Download the CV (PDF file or other)
-function downloadCV() {
-  window.open(
-    'https://galina-gs.github.io/portfolio_ux/CV_UX_Galina_Shokhova_2025_eng_de.pdf',
-    '_blank'
-  );
-}
+  function downloadCV() {
+    window.open('https://galina-gs.github.io/portfolio_ux/CV_UX_Galina_Shokhova_2025_eng_de.pdf', '_blank');
+  }
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-
-  // Make functions globally accessible for inline onclick handlers
   window.openBusinessCard = openBusinessCard;
   window.sharePortfolio = sharePortfolio;
   window.downloadCV = downloadCV;
 
-
-    // === Navigation Dot Logic ===
-    document.querySelectorAll('.nav-dot').forEach(dot => {
-      const target = +dot.dataset.scene;
-      dot.addEventListener('click', e => {
-        e.preventDefault();
-        if (!hasAutoPlaced && currentScene === 1 && target === 2) {
-          wrap.style.pointerEvents = 'none';
-          autoPlaceCards();
-          setTimeout(() => {
-            wrap.style.pointerEvents = 'auto';
-            scrollToScene(target);
-            const x = target * window.innerWidth;
-            wrap.scrollLeft = x;
-            wrap.dispatchEvent(new Event('scroll'));
-          }, AUTO_DELAY);
-        } else {
-          scrollToScene(target);
-          if (target === 1) updateMarketingView(0);
-        }
-      });
-    });
-
-    // === Background gradient interpolation ===
-
-    
-    wrap.addEventListener('scroll', () => {
-      const x = wrap.scrollLeft, w = window.innerWidth;
-      if (!hasAutoPlaced && currentScene === 1 && x > w + 10) {
-        wrap.style.overflowX = 'hidden';
+  // === NAVIGATION DOTS ===
+  document.querySelectorAll('.nav-dot').forEach(dot => {
+    const target = +dot.dataset.scene;
+    dot.addEventListener('click', e => {
+      e.preventDefault();
+      if (!hasAutoPlaced && currentScene === 1 && target === 2) {
+        wrap.style.pointerEvents = 'none';
         autoPlaceCards();
         setTimeout(() => {
-          wrap.style.overflowX = 'auto';
-          scrollToScene(2);
+          wrap.style.pointerEvents = 'auto';
+          scrollToScene(target);
+          const x = target * window.innerWidth;
+          wrap.scrollLeft = x;
+          wrap.dispatchEvent(new Event('scroll'));
         }, AUTO_DELAY);
-        return;
+      } else {
+        scrollToScene(target);
+        if (target === 1) updateMarketingView(0);
       }
-
-      const idx = Math.round(x / w);
-      updateActiveNav(idx);
-      currentScene = idx;
-
-      const uniBg = document.getElementById('universityBg');
-      if (uniBg) uniBg.style.transform = `translateX(${-0.1 * x}px)`;
-
-   
-wrap.addEventListener('scroll', () => {
-  const x = wrap.scrollLeft;
-  document.body.style.setProperty('--bg-offset', `-${x}px`);
-});
-
-
     });
   });
+
+  // === BACKGROUND GRADIENT & SCENE SCROLL ===
+  wrap.addEventListener('scroll', () => {
+    const x = wrap.scrollLeft, w = window.innerWidth;
+
+    if (!hasAutoPlaced && currentScene === 1 && x > w + 10) {
+      wrap.style.overflowX = 'hidden';
+      autoPlaceCards();
+      setTimeout(() => {
+        wrap.style.overflowX = 'auto';
+        scrollToScene(2);
+      }, AUTO_DELAY);
+      return;
+    }
+
+    const idx = Math.round(x / w);
+    updateActiveNav(idx);
+    currentScene = idx;
+
+    // CLOSE EDUCATION MESSAGE IF LEAVING UNIVERSITY
+    if (idx !== 1) hideEducationMessage();
+
+    const uniBg = document.getElementById('universityBg');
+    if (uniBg) uniBg.style.transform = `translateX(${-0.1 * x}px)`;
+
+    document.body.style.setProperty('--bg-offset', `-${x}px`);
+  });
+});
+
+// === EDUCATION MESSAGE HANDLERS ===
+function showEducationMessage() {
+  document.getElementById('educationMessage').classList.add('visible');
+}
+
+function hideEducationMessage() {
+  document.getElementById('educationMessage').classList.remove('visible');
+}
+
+// Close modal if clicking outside
+document.addEventListener('click', (e) => {
+  const overlay = document.getElementById('educationMessage');
+  if (overlay.classList.contains('visible') && e.target === overlay) {
+    hideEducationMessage();
+  }
+});
 </script>
+
 
 
 
