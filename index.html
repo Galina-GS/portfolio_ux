@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="UX Researcher with a background in marketing">
   <meta name="twitter:image" content="/Background.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     /* === RESET & BASE === */
     * {
@@ -168,85 +167,6 @@ img, svg, gif, .no-select {
   }
 }
 
-/* Hint - delete */
-.swipe-hint {
-  position: absolute;
-  bottom: 2vh;
-  right: 2vw;
-  display: flex;
-  align-items: center;
-  gap: 0.5vw; /* spacing between text and animation */
-  z-index: 1000;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.swipe-hint:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-.swipe-text {
-  font-size: 0.7rem;
-  font-family: 'Nunito', sans-serif;
-  color: #1f2933;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.swipe-hint:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-.swipe-text {
-  font-size: 0.7rem;
-  font-family: 'Nunito', sans-serif;
-  color: #1f2933;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.swipe-text:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-.perspective {
-  perspective: 130px;
-}
-
-.perspective span {
-  display: inline-block;
-  margin: 0.2em 0;
-  backface-visibility: hidden; /* avoid flicker */
-}
-
-/* === animated forward tilt === */
-.perspective-fwd {
-  transform-origin: right center;
-  /* remove your old `transform: rotateY(30deg);` */
-  animation: tiltFwd 5s ease-out forwards;
-}
-
-/* === animated backward tilt === */
-.perspective-bwd {
-  transform-origin: left center;
-  /* remove your old `transform: rotateY(-30deg);` */
-  animation: tiltBwd 5s ease-out forwards;
-}
-
-/* Keyframes for forward tilt (0 → +30°) */
-@keyframes tiltFwd {
-  from { transform: rotateY(0deg); }
-  to   { transform: rotateY(30deg); }
-}
-
-/* Keyframes for backward tilt (0 → –30°) */
-@keyframes tiltBwd {
-  from { transform: rotateY(0deg); }
-  to   { transform: rotateY(-30deg); }
-}
 
     /* === SCROLL WRAPPER === */
     .scroll-wrapper {
@@ -1567,16 +1487,6 @@ img, svg, gif, .no-select {
     background-size: cover;  /* already optimal for mobile scaling */
   }
 
-.swipe-hint {
-    bottom: 1vh;
-    right: 1vw;
-    gap: 0.4rem;
-  }
-
-  .swipe-text {
-    font-size: 0.6rem;
-  }
-
 .top-nav {
   top: 2vw;
   gap: 5vw;
@@ -1637,40 +1547,12 @@ img, svg, gif, .no-select {
     margin-top: 2rem;
   }
 
-  /* Hide the decorative lines on mobile */
-  .perspective {
-    display: none;
-  }
 
   /* Adjust image sizing */
   .intro-photo img {
     width: 60vw;
     height: auto;
     margin: 2rem 0;
-  }
-
-  /* Adjust button and Lottie row */
-  .start-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  /* Resize Lottie player */
-  .start-row lottie-player {
-    width: 15vw !important;
-    max-width: 80px;
-    height: auto;
-  }
-
-  /* Make button smaller if needed */
-  .start-row .button {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
   }
 
 
@@ -2220,14 +2102,6 @@ img, svg, gif, .no-select {
     line-height: 1.1;
   }
 
-.swipe-hint {
-    bottom: 1vh;
-    right: 1vw;
-  }
-
-  .swipe-text {
-    font-size: 0.8rem;
-  }
 
   .nav-dot {
     width: 8vw;
@@ -2754,15 +2628,7 @@ h6 {
 
  
 
-.swipe-hint {
-    bottom: 2vh;
-    right: 2vw;
-    gap: 0.4rem;
-  }
 
-  .swipe-text {
-    font-size: 0.8rem;
-  }
 
 .top-nav {
   top: 2vw;
@@ -2833,31 +2699,7 @@ h6 {
     margin: 2rem 0;
   }
 
-  /* Adjust button and Lottie row */
-  .start-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  /* Resize Lottie player */
-  .start-row lottie-player {
-    width: 15vw !important;
-    max-width: 80px;
-    height: auto;
-  }
-
-  /* Make button smaller if needed */
-  .start-row .button {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
-  }
-
-
+  
 
 
 /* University */
@@ -3562,15 +3404,7 @@ body {
     line-height: 1.2;
   }
 
-  .swipe-hint {
-    position: absolute;
-    bottom: 2vh;
-    right: 2vw;
-  }
-
-  .swipe-text {
-    font-size: 0.9rem;
-  }
+ 
 
 
 
@@ -3943,7 +3777,7 @@ body {
   
   <div class="next-step-button-wrapper">
   <button class="next-step-button">
-    Next step
+    Skip to next step
   </button>
 </div>
 
