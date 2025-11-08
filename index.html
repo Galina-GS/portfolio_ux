@@ -82,7 +82,6 @@ h2 {
 h3 {
   font-size: 1.875rem; /* 30px equivalent */
   font-weight: 600;
-  width: 50%;              /* force the bar to span its parent */
   align-self: flex-end;
 }
 
@@ -441,6 +440,14 @@ img, svg, gif, .no-select {
 
 
 /* === PROGRESS BARS === */
+
+.qualification-text {
+  font-size: 1.875rem; /* 30px equivalent */
+  font-weight: 600;
+  width: 50%;              /* force the bar to span its parent */
+  align-self: flex-end;
+}
+
 .school-progress {
   width: 50%;              /* force the bar to span its parent */
   margin: 1rem 0;
@@ -942,13 +949,13 @@ img, svg, gif, .no-select {
 .project-label {
   display: inline-block;
   background-color: #BEF753;
-  color: black;
-  font-size: 0.7rem;
+  border: none;
+  border-radius: 9999px;
+  color: #1f2933;
+  font-size: 1rem;
   font-weight: 600;
   padding: 0.25rem 0.6rem;
-  border-radius: 0.6rem;
-  font-family: 'Nunito', sans-serif;
-  text-transform: capitalize;
+  font-family: 'Space Grotesk', sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -1142,14 +1149,86 @@ img, svg, gif, .no-select {
   margin: 1rem 0;
 }
 
-.close-btn {
-  background: #BEF753;
-  color: black;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
+/* === HERO SECTION (Title + TL;DR + Image) === */
+.hero-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.hero-text {
+  flex: 1 1 50%;
+  min-width: 320px;
+}
+
+.hero-image {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 280px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* === SCROLL HINT ARROW BUTTON === */
+.scroll-fab {
+  position: sticky;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border-radius: 9999px;
+  border: 2px solid #a853f7;
+  color: #a853f7;
+  display: grid;
+  place-items: center;
   cursor: pointer;
+  transition: background .25s ease, transform .25s ease, opacity .2s ease;
+  animation: bob-down 1.6s ease-in-out infinite 0.6s;
+}
+
+.scroll-fab svg {
+  width: 26px;
+  height: 26px;
+}
+
+.scroll-fab.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(4px);
+}
+
+@keyframes bob-down {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+
+.close-btn {
+  position: sticky;
+  float: right;
+  top: 0;
+  right: 0;
+  background-color: #bef753;
+  color: #1f2933;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.45rem 1.3rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 
@@ -1192,6 +1271,12 @@ img, svg, gif, .no-select {
   color: #2563eb;
   font-family: 'Nunito', sans-serif;
   margin: 0;
+}
+
+.project-inner section {
+  scroll-margin-top: clamp(3rem, 6vh, 5rem);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .info-box {
@@ -1322,42 +1407,6 @@ img, svg, gif, .no-select {
   font-family: 'Inter', sans-serif;
   animation: slideUp 0.5s ease both;
 }
-/* 
-.education-message-box p {
-  font-size: 1rem;
-  color: #1f2933;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-}
-
-/* Reuse your green button style education-message-box .next-step-button {
-  background-color: #bef753;
-  color: #1f2933;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  border: none;
-  border-radius: 9999px;
-  padding: 0.6rem 1.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.education-message-box .next-step-button:hover {
-  background-color: #d6ff74;
-  transform: translateX(6px);
-}
-
-/* Animations 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-*/ 
 
 
 /* === CONTACT SCENE === */
@@ -1457,7 +1506,11 @@ img, svg, gif, .no-select {
   }
 
   h3 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
+  }
+
+  .qualification-text {
+  font-size: 1.25rem;
   margin-top: -4%;
   margin-bottom: 5%;
   margin-right: 50%;
@@ -1849,7 +1902,6 @@ img, svg, gif, .no-select {
   .project-label {
   font-size: 0.6rem;
   padding: 0.3rem 0.5rem;
-  text-transform: capitalize;
 }
 
 
@@ -1991,7 +2043,6 @@ img, svg, gif, .no-select {
   .close-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
-    border-radius: 0.4rem;
   }
 
 
@@ -2080,9 +2131,13 @@ img, svg, gif, .no-select {
 
   h3 {
     font-size: 1.3rem;
+  }
+
+  .qualification-text {
+    font-size: 1.3rem;
     width: 60%;
   margin-right: 40%;
-  }
+}
 
   h4 {
     font-size: 1.2rem;
@@ -2368,6 +2423,11 @@ h2 {
 h3 {
   font-size: 1.1rem; /* 30px equivalent */
   font-weight: 600;
+}
+
+  .qualification-text {
+  font-size: 1.1rem; /* 30px equivalent */
+  font-weight: 600;
   width: 100%;
 }
 
@@ -2512,9 +2572,7 @@ h6 {
   font-size: 0.6rem;
   line-height: 0.8rem;
   padding: 0.3rem 0.5rem;
-  text-transform: capitalize;
 }
-
 
 .floating-note {
     border-width: 1px;
@@ -2601,6 +2659,10 @@ h6 {
   }
 
   h3 {
+    font-size: 1.25rem;
+  }
+
+  .qualification-text {
     font-size: 1.25rem;
     width: 50%;
     margin-right: 50%;
@@ -2994,7 +3056,6 @@ h6 {
   .project-label {
   font-size: 1.1rem;
   padding: 0.5rem;
-  text-transform: capitalize;
 }
 
 
@@ -3136,7 +3197,6 @@ h6 {
   .close-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
-    border-radius: 0.4rem;
   }
 
 
@@ -3349,7 +3409,6 @@ h6 {
   font-size: 0.8rem;
   padding: 0.3rem;
   font-weight: 400;
-  text-transform: capitalize;
 }
 
 
@@ -3577,7 +3636,7 @@ body {
     line-height: 1;
   }
 
-  h3 {
+  .qualification-text {
     width: 100%;
   }
 
@@ -3748,7 +3807,7 @@ body {
 
   <!-- 3) RIGHT column: progress bars -->
   <div class="text-section-university">
-    <h3>My Qualifications</h3> 
+    <div class="qualification-text">My Qualifications</div>
     <div class="school-progress" data-category="linguistics">
       <div class="progress-bar__container">
         <div class="progress-fill"></div>
@@ -3784,7 +3843,7 @@ body {
 <!-- Reflection message modal -->
 <div class="education-message-overlay" id="educationMessage">
   <div class="education-message-box">
-    <h3>From Theory to Practice</h3>
+    <h4>From Theory to Practice</h4>
     <p>My studies built the foundation for seeing UX as the craft of understanding, translating, and shaping human and business stories.</p>
     <button class="next-step-button">Next step</button>
   </div>
@@ -4002,35 +4061,40 @@ body {
 <div class="ux-project-page" id="projectXelebration" onclick="handleBackdropClick(event)">
   <div class="project-inner">
     <button class="close-btn" onclick="closeUxProject()">Back</button>
-    <h2>Xelebrate</h2>
-    <p class="subtitle">Designing collaborative wedding planning</p>
-<br>
-    <br>
-    <!-- CHAPTER 1: Context & Challenge -->
-    <h3>The Challenge</h3>
+<h2>Xelebrate</h2>
+        <!-- === HERO SECTION === -->
+    <section class="hero-row">
+      <div class="hero-text">
+        <p>
+    We set out to design a wedding vendor platform. But we discovered that what couples actually need is not better bookings, but better planning and collaboration. 
+  </p>
+  <p>
+    My role focused on uncovering these insights through interviews, journey mapping, and user story definition. 
+    This research reframed the concept into a shared planning tool that reduces stress and helps couples stay aligned.
+  </p>
+  <h4>Project steps</h4>
+      <ul class="styled-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#testing">Prototype Testing</a></li>
+      </ul>
+      </div>
 
-<div class="row-text-image">
-  <div class="text">
-    <p>
-      Planning a wedding can feel like a full-time job. Our user research revealed just how overwhelming it becomes — especially when couples are navigating dozens of decisions, undefined roles, budget uncertainties, and a lack of support.
-    </p>
+      <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Bride%20in%20stress.svg"
+             alt="Overwhelmed bride sitting on the floor surrounded by planning tools">
+      </div>
+    </section> 
 
-    <div class="disclaimer">
-      <p class="disclaimer-text">
-       <strong>Disclaimer:</strong>
-       <br>
-       We developed and tested an interactive MVP with real users. Due to confidentiality, detailed designs and test results cannot be shared at this stage. Insights presented here are anonymized and generalized.
-      </p>
-    </div>
-  </div>
+     <!-- Scroll hint (arrow button) -->
+    <button class="scroll-fab" type="button" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 10l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
 
-  <div class="image">
-    <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Bride%20in%20stress.svg" alt="Overwhelmed bride sitting on the floor surrounded by planning tools">
-  </div>
-</div>
-
-
-
+ <section id="overview">
    <h3>Overview</h3>
       <ul class="styled-list">
         <li><strong>Project Type:</strong> Group project at FHNW</li>
@@ -4041,27 +4105,23 @@ body {
         <li><strong>My Role:</strong> As part of a 4-person UX team, I actively contributed to user research, synthesis, and the definition of product requirements.</li>
       </ul>
 
-    <br>
-    <br>
-    <h3>Our Story</h3>
-    <p>
-      We started this project with a hypothesis: that couples struggle most with finding and managing wedding vendors. Our concept focused on offering a reliable marketplace with booking features and curated service lists.
+    <div class="disclaimer">
+      <p class="disclaimer-text">
+       <strong>Disclaimer:</strong>
+       <br>
+       We developed and tested an interactive MVP with real users. Due to confidentiality, detailed designs and test results cannot be shared at this stage. Insights presented here are anonymized and generalized.
       </p>
-      <p>
-      But as we began talking to potential users, our direction radically shifted. What couples actually needed was not a better vendor list but emotional clarity, a sense of control, and support in making hundreds of personal decisions together.
-    </p>
+    </div>
 
-    <br>
-    <br>
-
-
+    </section>
 
     <!-- CHAPTER 2: Research Approach -->
-    <h3>The Approach</h3>
-    <p>We followed a classic UX process, but let research guide every pivot and priority.</p>
+    <section id="research">
+    <h3>UX Research</h3>
+    <p>I followed a classic UX process, but let research guide every pivot and priority.</p>
 
-    <div class="info-box">Market Analysis</div>
-    <p>We examined the existing wedding tech landscape, identifying gaps in existing tools:</p>
+    <h4>Market Analysis</h4>
+    <p>I examined the existing wedding tech landscape, identifying gaps in existing tools:</p>
       <div class="highlight-wrapper">
      <div class="highlight-box">Focus on inspiration and booking.</div>
       <div class="highlight-box">To-do lists are rigid and generic.</div>
@@ -4071,9 +4131,9 @@ body {
     
     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Wedding-tools.svg" alt="Wedding planning tools">
 
-   <div class="info-box">Interviews for User Research</div>
+   <h4>Interviews for User Research</h4>
     <p>
-      Through in-depth interviews with recently married and engaged individuals, we explored their planning journeys.
+      Through in-depth interviews with recently married and engaged individuals, I explored their planning journeys.
       
        <div class="highlight-wrapper">
       <div class="highlight-box">How did they start?</div>
@@ -4084,9 +4144,13 @@ body {
     </p>
     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Interview.svg" alt="User interviews">
 
-    <div class="info-box">Synthesis & Affinity Mapping</div>
+    </section>
+
+    <section id="insights">
+       <h3>Research Insights</h3>
+      <h4>Synthesis & Affinity Mapping</h4>
       <p>To manage large volumes of qualitative data, I created a custom GPT that allowed our team to query interview transcripts and reference synthesis notes in seconds, saving time and improving consistency during concept development.</p>
-      <p>We clustered insights to find repeating pain points.</p>
+      <p>I clustered insights to find repeating pain points.</p>
       <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Interview-insights.svg" alt="Interview insights visualization">
 
       <p>Surprisingly, the vendor search was rarely the bottleneck:</p>
@@ -4101,45 +4165,49 @@ body {
       “I never really had a clear picture of what was happening when or everything that had to happen.” – F.
     </p>
     </div>
-      
-    <div class="info-box">The Pivot</div>
+
+    <h4>The Pivot</h4>
     <p>
       At this point, we decided to shift our concept from a vendor directory to a smart, collaborative planning companion. Instead of helping couples find services, we would help them plan together, with less stress, more structure, and a clear overview.
     </p>
       <p class="quote">
       “It felt like project management. But when it worked, it gave us peace.” – O.
     </p>
+   
 
-    <div class="info-box">Journey Mapping</div>
+    <h4>Journey Mapping</h4>
     <p>
-      We mapped emotional highs and lows from engagement to wedding day. This helped us pinpoint key stress phases and uncover opportunity areas where a digital tool could reduce anxiety.
+      I mapped emotional highs and lows from engagement to wedding day. This helped me pinpoint key stress phases and uncover opportunity areas where a digital tool could reduce anxiety.
     </p>
     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/User-journey-mapping.svg" alt="User journey map">
 
 
-    <div class="info-box">User Stories</div>
+    <h4>User Stories</h4>
     <p>
-      We wrote prioritized user stories to frame key features. These stories later shaped our usability test scenarios and informed our design priorities.
+      I wrote prioritized user stories to frame key features. These stories later shaped the usability test scenarios and informed our design priorities.
 
       <p class="quote">“As a bride, I want a shared checklist with my partner, so I can feel supported and stay in sync.”</p>
     </p>
 
-    <div class="info-box">Value Proposition Canvas</div>
+    <h4>Value Proposition Canvas</h4>
     <p>
-      We analyzed user pains and gains to define the most relevant product values — from clarity and overview to task sharing and emotional reassurance. This became the foundation for our MVP requirements.
+      I analyzed user pains and gains to define the most relevant product values — from clarity and overview to task sharing and emotional reassurance. This became the foundation for the MVP requirements.
     </p>
     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Value-proposition-canva.svg" alt="Value proposition canvas">
 
+      </section>
+    
+
+    <section id="testing">
 
     <!-- CHAPTER 3: UX Concept -->
-
-    <div class="info-box">Building and Testing a Prototype</div>
+ <h3>Prototype Testing</h3>
   <p>
   After translating research insights into product requirements, we built a clickable MVP and conducted usability testing with our target group. While detailed outcomes are confidential, the tests confirmed core assumptions and guided the next iteration.
 </p>
   </div>
 </div>
-
+</section>
 
 
 <!-- === Project Kloop === -->
@@ -4563,6 +4631,42 @@ function handleBackdropClick(event) {
   if (event.target.classList.contains('ux-project-page')) {
     closeUxProject();
   }
+}
+
+// === SCROLL HINT BEHAVIOR ===
+function initScrollHint() {
+  const scrollBtn = document.querySelector('.scroll-fab');
+  const projectInner = document.querySelector('.ux-project-page.visible .project-inner') || document.querySelector('.project-inner');
+
+  if (!scrollBtn || !projectInner) return;
+
+  // Smooth scroll to next section
+  scrollBtn.addEventListener('click', () => {
+    const nextSection = projectInner.querySelector('#overview');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  // Hide arrow after scrolling down a bit
+  projectInner.addEventListener('scroll', () => {
+    if (projectInner.scrollTop > 50) {
+      scrollBtn.classList.add('hidden');
+    } else {
+      scrollBtn.classList.remove('hidden');
+    }
+  });
+}
+
+// Run once on load
+document.addEventListener('DOMContentLoaded', initScrollHint);
+
+// Re-run each time a project modal is opened
+function openUxProject(projectId) {
+  document.querySelectorAll('.ux-project-page').forEach(el => el.classList.remove('visible'));
+  const project = document.getElementById(projectId);
+  project?.classList.add('visible');
+  initScrollHint(); // ✅ Reinitialize scroll hint
 }
 
 // === HIGHLIGHT BOX ANIMATION ===
