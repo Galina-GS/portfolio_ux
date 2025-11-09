@@ -770,7 +770,7 @@ img, svg, gif, .no-select {
   width: 15vw;
   position: absolute;
   top: 0%;
-  opacity: 0.6;
+  opacity: 1;
   transition: opacity 0.3s;
 }
 .screen[data-index="0"] { left: 15%; }
@@ -956,6 +956,7 @@ img, svg, gif, .no-select {
   font-weight: 600;
   padding: 0.25rem 0.6rem;
   font-family: 'Space Grotesk', sans-serif;
+  text-transform: none;
   letter-spacing: 0.5px;
 }
 
@@ -1279,21 +1280,7 @@ img, svg, gif, .no-select {
   padding-bottom: 2rem;
 }
 
-.info-box {
-  background: #2563eb;          
-  border: 2px solid #2563eb;    
-  color: #fff;
-  padding: 1.2rem 1.5rem;
-  border-radius: 0rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  font-family: 'Nunito', sans-serif;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  box-sizing: border-box;
-  max-width: 100%;                /* full width on very small screens */
-  width: fit-content; 
-}
+
 
 
 .highlight-wrapper {
@@ -1334,6 +1321,97 @@ img, svg, gif, .no-select {
   opacity: 1;
   transform: scale(1);
 }
+
+/* === CAROUSEL === */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 3rem auto;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+  display: flex;                 /* center the 90% card */
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 2rem 0;               /* vertical breathing room */
+}
+
+/* “Card” inside each slide (the actual paper sticker) */
+.carousel-item > .slide-content {
+  width: 80%;                    /* this makes the visual card narrower */
+  background: #fff;
+  border: 2px solid #1f2933;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  box-sizing: border-box;
+  padding: 2rem; 
+}
+
+
+
+/* === NAVIGATION BUTTONS === */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #bef753;
+  border: none;
+  color: #1f2933;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+/* Position buttons OUTSIDE the carousel box */
+.carousel-btn.prev {
+  left: 0rem;
+}
+.carousel-btn.next {
+  right: 0rem;
+}
+
+
+/* === DOTS NAVIGATION === */
+.carousel-dots {
+  position: absolute;
+  bottom: 4.2rem;       /* move inside the card */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  z-index: 3;
+}
+
+.carousel-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-dots button.active {
+  background: #2563eb;
+}
+
 
 .quote {
   font-size: 1.4rem; /* like h4 */
@@ -3729,7 +3807,7 @@ body {
   <div class="text-section">
     <h1>UX Journey of Galina Shokhova</h1>
     <p>
-      <span class="highlight-animate animate">Use the arrow keys, the button, or swipe left</span>
+      <span class="highlight-animate animate">Find the button or swipe left</span>
       to move to the next step.
     </p>
     <br>
@@ -4072,7 +4150,7 @@ body {
     My role focused on uncovering these insights through interviews, journey mapping, and user story definition. 
     This research reframed the concept into a shared planning tool that reduces stress and helps couples stay aligned.
   </p>
-  <h4>Project steps</h4>
+  <h3>Project steps</h3>
       <ul class="styled-list">
         <li><a href="#overview">Overview</a></li>
         <li><a href="#research">Research</a></li>
@@ -4094,7 +4172,7 @@ body {
       </svg>
     </button>
 
- <section id="overview">
+ <section id="overview-xelebrate">
    <h3>Overview</h3>
       <ul class="styled-list">
         <li><strong>Project Type:</strong> Group project at FHNW</li>
@@ -4216,370 +4294,300 @@ body {
   <div class="project-inner">
     <button class="close-btn" onclick="closeUxProject()">Back</button>
     <h2>Kloop</h2>
-    <p class="subtitle">Designing an effortless way to pass on kids’ things</p>
 
-    <br><br>
-
-    <!-- INTRO -->
-    <h3>The Challenge</h3>
-
-    <div class="row-text-image">
-      <div class="text">
+   <!-- === HERO SECTION === -->
+    <section class="hero-row">
+      <div class="hero-text">
         <p>
-          Most parents know the pile of outgrown kids’ clothes, toys, and other stuff in the basement. 
-          In Switzerland, where many families can afford to buy new, these piles often end up in the trash. 
-          Selling or donating takes too long, yet throwing things away feels wrong: parents feel guilty knowing that perfectly usable items add to waste and overconsumption.
-        </p>
+    Kloop is a concept developed as part of the 
+    <a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank" rel="noopener noreferrer">
+      Google UX Design Certificate ↗</a>.
+    The brief was to design an app for buying and selling secondhand children’s clothes. But my research reframed the challenge into something broader: how to make passing on kids’ things effortless, trustworthy, and emotionally rewarding for parents.
+  </p>
 
-        <div class="disclaimer">
-          <p class="disclaimer-text">
-            <strong>Disclaimer:</strong><br>
-            Kloop is a student project created as part of the Google UX Design Professional Certificate. 
-            The given task was to design an app for buying and selling secondhand children’s clothes.
-          </p>
-        </div>
+  <p>
+    Throughout the project, I applied the full Google UX process, from empathizing with real users through interviews and diary studies, to defining key insights and ideating possible solutions. 
+  </p>
+
+        <h3>Project steps</h3>
+      <ul class="styled-list">
+        <li><a href="#overview-kloop">Overview</a></li>
+        <li><a href="#empathize">Empathize</a></li>
+        <li><a href="#define">Define</a></li>
+        <li><a href="#ideate">Ideate</a></li>
+        <li><a href="#prototype">Prototype</a></li>
+      </ul>
       </div>
 
-      <div class="image">
+     <div class="hero-image">
         <img src="./Kloop.svg" alt="Kloop">
       </div>
-    </div>
 
-    <br><br>
+    </section> 
 
+     <!-- Scroll hint (arrow button) -->
+    <button class="scroll-fab" type="button" aria-label="Scroll down">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M6 10l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+ 
 
     <!-- OVERVIEW -->
+     <section id="overview-kloop">
     <h3>Overview</h3>
     <ul class="styled-list">
       <li><strong>Project Type:</strong> Student project within the Google UX Design Professional Certificate</li>
-      <li><strong>Focus:</strong> The first phases of the design thinking framework: Empathize, Define, Ideate</li>
-      <li><strong>Duration:</strong> 2 months</li>
-      <li><strong>Location:</strong> Baden - Niederrohrdorf, Switzerland</li>
       <li><strong>Target Users:</strong> Eco-conscious and busy parents</li>
       <li><strong>Goal:</strong> To explore how to design a system for passing on kids’ things that feels effortless, trustworthy, and emotionally rewarding for parents.</li>
-      <li><strong>Methods:</strong> Competitive Audit, Interviews, Self-Observation, Journey Mapping, Affinity Mapping, “How Might We”, Concept Sketches</li>
-      <li><strong>My Role:</strong> UX Researcher</li>
+      <li><strong>UX Research Methods:</strong> Competitive Audit, Interviews, Self-Observation, Journey Mapping, Affinity Mapping, “How Might We”, Concept Sketches</li>
     </ul>
 
-    <br><br>
+</section>
 
-    <!-- CHAPTER 1: Context & Challenge -->
-    <h3>Competitive Audit</h3>
+<section id="empathize">
+
+    <!--Empathize-->
+    <h3>Empathize</h3>
 <p>
   Before diving into design, I explored how parents in Switzerland already buy, sell, or recycle kids’ items.
   I compared popular resale platforms, donation options, and recycling programs.
 </p>
 
-<p>Summary of key tools and their main limitations:</p>
-
-<div class="highlight-wrapper">
-  <div class="highlight-box">Tutti / Ricardo - established secondhand platforms: slow and effort-heavy.</div>
-  <div class="highlight-box">Facebook Market / local WhatsApp chats and Facebook groups - easy to start, but unreliable and time-consuming.</div>
-  <div class="highlight-box">Kinderbörsen / garage sales - good for bulk selling, but require time, transport, and planning.</div>
-  <div class="highlight-box">Thrift stores (Brocki) - sustainable, but limited in what they accept.</div>
-  <div class="highlight-box">Texaid / store take-back (H&M) - easiest option, but no visibility of what happens next.</div>
-</div>
-<br>
-<br>
-<h3>Existing Tools Mapping</h3>
-
 <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/Recycle%20options.svg" alt="Value proposition canvas">
-
-
-
-<p>
-  Is it possible to design a recycling system that feels effortless and rewarding for busy parents?
-</p>
-
 
     <br><br>
 
-    <!-- CHAPTER 2: Research Approach -->
-<h3>The Research</h3>
+<h4>Interviews</h4>
 <p>
-  I led the research process to understand why “keeping things in the loop” so often fails in practice. Why do parents who care deeply about sustainability still end up throwing usable kids’ things away or storing them in the basement?
+  I conducted three interviews with parents living in Switzerland to understand why “keeping things in the loop” so often fails in practice. I asked parents questions such as:
 </p>
-
-<div class="info-box">The Questions</div>
 <div class="highlight-wrapper">
-  <div class="highlight-box">How do parents usually buy, sell, and pass on kids’ items?</div>
   <div class="highlight-box">How did parents manage kids’ items the last three times?</div>
-  <div class="highlight-box">How do other parents in their neighborhood or social circle usually handle it?</div>
   <div class="highlight-box">Where exactly do time, effort, and motivation get lost?</div>
   <div class="highlight-box">What emotional factors influence these choices?</div>
   <div class="highlight-box">What matters most to parents when dealing with secondhand kids’ things?</div>
 </div>
+<br><br>
+<br><br>
+<h4>Interview Snapshots</h4>
 
-<div class="info-box">Interviews</div>
+<!-- === INTERVIEW CAROUSEL === -->
+<div class="carousel">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="slide-content">
+      <h4>Parent 1: J.</h4>
+      <ul class="styled-list">
+        <li>Mother of a 12-year-old and a 3-month-old</li>
+        <li>Currently on parental leave</li>
+        <li>Recently moved from Germany</li>
+        <li>Deeply values sustainability</li>
+      </ul>
+      <p class="quote">“I try to avoid throwing things away unless they’re really broken. A lot of things stay in the basement because I don’t know what else to do with them.” – J.</p>
+    </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+      <h4>Parents 2: M. & G.</h4>
+      <ul class="styled-list">
+        <li>A couple with two boys, aged 7 and 11</li>
+        <li>Both working full-time</li>
+        <li>Moved to Switzerland from France 12 years ago</li>
+        <li>Value thrift and avoid waste: their home and basement are cluttered.</li>
+      </ul>
+      <p class="quote">“If I find something good secondhand, I take it right away. You never know if you’ll see it again. Especially kids’ and sports gear, because the boys keep growing.” – M.</p>
+    </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+      <h4>Parent 3: S.</h4>
+      <ul class="styled-list">
+        <li>Mother of an 11-year-old girl</li>
+        <li>Working part-time</li>
+        <li>Swiss native</li>
+        <li>Cares about sustainability but prioritizes quality</li>
+      </ul>
+      <p class="quote">“I only sell things I’d still buy myself. My daughter sometimes sells her toys at school markets for pocket money. The rest I just give away or throw away if nobody wants it.” – S.</p>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation arrows -->
+  <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+  <button class="carousel-btn next" aria-label="Next slide">›</button>
+
+  <!-- Dots -->
+  <div class="carousel-dots"></div>
+</div>
+    <!-- END INTERVIEW CAROUSEL -->
+
+    <br><br>
+
+<h4>Self-Observation</h4>
 <p>
-  I conducted three interviews with parents living in Switzerland, each representing a different lifestyle and different goals in dealing with secondhand items for children:
+  To better understand the pain points, I turned the lens on myself. As a mother using the same platforms, I started documenting my own experiences in a diary for one month every time I bought or sold a secondhand children’s item.
 </p>
 
-<p><strong>Parent 1: J.</strong></p>
-<ul class="styled-list">
-  <li>Mother of a 12-year-old and a 3-month-old </li>
-    <li>Currently on parental leave</li>
-    <li>Recently moved from Germany</li>
-  </ul>
-  <p>She deeply values sustainability and tries to reuse or repair everything. Without a car, even giving things away can be challenging, and she often stores unused clothes in the basement for lack of better options.</p>
-  
-  <p class="quote">
-      “I try to avoid throwing things away unless they’re really broken. A lot of things stay in the basement because I don’t know what else to do with them.” – J.
-    </p>
-
-  <p><strong>Parents 2: M. & G.</strong></p>
-  <ul class="styled-list">
-    <li>A couple with two boys, aged 7 and 11</li>
-    <li>Both working full-time</li>
-    <li>Moved to Switzerland from France 12 years ago</li></ul>
-    <p>They buy and receive from friends many secondhand items because of shared values of sustainability and thrift. Yet their home and basement are cluttered: they rarely sell or donate because they lack time, even though they dislike waste.</p>
-  
-   <p class="quote">
-      “If I find something good secondhand, I take it right away. You never know if you’ll see it again. Especially kids’ and sports gear, because the boys keep growing.” – M.
-    </p>
-
-  <p><strong>Parent 3:</strong>
-    <ul class="styled-list">
-      <li>Mother of an 11-year-old girl</li>
-      <li>Working part-time</li>
-      <li>Swiss native</li>
-    </ul>
-    <p>She cares about sustainability but prioritizes quality: she buys and sells only high-quality secondhand items, saying cheaper ones aren’t worth the effort or the child’s demand.
-    Items of lower value are typically discarded rather than reused.</p>
-
-   <p class="quote">
-      “I only sell things I’d still buy myself. My daughter sometimes sells her toys at school markets for pocket money. The rest I just give away or throw away if nobody wants it” – S.
-    </p>
+<img src="./Self-observation.png" alt="Self observation">    
 
 
-<div class="info-box">Interview Synthesis</div>
+</section>
+
+<section id="define">
+
+    <!-- DEFINE -->
+    <h3>Define</h3>
 <p>
-  My initial assumption was simple: <em>parents need better resale tools.</em><br>
-  The interviews revealed that parents rarely make decisions based on money alone. Their real motivations are <strong>waste reduction, decluttering, and ease</strong>: 
-  they want to declutter without guilt, feel that things go to good use, and avoid wasting time.
+  To make sense of the interviews and diary notes, I clustered all the observations into themes using affinity mapping. 
 </p>
 
- <p class="quote">
-      “I’ve seen in Africa how the market is flooded with donated clothes.” – M.
-    </p>
-
-<p>
-  Many parents believed they were acting sustainably, but their recent actions told a different story. 
-  When the potential financial reward was too small or the process too time-consuming, they chose the most convenient solution even if it conflicted with their environmental values.
-</p>
-
- <p class="quote">
-      “Sometimes the effort just isn’t worth it.” – J.
-    </p>
-
-<p>
-  To better understand these frictions firsthand, I turned the lens on myself. As a mother using the same platforms, I started documenting my own experiences in a diary for one month every time I bought or sold a secondhand children’s item.
-</p>
-
-<div class="info-box">Self-Observation</div>
-
-<img src="./Self-observation.png" alt="Self observation">
-
-<p>Patterns from the Diary</p>
-<ul class="styled-list">
-  <li><strong>Effort and duration:</strong> Even small actions required coordination. 
-    Quick, “easy” listings still demanded messaging, photo uploads, and constant follow-up.</li>
-
-  <li><strong>Safety and protection:</strong> After one sale, a buyer continued messaging inappropriately. 
-    I realized that selling from home means giving strangers my address. In addition, it is common to pay online before receiving the item: the transaction is unprotected.</li>
-
-  <li><strong>Micro-transactions and noise:</strong> Low-priced items generated the most attention and the most friction — too many chats, price discussions, and logistical details for just a few francs of value.</li>
-
-  <li><strong>Basement as a buffer:</strong> Some items stayed in storage for months after failed sales attempts. 
-    The basement became a compromise: things weren’t thrown away, but they weren’t reused either.</li>
-
-  <li><strong>Buying experience:</strong> As a buyer, I faced uncertainty and awkward negotiation. 
-    The seller of a secondhand bag refused to name a price, asking me to guess the “correct” one.</li>
-</ul>
-
-<p>
-  This self-observation reinforced the interviews: circular behavior is impractical in daily life.
-</p>
-
-
-<div class="info-box">Research Insights</div>
-
-
-<ul class="styled-list">
-  <li><strong>Sustainability vs. convenience:</strong> Parents want to act responsibly, but when time or energy runs out, convenience wins. Selling and donating take too long for too little reward.</li>
-  <li><strong>Storage as avoidance:</strong> Keeping items in basements or boxes feels like a compromise: not throwing away, but not reusing either. It creates hidden waste.</li>
-  <li><strong>Effort-to-value imbalance:</strong> Taking photos, writing descriptions, answering messages, and arranging pickups takes more time than the few francs gained from a sale.</li>
-  <li><strong>Trust and uncertainty:</strong> Parents often doubt the quality of secondhand items and the reliability of buyers or donation programs. This lack of confidence discourages participation.</li>
-  <li><strong>Different definitions of “worth it”:</strong> Some parents seek high-quality resale; others simply want items gone. The shared frustration is the lack of a quick, trustworthy, guilt-free option.</li>
-  <li><strong>Cultural contrast:</strong> Parents from abroad noticed that the circular economy functions more naturally elsewhere. The mother from Germany missed the <em>Umsonstladen</em>, volunteer-run “free shops” where good items are exchanged without money. The French parents described a stronger community spirit and social acceptance of secondhand culture back home. In Switzerland, they felt reuse means more effort and less connection.</li>
-</ul>
+<h4>Key Insight Themes</h4>
+<div class="highlight-wrapper">
+  <div class="highlight-box">Sustainability vs. convenience</div>
+  <div class="highlight-box">Storage as avoidance</div>
+  <div class="highlight-box">Effort-to-value imbalance</div>
+  <div class="highlight-box">Trust and uncertainty</div>
+  <div class="highlight-box">Different definitions of “worth it”</div>
+  <div class="highlight-box">Cultural contrast</div>
+</div>
 
 <p class="quote">
       “In Switzerland, reuse is neither practical nor social.” – J.
     </p>
-
-<p>
-  These patterns revealed that “keeping things in the loop” depends less on available tools and more on culture, motivation, and convenience. However, the current systems make sustainable behavior harder, not easier.
-</p>
-
 <br><br>
 
-<!-- USER GROUPS -->
-<h3>User Groups</h3>
+
+<h4>User Groups and Problem Statements</h4>
 <p>
-  I defined user groups and problem statements based on behavior and motivations observed during research.
+I defined user groups and problem statements based on behavior and motivations observed during research.
 </p>
 
-<ul class="styled-list">
-  <li><strong>Eco-conscious parents:</strong> Motivated to reduce waste but limited by time, transport, and local opportunities. They want to act responsibly but find sustainable actions inconvenient and fragmented.</li>
+<!-- === USER GROUPS CAROUSEL === -->
+<div class="carousel">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="slide-content">
+      <h4>Eco-conscious parents</h4>
+  <p> Motivated to reduce waste but limited by time, transport, and local opportunities. They want to act responsibly but find sustainable actions inconvenient and fragmented.</p>
   <p class="quote">
       Problem statement: They need an effortless way to keep kids’ things in use because they want to avoid waste, but there is no big demand for secondhand items.
   </p>
+</div>
+    </div>
 
-  <li><strong>Pragmatic, time-limited families:</strong> Busy parents who buy and accept secondhand items to save money but struggle to sell or donate because it takes too much time. Convenience often overrides sustainability intentions.</li>
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+      <h4>Pragmatic, time-limited families</h4>
+      <p> Busy parents who buy and accept secondhand items to save money but struggle to sell or donate because it takes too much time. Convenience often overrides sustainability intentions.</p>
   <p class="quote">
       Problem statement: They need a quick and low-effort way to declutter responsibly because they have no time to pass on outgrown items, and existing systems are complicated and time-consuming.
   </p>
+</div>
+    </div>
 
-  <li><strong>Quality-driven minimalists:</strong> Parents who value durability and prefer fewer, high-quality items. They selectively buy and sell premium items but discard or store the rest because it’s “not worth the effort.”</li>
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+      <h4>Quality-driven minimalists</h4>
+       <p>Parents who value durability and prefer fewer, high-quality items. They selectively buy and sell premium items but discard or store the rest because it’s “not worth the effort.”</p>
   <p class="quote">
       Problem statement: They need a curated and reliable way to pass on good items because they want to maintain quality circulation without wasting time on low-value exchanges.
   </p>
-</ul>
+    </div>
+    </div>
 
-<br><br>
+  </div>
 
-<!-- JOURNEYS -->
-<h3>User Journeys</h3>
+  <!-- Navigation arrows -->
+  <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+  <button class="carousel-btn next" aria-label="Next slide">›</button>
 
-<p>
-  To better understand where circular behavior fails in practice, I mapped four user journeys based on my research.
+  <!-- Dots -->
+  <div class="carousel-dots"></div>
+</div>
+    <!-- END INTERVIEW CAROUSEL -->
+
+</section>
+
+<section id="define">
+
+    <!-- IDEATE -->
+    <h3>Ideate</h3>
+    <h4>User Journeys</h4>
+<p>I mapped four user journeys with friction points and design opportunities based on my research.
 </p>
 
-<div class="info-box">Journey 1 - Selling: “Toys nobody wants”</div>
-<p><strong>Scenario:</strong> A mother wants to sell outgrown toys that clutter her child’s room.</p>
+<!-- === USER JOURNEY CAROUSEL === -->
+<div class="carousel">
+  <div class="carousel-inner">
 
-<img src="./journey1-toys-nobody-wants.png" alt="User journey: Selling toys nobody wants">
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="slide-content">
+        <h4>Selling - "Toys nobody wants"</h4>
+        <img src="./journey1-toys-nobody-wants.png" alt="User journey: Selling toys nobody wants">
+        <p><strong>Main Pain Points:</strong><br>Time-consuming listings, unreliable communication, ghosting.</p>
+        <p><strong>Opportunity:</strong><br>Simplify listing flow, auto-match offers with demand, rewarding quick responses.</p>
+      </div>
+    </div>
 
-<br><p><strong>Task 1:</strong>
-<br>Takes photos and posts items in a local WhatsApp group.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Time-consuming to take photos and write descriptions</div>
-<div class="highlight-box">Messages mix with personal chats</div>
-<br><p><strong>Opportunities:</strong> Simplify listing creation and separate private and selling communication.</p>
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+        <h4>Buying - "The missing pieces"</h4>
+        <img src="./journey2-the-missing-pieces.png" alt="User journey: Buying the missing pieces">
+        <p><strong>Main Pain Points:</strong><br>Scattered platforms, repeated searches, inconsistent information, unreliable sellers, no protection or refund options.</p>
+        <p><strong>Opportunity:</strong><br>Centralize search and enable safe, transparent exchanges.</p>
+        </div>
+      </div>
+  
 
-<br><p><strong>Task 2:</strong>
-<br>Receives a few messages from potential buyers, but they stop replying.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Unreliable communication</div>
-<div class="highlight-box">No clear status or commitment</div>
-<br><p><strong>Opportunities:</strong> Introduce confirmation or reservation functions to prevent ghosting; add response-time indicators, verified-seller options, and seller/buyer ratings with rewards.</p>
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+        <h4>Decluttering – “Clothes with no clear end”</h4>
+        <img src="./journey3-clothes-with-no-clear-end.png" alt="User journey: Decluttering clothes with no clear end">
+        <p><strong>Main Pain Points:</strong><br>Sorting takes time, uncertainty about what happens to donations, emotional guilt and lack of feedback.</p>
+        <p><strong>Opportunity:</strong><br>Add simple sorting support and visible reuse feedback.</p>
+      </div>
+    </div>
 
-<br><p><strong>Task 3:</strong>
-<br>Posts the same items on Tutti for free, but gets no response.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Low visibility and poor reach even for free items</div>
-<div class="highlight-box">Discouraging experience</div>
-<br><p><strong>Opportunities:</strong> Create a pool of requests and match items automatically with demand.</p>
+    <!-- Slide 4 -->
+    <div class="carousel-item">
+      <div class="slide-content">
+        <h4>Buying in Bulk – “Just in case”</h4>
+        <img src="./journey4-just-in-case.png" alt="User journey: Buying in bulk just in case">
+        <p><strong>Main Pain Points:</strong><br>Overbuying “just in case”, hidden waste in storage, no overview of owned items.</p>
+        <p><strong>Opportunity:</strong><br>Introduce inventory tools and community sharing to reduce surplus.</p>
+      </div>
+      </div>
+    </div>
 
-<br><p><strong>Task 4:</strong>
-<br>Moves toys to the basement while waiting for replies.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Items end up stored instead of reused</div>
-<div class="highlight-box">Clutter only relocates</div>
-<br><p><strong>Opportunities:</strong> Provide easy “give-away / donate / recycle” alternatives to keep items in use.</p>
+  <!-- Navigation arrows -->
+  <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+  <button class="carousel-btn next" aria-label="Next slide">›</button>
 
-<br>
+  <!-- Dots -->
+  <div class="carousel-dots"></div>
+</div>
+<!-- END USER JOURNEY CAROUSEL -->
 
-<div class="info-box">Journey 2 - Buying: “The missing pieces”</div>
-<p><strong>Scenario:</strong> A father searches for a specific toy his child wants.</p>
 
-<img src="./journey2-the-missing-pieces.png" alt="User journey: Buying the missing pieces">
-
-<br><p><strong>Task 1:</strong>
-<br>Checks WhatsApp, Facebook, Tutti, and Ricardo for the item.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Scattered platforms</div>
-<div class="highlight-box">Inconsistent descriptions</div>
-<div class="highlight-box">Missing information</div>
-<div class="highlight-box">Repetitive searching</div>
-<br><p><strong>Opportunities:</strong> Centralize search or aggregate listings from multiple sources; provide automatic listings with standardized information.</p>
-
-<br><p><strong>Task 2:</strong>
-<br>Finds a listing, but the seller doesn’t reply for days.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Unreliable communication</div>
-<div class="highlight-box">Lack of accountability</div>
-<br><p><strong>Opportunities:</strong> Add response-time indicators, verified-seller options, and ratings with rewards.</p>
-
-<br><p><strong>Task 3:</strong>
-<br>Finds another listing, picks it up, and pays. At home, discovers missing parts and throws the toy away.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">No protection or refund policy</div>
-<div class="highlight-box">Trust depends on personal goodwill</div>
-<br><p><strong>Opportunities:</strong> Enable safe payments and secure pickups in public spaces such as parcel lockers.</p>
-
-<br><p><strong>Task 4:</strong>
-<br>Buys a new toy instead.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Wasted time and effort</div>
-<div class="highlight-box">Negative reuse experience</div>
-<div class="highlight-box">Price of new item is much higher</div>
-<br><p><strong>Opportunities:</strong> Integrate secondhand options directly into mainstream online shopping platforms.</p>
-
-<br>
-
-<div class="info-box">Journey 3 - Decluttering: “Clothes with no clear end”</div>
-<p><strong>Scenario:</strong> A family wants to clear their children’s room of outgrown clothes.</p>
-
-<img src="./journey3-clothes-with-no-clear-end.png" alt="User journey: Decluttering clothes with no clear end">
-
-<br><p><strong>Task 1:</strong>
-<br>Sorts items into good, very good, and bad condition.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Sorting takes time</div>
-<div class="highlight-box">Creates emotional stress about waste</div>
-<br><p><strong>Opportunities:</strong> Offer simple guidance or digital support for sorting decisions, with recycle and donation options.</p>
-
-<br><p><strong>Task 2:</strong>
-<br>Donates good items to boxes; throws away damaged ones.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">No feedback on what happens to donated items</div>
-<div class="highlight-box">Feels impersonal</div>
-<div class="highlight-box">Suspicion they end up in landfills abroad</div>
-<br><p><strong>Opportunities:</strong> Provide transparency and confirmation of reuse impact.</p>
-
-<br><p><strong>Task 3:</strong>
-<br>Gives the best pieces to a neighbor.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Limited reach</div>
-<div class="highlight-box">Depends on personal network and timing</div>
-<br><p><strong>Opportunities:</strong> Expand trusted local exchange circles to more families.</p>
-
-<br>
-
-<div class="info-box">Journey 4 - Buying in bulk: “Just in case”</div>
-<p><strong>Scenario:</strong> Parents of two hockey-playing kids buy used equipment whenever they see good deals.</p>
-
-<img src="./journey4-just-in-case.png" alt="User journey: Buying in bulk just in case">
-
-<br><p><strong>Task 1:</strong>
-<br>Visit yard sales and Börsen events; buy multiple pairs of skates.</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Hard to estimate future need</div>
-<div class="highlight-box">Impulse buying leads to surplus</div>
-<br><p><strong>Opportunities:</strong> Provide inventory tracking, need estimates, or reminders of existing stock.</p>
-
-<br><p><strong>Task 2:</strong>
-<br>Store unused equipment in the basement “for later.”</p>
-<p><strong>Pain points:</strong></p>
-<div class="highlight-box">Accumulation leads to hidden waste and clutter.</div>
-<br><p><strong>Opportunities:</strong> Provide easy inventory tools or community sharing options for sports gear; integrate resale opportunities into the buying process.</p>
-
-<br><br>
 
 <!-- HOW MIGHT WE -->
-<h3>How Might We...</h3>
+<h4>How Might We...</h4>
 
 <p>
   To move from research to ideation, I translated the key pain points into “How Might We” questions. 
@@ -4595,13 +4603,16 @@ body {
   <li>How might we make offloading items take under 60 seconds?</li>
   <li>How might we remove uncertainty around donations and give users confidence in their real impact?</li>
 </ul>
-    <br><br>
 
 
-    <!-- EARLY CONCEPTS -->
-    <h3>Early Concepts & Wireframes</h3>
+</section>
+
+<section id="prototype">
+    <!-- PROTOTYPE -->
+    <h3>Prototype</h3>
     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/coming-soon.gif"/>
 
+    </section>
   </div>
 </div>
 
@@ -4633,28 +4644,27 @@ function handleBackdropClick(event) {
   }
 }
 
+
 // === SCROLL HINT BEHAVIOR ===
 function initScrollHint() {
-  const scrollBtn = document.querySelector('.scroll-fab');
-  const projectInner = document.querySelector('.ux-project-page.visible .project-inner') || document.querySelector('.project-inner');
+  // Loop through all project pages, not just the first visible one
+  document.querySelectorAll('.ux-project-page').forEach(page => {
+    const scrollBtn = page.querySelector('.scroll-fab');
+    const projectInner = page.querySelector('.project-inner');
+    if (!scrollBtn || !projectInner) return;
 
-  if (!scrollBtn || !projectInner) return;
+    // Smooth scroll to the first "overview" section in this project
+    scrollBtn.addEventListener('click', () => {
+      const nextSection = projectInner.querySelector('section[id^="overview"]');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
 
-  // Smooth scroll to next section
-  scrollBtn.addEventListener('click', () => {
-    const nextSection = projectInner.querySelector('#overview');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-
-  // Hide arrow after scrolling down a bit
-  projectInner.addEventListener('scroll', () => {
-    if (projectInner.scrollTop > 50) {
-      scrollBtn.classList.add('hidden');
-    } else {
-      scrollBtn.classList.remove('hidden');
-    }
+    // Hide arrow when user scrolls down
+    projectInner.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('hidden', projectInner.scrollTop > 50);
+    });
   });
 }
 
@@ -4665,9 +4675,13 @@ document.addEventListener('DOMContentLoaded', initScrollHint);
 function openUxProject(projectId) {
   document.querySelectorAll('.ux-project-page').forEach(el => el.classList.remove('visible'));
   const project = document.getElementById(projectId);
-  project?.classList.add('visible');
-  initScrollHint(); // ✅ Reinitialize scroll hint
+  if (project) {
+    project.classList.add('visible');
+    // Delay slightly so the element is rendered before binding
+    setTimeout(initScrollHint, 100);
+  }
 }
+
 
 // === HIGHLIGHT BOX ANIMATION ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -4875,14 +4889,14 @@ document.addEventListener('DOMContentLoaded', () => {
       navigator.share({
         title: 'Galina Shokhova – UX Portfolio',
         text: 'Check out this UX portfolio!',
-        url: 'https://galina-gs.github.io/portfolio_ux/',
+        url: 'https://galinashokhova.com/',
       })
       .then(() => console.log('Thanks for sharing!'))
       .catch(err => console.error('Share failed:', err));
     } else {
       const dummy = document.createElement('input');
       document.body.appendChild(dummy);
-      dummy.value = 'https://galina-gs.github.io/portfolio_ux/';
+      dummy.value = 'https://galinashokhova.com/';
       dummy.select();
       document.execCommand('copy');
       document.body.removeChild(dummy);
@@ -4891,7 +4905,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function downloadCV() {
-    window.open('https://galina-gs.github.io/portfolio_ux/CV_UX_Galina_Shokhova_2025_eng_de.pdf', '_blank');
+    window.open('https://galinashokhova.com/CV_UX_Galina_Shokhova_2025_eng_de.pdf', '_blank');
   }
 
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -4965,6 +4979,50 @@ document.addEventListener('click', (e) => {
   if (overlay.classList.contains('visible') && e.target === overlay) {
     hideEducationMessage();
   }
+});
+
+
+// === SIMPLE INTERVIEW CAROUSEL ===
+document.addEventListener('DOMContentLoaded', () => {
+  const carousels = document.querySelectorAll('.carousel');
+  carousels.forEach(carousel => {
+    const inner = carousel.querySelector('.carousel-inner');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let index = 0;
+
+    // Create dots dynamically
+    items.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('button');
+    dots[0].classList.add('active');
+
+    function updateCarousel() {
+      inner.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function goTo(i) {
+      index = i;
+      updateCarousel();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % items.length;
+      updateCarousel();
+    });
+  });
 });
 </script>
 
