@@ -65,7 +65,7 @@ body::after {
   top: 0;
   left: 0;
   width: 500vw; /* enough for 5 scenes */
-  height: 100vh; /* always full viewport height */
+  height: calc(var(--vh, 1vh) * 100);
   background: url('https://raw.githubusercontent.com/Galina-GS/portfolio_ux/ce823d4f528a7131f8398a7ecdaf61375e5fd3a2/Background.jpg') no-repeat left center;
   background-size: cover; /* stretches to fill full width & height */
   background-repeat: no-repeat;
@@ -2233,12 +2233,7 @@ img, svg, gif, .no-select {
 /* === MOBILE RESPONSIVE - LONG SCREENS === */
   @media (max-width: 450px) and (min-height: 681px) and (max-height: 940px){
 
-    .scene {
-  min-height: calc(var(--vh, 1vh) * 100);
-  padding-top: 8vh;
-  padding-bottom: 12vh; /* adds visual space for nav bars */
-  box-sizing: border-box;
-}
+    
 
   h1 {
     font-size: 2rem;
@@ -2478,7 +2473,8 @@ img, svg, gif, .no-select {
   }
 
   .highlight-box {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.1;
   }
 
 /* Contact */
