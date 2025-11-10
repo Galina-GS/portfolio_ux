@@ -2198,6 +2198,15 @@ img, svg, gif, .no-select {
 /* === MOBILE RESPONSIVE - LONG SCREENS === */
   @media (max-width: 450px) and (min-height: 681px) and (max-height: 940px){
 
+:root {
+  --vh: 1vh;
+}
+
+body, .scene {
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+
   h1 {
     font-size: 2rem;
     line-height: 1.2;
@@ -4594,14 +4603,21 @@ I defined user groups and problem statements based on behavior and motivations o
 </p>
 
 <ul class="styled-list">
-  <li>How might we make it effortless for parents to pass on kids’ things to others who need them?</li>
-  <li>How might we reduce the time and coordination required for selling, giving away, or donating?</li>
-  <li>How might we make sustainable actions more visible and emotionally rewarding?</li>
   <li>How might we build greater commitment among users in the circular economy (reduce ghosting and inaccurate listings)?</li>
   <li>How might we remove pickup and drop-off tasks from the user’s to-do list?</li>
   <li>How might we ensure that reuse feels trustworthy, social, and human?</li>
   <li>How might we make offloading items take under 60 seconds?</li>
   <li>How might we remove uncertainty around donations and give users confidence in their real impact?</li>
+</ul>
+<br><br>
+
+<!-- USER STORIES -->
+<h4>User Stories</h4>
+<ul class="styled-list">
+  <li>As a <strong>parent with no time</strong>, I want to pass on things quickly so I don’t feel guilty about waste.</li>
+  <li>As a <strong>busy professional</strong>, I want clear communication and quick confirmation so I don’t waste time on unreliable buyers and sellers.</li>
+  <li>As a <strong>sustainability-minded parent</strong>, I want to know my donations really help someone so I feel my effort matters.</li>
+  <li>As a <strong>family with limited space</strong>, I want easy give-away options so my home stays organized.</li>
 </ul>
 
 
@@ -5024,6 +5040,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+function setViewportHeight() {
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+}
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
 </script>
 
 
