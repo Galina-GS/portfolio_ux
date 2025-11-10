@@ -1723,7 +1723,9 @@ img, svg, gif, .no-select {
     align-items: center;
     justify-content: space-between;
     padding-top: 10vh;
-    height: 100vh;
+     min-height: calc(var(--vh, 1vh) * 100);
+  padding-top: 8vh;
+  box-sizing: border-box;
   overflow: hidden;
   }
 
