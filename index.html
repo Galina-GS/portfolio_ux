@@ -1594,6 +1594,13 @@ img, svg, gif, .no-select {
     font-size: 0.9rem; /* slightly smaller base text */
   }
 
+  .scene {
+  min-height: calc(var(--vh, 1vh) * 100);
+  padding-top: 8vh;
+  padding-bottom: 12vh; /* adds visual space for nav bars */
+  box-sizing: border-box;
+}
+
   h1 {
     font-size: 2rem;
     line-height: 1.2;
@@ -2218,6 +2225,12 @@ img, svg, gif, .no-select {
 /* === MOBILE RESPONSIVE - LONG SCREENS === */
   @media (max-width: 450px) and (min-height: 681px) and (max-height: 940px){
 
+    .scene {
+  min-height: calc(var(--vh, 1vh) * 100);
+  padding-top: 8vh;
+  padding-bottom: 12vh; /* adds visual space for nav bars */
+  box-sizing: border-box;
+}
 
   h1 {
     font-size: 2rem;
