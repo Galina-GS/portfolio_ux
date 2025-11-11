@@ -2756,13 +2756,15 @@ h6 {
     font-size: 1.25rem;
   }
 
-  .qualification-text {
-    font-size: 1.25rem;
-    width: 50%;
-    margin-right: 50%;
-    margin-bottom: 2.5rem;
-    margin-top: -3.5rem;
-  }
+.education-banner {
+  width: 30vw;
+  height: 80vw;
+  bottom: 10%;
+  left: 65%;
+  padding: 0;
+  display: flex;
+}
+  
 
   h4 {
     font-size: 1.125rem;
@@ -2922,16 +2924,10 @@ h6 {
   }
 
 .education-banner {
-  width: 32vw;
-  height: 90vw;
-  bottom: 7%;
-  left: 64%;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  border-radius: 8px;
+   width: 37vw;
+  height: 45%;
+  bottom: 20%;
+  left: 65%;
   }
 
 
@@ -4075,13 +4071,200 @@ body {
 
 <!-- === Project SHOWROOM === -->
 
-
 <div class="ux-project-page" id="projectShowroom" onclick="handleBackdropClick(event)">
   <div class="project-inner">
     <button class="close-btn" onclick="closeUxProject()">Back</button>
     <h2>Showroom</h2>
-     <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/coming-soon.gif"/>
+
+    <!-- === HERO SECTION === -->
+    <section class="hero-row">
+      <div class="hero-text">
+       <p>
+  Insurance agencies in Switzerland struggle with too few applications and high turnover in their sales teams. As part of developing an internal recruiting platform, I explored the end-to-end recruiting and onboarding experience to understand what high-performing agencies do differently.
+</p>
+
+<p>
+  My role involved planning and conducting interviews, mapping the employee journey, synthesizing patterns, and translating them into <em>How Might We</em> questions and early concept directions for improving recruitment and onboarding experiences.
+</p>
+
+        <h3>Project steps</h3>
+        <ul class="styled-list">
+          <li><a href="#overview-showroom">Overview</a></li>
+          <li><a href="#research-showroom">Research</a></li>
+          <li><a href="#journey-showroom">Employee Journey</a></li>
+          <li><a href="#hmw-showroom">How-might-we</a></li>
+          <li><a href="#deliverables-showroom">Deliverables</a></li>
+        </ul>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/insurance agent.svg" alt="Sales hiring & onboarding journey">
+      </div>
+    </section>
+
+    <!-- Scroll hint -->
+    <button class="scroll-fab" type="button" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 10l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- === OVERVIEW === -->
+    <section id="overview-showroom">
+      <h3>Overview</h3>
+      <ul class="styled-list">
+        <li><strong>Context:</strong> Recruiting & retention in field sales for financial services.</li>
+        <li><strong>Methods:</strong> Stakeholder & employee interviews, employee journey mapping, problem framing, and HMW ideation.</li>
+        <li><strong>Target group:</strong> Career-changers entering advisory/sales roles.</li>
+        <li><strong>My role:</strong> UX researcher & facilitator (planning, execution, synthesis, and concept framing).</li>
+      </ul>
+
+      <div class="disclaimer">
+        <p class="disclaimer-text">
+          <strong>Disclaimer:</strong><br>
+          This work forms part of an internal project for the company I am currently employed at, supporting the development of a digital recruiting platform. To maintain confidentiality and respect company ownership, specific findings and strategic insights are not disclosed here. The focus lies on my UX research process and individual contribution.
+        </p>
+      </div>
+    </section>
+
+    <!-- === RESEARCH === -->
+    <section id="research-showroom">
+      <h3>Research</h3>
+      <p>
+        I combined interviews with a structured employee-journey to understand motivations, friction, and retention triggers across the first two years.
+      </p>
+
+     <h4>Research questions</h4>
+<div class="highlight-wrapper">
+  <div class="highlight-box">What motivates career-changers to enter sales?</div>
+  <div class="highlight-box">Where do doubts or drop-offs occur in the application process and why?</div>
+  <div class="highlight-box">How is onboarding experienced in the first 12 months?</div>
+  <div class="highlight-box">What factors influence the decision to stay after onboarding?</div>
+  <div class="highlight-box">How do candidates envision their future in the role and company?</div>
+</div>
+    </section>
+
     
+
+    <!-- === STAKEHOLDER INTERVIEWS === -->
+<section aria-label="Stakeholder interviews">
+  <h4>Stakeholder interviews</h4>
+  <p>
+    To understand the business and organizational context, I conducted stakeholder interviews 
+    with recruitment leads, regional managers, and HR professionals.  
+    These conversations helped frame the problem from multiple perspectives —  
+    balancing agency needs with candidate experience.
+  </p>
+
+  <div class="highlight-wrapper">
+    <div class="highlight-box">Recruitment pain points from the business side</div>
+    <div class="highlight-box">Current onboarding processes and gaps</div>
+    <div class="highlight-box">Differences between top-performing and struggling agencies</div>
+    <div class="highlight-box">Retention challenges during the first 12 months</div>
+    <div class="highlight-box">Success indicators and cultural factors</div>
+  </div>
+</section>
+
+<!-- === INTERVIEW SNAPSHOTS (carousel) === -->
+<section aria-label="Interview synthesis">
+  <h4>Interview synthesis</h4>
+  <p>
+    In parallel, I spoke with career changers currently in sales training and early career stages.  
+    The goal was to map what motivates them to join — and what makes them stay.
+  </p>
+
+  <div class="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="slide-content">
+          <h4>Career-changer motivations</h4>
+          <ul class="styled-list">
+            <li>Desire for autonomy, self-determination, and performance-based pay</li>
+            <li>Attracted by flexibility and entrepreneurial image</li>
+            <li>Escape from routine and search for purpose-driven work</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="slide-content">
+          <h4>Early stressors to clarify</h4>
+          <ul class="styled-list">
+            <li>Uncertainty about income stability and commission structures</li>
+            <li>Lack of clarity about what “good” performance looks like</li>
+            <li>Negative social image of sales: fear of family/friend judgment</li>
+            <li>Unclear expectations about team support and collaboration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="slide-content">
+          <h4>What supports retention</h4>
+          <ul class="styled-list">
+            <li>Structured onboarding and clear development paths</li>
+            <li>Feedback, recognition, and early confidence-building moments</li>
+            <li>Fair culture and accessible, supportive leadership</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+    <button class="carousel-btn next" aria-label="Next slide">›</button>
+    <div class="carousel-dots"></div>
+  </div>
+</section>
+
+    <!-- === EMPLOYEE JOURNEY (condensed) === -->
+    <section id="journey-showroom">
+      <h3>Employee Journey</h3>
+      <p>I mapped the journey from first contact to year two to spot expectation gaps and drop-off risks.</p>
+
+      <div class="highlight-wrapper">
+        <div class="highlight-box">Attraction & first contact</div>
+        <div class="highlight-box">Selection & match</div>
+        <div class="highlight-box">Onboarding & training</div>
+        <div class="highlight-box">First wins & performance routines</div>
+        <div class="highlight-box">Growth path & retention signals</div>
+      </div>
+    </section>
+
+    <!-- === HOW MIGHT WE === -->
+    <section id="hmw-showroom">
+      <h3>How might we…</h3>
+      <ul class="styled-list">
+        <li>find and attract the right career-changers more intentionally?</li>
+        <li>give transparent confidence about commission-based income?</li>
+        <li>check competence, personality, and culture fit early and fairly?</li>
+        <li>set realistic expectations for the role and onboarding workload?</li>
+        <li>make development paths visible and reduce uncertainty in year one?</li>
+      </ul>
+      <!-- Source for HMW themes --> 
+    </section>
+
+    <!-- === DELIVERABLES === -->
+    <section id="deliverables-showroom">
+      <h3>What I delivered</h3>
+      <ul class="styled-list">
+        <li>Research plan, discussion guide, and candidate criteria.</li>
+        <li>Interview synthesis & employee-journey map with priority friction points.</li>
+        <li>HMW problem framing and concept directions for the platform.</li>
+        <li>Recommendations for recruiting, onboarding, and early-tenure rituals.</li>
+      </ul>
+    </section>
+  </div>
+
+  <p class="quote">
+    “The best kind of design isn't necessarily an object, a space or a structure: it's a process - dynamic and adaptable.” - Don Norman
+  </p>
+
+    
+</div>
 </div>
 </div>
 
@@ -4109,7 +4292,6 @@ body {
         <li><a href="#overview-xelebrate">Overview</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#insights">Insights</a></li>
-        <li><a href="#testing">Prototype Testing</a></li>
       </ul>
       </div>
 
@@ -4230,16 +4412,19 @@ body {
       </section>
     
 
-    <section id="testing">
-
-    <!-- CHAPTER 3: UX Concept -->
- <h3>Prototype Testing</h3>
+      <section id="reflection">
+  <h3>Reflection & Next Steps</h3>
+  
+  <p> After translating research insights into product requirements, we built a clickable MVP and conducted usability testing with our target group. While detailed outcomes are confidential, the tests confirmed core assumptions and guided the next iteration. </p>
   <p>
-  After translating research insights into product requirements, we built a clickable MVP and conducted usability testing with our target group. While detailed outcomes are confidential, the tests confirmed core assumptions and guided the next iteration.
-</p>
-  </div>
-</div>
+    This project stands out to me for how deeply research reshaped our direction. The process highlighted how early discovery can prevent teams from building the wrong product efficiently.
+  </p>/Users/galinashokhova/Library/CloudStorage/OneDrive-Personal/AKTUELL (Job)/Portfolio UX/insurance agent.svg
+
+ 
 </section>
+
+  </div>
+
 
 
 <!-- === Project Kloop === -->
@@ -4260,7 +4445,7 @@ body {
   </p>
 
   <p>
-    Throughout the project, I applied the full Google UX process, from empathizing with real users through interviews and diary studies, to defining key insights and ideating possible solutions. 
+    Throughout the project, I applied the Design Thinking process, from empathizing with real users through interviews and diary studies, to defining key insights and ideating possible solutions. 
   </p>
 
         <h3>Project steps</h3>
