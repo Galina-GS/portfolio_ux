@@ -408,13 +408,14 @@ img, svg, gif, .no-select {
 
     /* === UNIVERSITY SCENE === */
 .scene.university {
-  align-items: flex-start; /* Changed from flex-end to flex-start */
+  align-items: flex-start;
   background-color: transparent;
   overflow: hidden;
-  padding-top: 20vh; /* Add some top padding to position below navigation */
+  padding-top: 20vh;
   height: calc(var(--vh, 1vh) * 100);
 }
 
+/* Background illustration */
 .university-wrap {
   position: absolute;
   bottom: 0;
@@ -424,19 +425,20 @@ img, svg, gif, .no-select {
   overflow: hidden;
   z-index: 1;
 }
-
 .university-bg {
   position: absolute;
   bottom: 0;
   left: 10%;
   width: 60%;
   height: 100%;
-  background: url('https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/University.svg') no-repeat left bottom;
+  background: url('https://raw.githubusercontent.com/Galina-GS/portfolio_ux/main/University.svg')
+    no-repeat left bottom;
   background-size: contain;
   opacity: 0.5;
   will-change: transform;
 }
 
+/* === LAYOUT SECTIONS === */
 .text-section-university {
   width: 50%;
   padding: 0 4vw;
@@ -449,87 +451,19 @@ img, svg, gif, .no-select {
   position: relative;
 }
 
-
-/* === PROGRESS BARS === */
-
-.qualification-text {
-  font-size: 1.875rem; /* 30px equivalent */
-  font-weight: 600;
-  width: 50%;              /* force the bar to span its parent */
-  align-self: flex-end;
-}
-
-.school-progress {
-  width: 50%;              /* force the bar to span its parent */
-  margin: 1rem 0;
-  align-self: flex-end;
-}
-
-.progress-bar__container {
-  position: relative;
-  width: 100%;
-  height: 3rem;           /* thickness */
-  border: 2px solid #2563eb;/* blue track */
-  border-radius: 0;
-  background: #fff;         /* empty-track color */
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.progress-fill {
-  position: absolute;
-  top: 0; left: 0;
-  width: 0%;                /* JS will grow this */
-  height: 100%;
-  background: #2563eb;      /* fill color */
-  transition: width 0.5s ease;
-  z-index: 1;
-}
-
-.progress-bar__label {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: #1f2933;   
-  transition: color 0.5s ease;        /* always readable */
-  z-index: 2;
-}
-
-/* when the bar is “mostly” filled, make label white */
-.progress-bar__label.light {
-  color: #fff !important;
-}
-
-/* ——— completion ANIMATION ——— */
-
-@keyframes glowPulse {
-  0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.7); background-color: #2563eb; }
-  50% { box-shadow: 0 0 20px 5px rgba(37,99,235,0.4); background-color: #2563eb; }
-  100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.7); background-color: #2563eb; }
-}
-
-.school-progress.complete .progress-bar__container {
-  animation: glowPulse 1.2s ease-in-out;
-}
-
 .game-section-university {
   width: 50%;
   padding: 0 4vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Changed from center to flex-start */
+  justify-content: flex-start;
   align-items: left;
   position: relative;
   z-index: 5;
-} 
+}
 
 .game-area {
-  position: relative; /* Changed from absolute */
-  /* Remove the absolute positioning properties */
-  width: 100%; /* Changed from 60vw */
+  width: 100%;
   text-align: center;
   justify-content: flex-start;
   display: flex;
@@ -537,70 +471,49 @@ img, svg, gif, .no-select {
 }
 
 .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1vw;
-      justify-content: left;
-      align-items: flex-start;
-      align-content: flex-start;
-      padding: 0vw;
-      min-height: 40vh;
-      max-width: 30vw;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  justify-content: left;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 0vw;
+  min-height: 40vh;
+  max-width: 30vw;
+}
 
-    .skill-card {
-      background-color: #fff;
-      background-image: none;
-      background-position: 0 90%;
-      background-repeat: repeat no-repeat;
-      background-size: 4px 3px;
-      border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-      border-style: solid;
-      border-width: 2px;
-      border-color: #1f2933;
-      border-bottom-left-radius: 15px 255px;
-      border-bottom-right-radius: 225px 15px;
-      border-top-left-radius: 255px 15px;
-      border-top-right-radius: 15px 225px;
-      box-shadow: #1f2933 15px 28px 25px -18px;
-      box-sizing: border-box;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      color: #1f2933;
-      cursor: grab;
-      display: inline-block;
-      font-size: 1rem;
-      line-height: 1rem;
-      outline: none;
-      padding: 0.8vw 1vw;
-      text-decoration: none;
-      transition: all 235ms ease-in-out;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      margin: 0.3vw;
-      opacity: 1;
-      transform: translateY(0);
-      align-self: left;
-      animation: wiggle 5s ease-in-out infinite;
-    }
+/* === SKILL CARDS === */
+.skill-card {
+  background-color: #fff;
+  border: 2px solid #1f2933;
+  border-radius: 15px 225px 255px 15px / 15px 255px 225px 15px;
+  box-shadow: #1f2933 15px 28px 25px -18px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #1f2933;
+  cursor: grab;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 0.8vw 1vw;
+  margin: 0.3vw;
+  transition: all 235ms ease-in-out;
+  user-select: none;
+  animation: wiggle 5s ease-in-out infinite;
+}
+.skill-card:hover {
+  box-shadow: #1f2933 4px 8px 8px -5px;
+  transform: translate3d(0, -2px, 0);
+}
+.skill-card:active,
+.skill-card.dragging {
+  cursor: grabbing !important;
+  transform: scale(1.05) rotate(2deg);
+  z-index: 1000;
+  box-shadow: #1f2933 12px 20px 20px -8px;
+}
 
-    .skill-card:hover {
-      box-shadow: #1f2933 4px 8px 8px -5px;
-      transform: translate3d(0, -2px, 0);
-      opacity: 1;
-      cursor: grab;
-    }
-
-    .skill-card:active,
-    .skill-card.dragging {
-      cursor: grabbing !important;
-      transform: scale(1.05) rotate(2deg);
-      z-index: 1000;
-      opacity: 1;
-      box-shadow: #1f2933 12px 20px 20px -8px;
-    }
-
+/* === CHARACTER & BANNER === */
 .character-area {
   position: absolute;
   bottom: 0;
@@ -613,71 +526,104 @@ img, svg, gif, .no-select {
   justify-content: center;
   z-index: 3;
 }
-
 .character-img {
   max-height: 100%;
   width: 100%;
 }
 
 .education-banner {
-      position: absolute;
-      bottom: clamp(4vh, 6vh, 10vh);
+  position: absolute;
+  bottom: clamp(4vh, 6vh, 10vh);
   left: clamp(60%, 63%, 68%);
-      transform: translateX(-50%);
-      width: 19vw;
-      height: 37vw;
-      background: rgba(255, 255, 255, 0);
-      border: 0px;
-      padding: 2vw;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      z-index: 10;     
-    }
+  transform: translateX(-50%);
+  width: 19vw;
+  height: 37vw;
+  background: rgba(255, 255, 255, 0);
+  border: 0;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 10;
+}
+.banner-section {
+  text-align: center;
+}
+.banner-section h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1vw;
+  font-weight: 700;
+  color: #1f2933;
+  margin-bottom: 0.5vw;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
 
-    .banner-section {
-      text-align: center;
-    }
+/* === NEW DROP-ZONE ANIMATION === */
+.drop-zone {
+  min-height: 8vw;
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #a855f7; /* start purple */
+  border-radius: 8px;
+  padding: 0vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 5;
+}
 
-    .banner-section h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1vw;
-      font-weight: 700;
-      color: #1f2933;
-      margin-bottom: 0.5vw;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      text-align: center;
-    }
+/* Each card placed fills one side: */
+.drop-zone.step-1 {
+  border-top: 2px solid #2563eb;
+  border-right: 2px dashed #a855f7;
+  border-bottom: 2px dashed #a855f7;
+  border-left: 2px dashed #a855f7;
+}
+.drop-zone.step-2 {
+  border-top: 2px solid #2563eb;
+  border-left: 2px solid #2563eb;
+  border-right: 2px dashed #a855f7;
+  border-bottom: 2px dashed #a855f7;
+}
+.drop-zone.step-3 {
+  border-top: 2px solid #2563eb;
+  border-left: 2px solid #2563eb;
+  border-bottom: 2px solid #2563eb;
+  border-right: 2px dashed #a855f7;
+}
+.drop-zone.complete {
+  border: 2px solid #2563eb;
+}
 
-    .drop-zone {
-      min-height: 8vw; 
-      border: 2px dashed #a855f7;
-      border-radius: 8px;
-      padding: 0vw;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.1rem;
-      justify-content: center;
-      align-items: flex-start;
-      align-content: flex-start;
-      transition: all 0.3s ease;
-      z-index: 5;
-      position: relative; /* required for z-index to take effect */
-    }
+.drop-zone.glow-once {
+  animation: zoneGlow 1.2s ease-in-out 1;
+}
 
-   
+@keyframes zoneGlow {
+  from {
+    box-shadow: 0 0 0 rgba(37, 99, 235, 0.2);
+  }
+  to {
+    box-shadow: 0 0 14px 3px rgba(37, 99, 235, 0.5);
+  }
+}
 
-    .drop-zone .skill-card {
-      font-size: 0.7vw;
-      padding: 0.4vw 0.6vw;
-      margin: 0.1vw;
-      animation: none;
-      box-shadow: #1f2933 4px 8px 8px -5px;
-      cursor: default !important;
-    }
-
-    /* 1) Prevent cards inside drop-zones from ever scaling or showing the grabbing cursor */
+/* Cards inside zones */
+.drop-zone .skill-card {
+  font-size: 0.7vw;
+  padding: 0.4vw 0.6vw;
+  margin: 0.1vw;
+  animation: none;
+  box-shadow: #1f2933 4px 8px 8px -5px;
+  cursor: default !important;
+}
 .drop-zone .skill-card:active,
 .drop-zone .skill-card.dragging,
 .drop-zone .skill-card:hover {
@@ -686,24 +632,19 @@ img, svg, gif, .no-select {
   box-shadow: #1f2933 4px 8px 8px -5px !important;
 }
 
-      @keyframes wiggle {
+/* Animations */
+@keyframes wiggle {
   0%, 100% { transform: rotate(-1deg); }
   50% { transform: rotate(1deg); }
 }
-
-      /* Game completion animation */
-    .skill-card.placed {
-      animation: placeCard 0.5s ease-out;
-      cursor: default !important;
-    }
-
-  
-
-    @keyframes placeCard {
-      0% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
-
+.skill-card.placed {
+  animation: placeCard 0.5s ease-out;
+  cursor: default !important;
+}
+@keyframes placeCard {
+  0% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
 
 
 
@@ -4778,64 +4719,88 @@ document.addEventListener('DOMContentLoaded', () => {
   window.scrollToScene = scrollToScene;
 
   // === EDUCATION PROGRESS ===
-  function updateProgress(cat) {
-    const total = initialCounts[cat] || 1;
-    const placed = document.querySelectorAll(`.${cat}-zone .skill-card.placed`).length;
-    const pct = Math.round((placed / total) * 100);
-    const wrapper = document.querySelector(`.school-progress[data-category="${cat}"]`);
-    const fillEl = wrapper.querySelector('.progress-fill');
-    const label = wrapper.querySelector('.progress-bar__label');
-    fillEl.style.width = pct + '%';
-    wrapper.classList.toggle('complete', pct >= 100);
-    if (label) label.classList.toggle('light', pct > 75);
+function updateProgress(cat) {
+  const total = initialCounts[cat] || 1;
+  const zone = document.querySelector(`.${cat}-zone`);
+  if (!zone) return;
 
-    // === NEW: show reflection modal if all are complete ===
-    const allDone = [...document.querySelectorAll('.school-progress')].every(
-      el => el.classList.contains('complete')
+  const placed = zone.querySelectorAll('.skill-card.placed').length;
+
+  // Remove any previous step classes
+  zone.classList.remove('step-1', 'step-2', 'step-3', 'complete', 'glow-once');
+
+  // Add class based on number of placed cards
+  if (placed >= 4) {
+    zone.classList.add('complete', 'glow-once');
+
+    // One-time glow animation
+    zone.addEventListener(
+      'animationend',
+      () => zone.classList.remove('glow-once'),
+      { once: true }
     );
-    if (allDone) {
-  setTimeout(() => {
-    showEducationMessage();
-  }, 500); // 0.5 second delay
+  } else if (placed === 3) {
+    zone.classList.add('step-3');
+  } else if (placed === 2) {
+    zone.classList.add('step-2');
+  } else if (placed === 1) {
+    zone.classList.add('step-1');
+  }
+
+  // Check if all zones are complete
+  const allDone = [...document.querySelectorAll('.drop-zone')].every(z =>
+    z.classList.contains('complete')
+  );
+  if (allDone) {
+    setTimeout(() => showEducationMessage(), 500);
+  }
 }
+
+// === PLACE CARD FUNCTION ===
+function placeCard(card) {
+  const cat = card.dataset.category;
+  const zone = document.querySelector(`.${cat}-zone`);
+  if (!zone) return;
+
+  const clone = card.cloneNode(true);
+  clone.classList.add('skill-card', 'placed');
+  clone.draggable = false;
+  clone.style.cursor = 'default';
+  clone.style.transition = `transform ${AUTO_DELAY}ms ease-out, opacity ${AUTO_DELAY}ms ease-out`;
+
+  zone.appendChild(clone);
+  card.remove();
+
+  updateProgress(cat);
 }
 
-  function placeCard(card) {
-    const cat = card.dataset.category;
-    const zone = document.querySelector(`.${cat}-zone`);
-    if (!zone) return;
-    const clone = card.cloneNode(true);
-    clone.classList.add('skill-card', 'placed');
-    clone.draggable = false;
-    clone.style.cursor = 'default';
-    clone.style.transition = `transform ${AUTO_DELAY}ms ease-out, opacity ${AUTO_DELAY}ms ease-out`;
-    zone.appendChild(clone);
-    card.remove();
-    updateProgress(cat);
-  }
+// === AUTO PLACE ALL (optional for testing or skip) ===
+function autoPlaceCards() {
+  if (hasAutoPlaced) return;
+  hasAutoPlaced = true;
+  document
+    .querySelectorAll('.skills-container .skill-card')
+    .forEach(card => placeCard(card));
+}
 
-  function autoPlaceCards() {
-    if (hasAutoPlaced) return;
-    hasAutoPlaced = true;
-    document.querySelectorAll('.skills-container .skill-card').forEach(card => placeCard(card));
-  }
-
-  function initCardClicks() {
-    document.querySelectorAll('.skills-container .skill-card').forEach(card => {
-      card.removeAttribute('draggable');
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', () => placeCard(card));
-    });
-  }
-
-  // === INIT EDUCATION SCENE ===
+// === INIT CLICK INTERACTIONS ===
+function initCardClicks() {
   document.querySelectorAll('.skills-container .skill-card').forEach(card => {
-    const cat = card.dataset.category;
-    initialCounts[cat] = (initialCounts[cat] || 0) + 1;
+    card.removeAttribute('draggable');
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => placeCard(card));
   });
-  Object.keys(initialCounts).forEach(cat => updateProgress(cat));
-  updateMarketingView(0);
-  initCardClicks();
+}
+
+// === INITIALIZE EDUCATION SCENE ===
+document.querySelectorAll('.skills-container .skill-card').forEach(card => {
+  const cat = card.dataset.category;
+  initialCounts[cat] = (initialCounts[cat] || 0) + 1;
+});
+Object.keys(initialCounts).forEach(cat => updateProgress(cat));
+updateMarketingView(0);
+initCardClicks();
+
 
   // === NEXT STEP BUTTON ===
   document.querySelectorAll('.next-step-button').forEach(button => {
