@@ -3942,7 +3942,7 @@ body {
 
   
   <div class="next-step-button-wrapper">
-  <button class="next-step-button">
+  <button class="next-step-button" id="skipEducation">
     Skip
   </button>
 </div>
@@ -5000,22 +5000,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
 // === EDUCATION MESSAGE HANDLERS ===
+let skipEducation = false; // flag to control whether message should appear
+
 function showEducationMessage() {
-  document.getElementById('educationMessage').classList.add('visible');
+  // Only show if user hasn't chosen to skip
+  if (!skipEducation) {
+    const message = document.getElementById('educationMessage');
+    if (message) message.classList.add('visible');
+  }
 }
 
 function hideEducationMessage() {
-  document.getElementById('educationMessage').classList.remove('visible');
+  const message = document.getElementById('educationMessage');
+  if (message) message.classList.remove('visible');
 }
 
 // Close modal if clicking outside
 document.addEventListener('click', (e) => {
   const overlay = document.getElementById('educationMessage');
-  if (overlay.classList.contains('visible') && e.target === overlay) {
+  if (overlay && overlay.classList.contains('visible') && e.target === overlay) {
     hideEducationMessage();
   }
 });
+
+// Handle "Skip" button
+const skipBtn = document.getElementById('skipEducation');
+if (skipBtn) {
+  skipBtn.addEventListener('click', () => {
+    skipEducation = true;      // mark that the user wants to skip
+    hideEducationMessage();    // immediately hide the message
+  });
+}
+
+
+
+
+
 
 
 // === SIMPLE INTERVIEW CAROUSEL ===
